@@ -4,6 +4,7 @@ import { FileText, Mail, ArrowRight } from 'lucide-react';
 import { cn } from "@/lib/utils";
 import { FaReact, FaNodeJs, FaAws, FaDocker, FaPython } from 'react-icons/fa';
 import { SiNextdotjs } from 'react-icons/si';
+import { OrbitingCircles } from './ui/orbiting-circles';
 
 // Social Icons SVGs - Designed accurately
 const GithubIcon = ({ className }) => (
@@ -150,7 +151,7 @@ const TypewriterText = () => {
         animate={{ y: [-3, 3, -3] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       >
-        <h1 className="flex items-center text-[clamp(1.8rem,5vw,3.5rem)] font-black tracking-tight whitespace-nowrap transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" style={{ letterSpacing: "-0.02em" }}>
+        <h1 className="relative inline-flex w-fit items-center overflow-hidden text-[clamp(1.8rem,5vw,3.5rem)] font-black tracking-tight whitespace-nowrap transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" style={{ letterSpacing: "-0.02em" }}>
           {textStr.split("").slice(0, displayedCount).map((char, i) => (
             <span key={i} className={cn("inline-block transform-origin-bottom transition-all duration-100", getColorClasses())}>
               {char === ' ' ? '\u00A0' : char}
@@ -280,9 +281,16 @@ export const Hero = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs font-semibold text-purple-400 tracking-wider uppercase mb-1">
-          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-          Available for Opportunities
+        <div className="relative inline-flex items-center gap-3 px-6 py-2.5 rounded-full border border-purple-500/40 bg-purple-500/10 backdrop-blur-md text-sm md:text-base font-bold text-purple-300 tracking-[0.2em] uppercase mb-4 shadow-[0_0_25px_rgba(168,85,247,0.4)] hover:shadow-[0_0_40px_rgba(168,85,247,0.7)] hover:border-purple-400/60 transition-all duration-500 hover:scale-[1.03] cursor-default group overflow-hidden">
+          {/* Shimmer sweep effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-300/20 to-transparent animate-sweep pointer-events-none" />
+          
+          {/* Pulsing Dot */}
+          <span className="relative flex h-3 w-3 items-center justify-center">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-80"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,1)]"></span>
+          </span>
+          <span className="relative z-10 font-black drop-shadow-[0_0_10px_rgba(216,180,254,0.8)]">Available for Opportunities</span>
         </div>
 
         <div className="space-y-1">
@@ -295,7 +303,7 @@ export const Hero = () => {
 
 
         <p className="text-base md:text-lg text-white/60 max-w-xl leading-relaxed mt-3 pl-1">
-          I’m an AI-driven Full Stack Developer focused on building scalable, high-performance applications and solving real-world problems through intelligent systems.
+          I’m a Self-Driven Full Stack Developer focused on building scalable, high-performance applications and solving real-world problems through intelligent systems.
         </p>
 
         {/* Buttons tightened up */}
@@ -368,69 +376,69 @@ export const Hero = () => {
 
       {/* --- RIGHT COLUMN: VISUAL (45%) --- */}
       <motion.div 
-        className="w-full lg:w-[45%] relative hidden lg:flex items-center justify-center lg:justify-end xl:translate-x-6 lg:scale-105 xl:scale-110 origin-right hover:scale-125 transition-transform duration-700 ease-out z-10"
+        className="w-full lg:w-[45%] relative hidden lg:flex items-center justify-center lg:justify-end xl:translate-x-6 lg:scale-105 xl:scale-110 origin-right transition-transform duration-700 ease-out z-10"
         initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        animate={{ opacity: 1, scale: 1, y: [-15, 15, -15] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       >
-        {/* Core Profile Frame */}
-        <div className="relative w-52 h-52 rounded-full border border-white/20 p-2 z-20 shadow-[0_0_50px_rgba(168,85,247,0.2)] bg-black/40 backdrop-blur-sm group hover:scale-[1.02] transition-transform duration-500">
-          <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-purple-500 to-cyan-400 opacity-20 group-hover:opacity-40 transition-opacity duration-700 blur-xl" />
-          <img 
-            src="https://api.dicebear.com/7.x/notionists/svg?seed=Atharv&backgroundColor=transparent" 
-            alt="Atharv Waykar"
-            className="w-full h-full rounded-full object-cover border border-white/10"
-          />
-        </div>
+        <div className="relative w-[500px] h-[500px] flex items-center justify-center">
+          {/* Core Profile Frame */}
+          <div className="relative w-48 h-48 rounded-full border border-white/20 p-2 z-20 shadow-[0_0_50px_rgba(168,85,247,0.2)] bg-black/40 backdrop-blur-sm group hover:scale-[1.02] transition-transform duration-500">
+            <motion.div 
+              className="absolute inset-0 rounded-full bg-gradient-to-tr from-purple-500 to-cyan-400 blur-xl" 
+              animate={{ opacity: [0.2, 0.4, 0.2], scale: [1, 1.1, 1] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <img 
+              src="https://api.dicebear.com/7.x/notionists/svg?seed=Atharv&backgroundColor=transparent" 
+              alt="Atharv Waykar"
+              className="w-full h-full rounded-full object-cover border border-white/10 relative z-10"
+            />
+          </div>
 
-        {/* Orbital Ring 1 */}
-        <div className="absolute w-[280px] h-[280px] border border-white/10 rounded-full animate-[spin_30s_linear_infinite]" />
-        
-        {/* Nodes for Orbit 1 */}
-        <div className="absolute w-[280px] h-[280px] animate-[spin_30s_linear_infinite]">
-          {[
-            { angle: 0, icon: <FaReact size={24} />, color: 'text-cyan-400' },
-            { angle: 120, icon: <FaNodeJs size={24} />, color: 'text-green-500' },
-            { angle: 240, icon: <SiNextdotjs size={24} />, color: 'text-white' },
-          ].map((stack, idx) => (
-            <div 
-              key={idx}
-              className="absolute w-12 h-12 bg-black border border-white/20 rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.1)] backdrop-blur-md hover:scale-[1.2] transition-transform cursor-pointer"
-              style={{
-                top: `calc(50% - 24px + 140px * ${Math.sin(stack.angle * (Math.PI / 180))})`,
-                left: `calc(50% - 24px + 140px * ${Math.cos(stack.angle * (Math.PI / 180))})`,
-              }}
-            >
-              <span className={cn("animate-[spin_30s_linear_infinite_reverse]", stack.color)}>
-                {stack.icon}
-              </span>
+          {/* Inner Orbit (React, Node, Next.js) */}
+          <OrbitingCircles duration={30} delay={0} radius={140}>
+            <div className="relative group/icon flex items-center justify-center w-12 h-12 bg-black border border-white/20 rounded-xl hover:scale-125 hover:border-cyan-400/50 shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] backdrop-blur-md transition-all cursor-pointer">
+              <FaReact size={24} className="text-cyan-400" />
+              <div className="absolute -bottom-8 opacity-0 group-hover/icon:opacity-100 transition-opacity bg-black/90 border border-white/10 text-white text-[10px] px-2 py-1 rounded-md whitespace-nowrap backdrop-blur-md drop-shadow-xl font-medium tracking-wide pointer-events-none">React</div>
             </div>
-          ))}
-        </div>
+          </OrbitingCircles>
+          
+          <OrbitingCircles duration={30} delay={10} radius={140} path={false}>
+            <div className="relative group/icon flex items-center justify-center w-12 h-12 bg-black border border-white/20 rounded-xl hover:scale-125 hover:border-green-500/50 shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(34,197,94,0.4)] backdrop-blur-md transition-all cursor-pointer">
+              <FaNodeJs size={24} className="text-green-500" />
+              <div className="absolute -bottom-8 opacity-0 group-hover/icon:opacity-100 transition-opacity bg-black/90 border border-white/10 text-white text-[10px] px-2 py-1 rounded-md whitespace-nowrap backdrop-blur-md drop-shadow-xl font-medium tracking-wide pointer-events-none">Node.js</div>
+            </div>
+          </OrbitingCircles>
 
-        {/* Orbital Ring 2 */}
-        <div className="absolute w-[380px] h-[380px] border border-white/[0.05] rounded-full border-dashed animate-[spin_40s_linear_infinite_reverse]" />
-        
-        {/* Nodes for Orbit 2 */}
-        <div className="absolute w-[380px] h-[380px] animate-[spin_40s_linear_infinite_reverse]">
-          {[
-            { angle: 45, icon: <FaPython size={24} />, color: 'text-blue-400' },
-            { angle: 165, icon: <FaAws size={24} />, color: 'text-orange-400' },
-            { angle: 285, icon: <FaDocker size={24} />, color: 'text-blue-500' },
-          ].map((stack, idx) => (
-            <div 
-              key={idx}
-              className="absolute w-12 h-12 bg-white/5 border border-white/10 rounded-full flex items-center justify-center backdrop-blur-sm hover:scale-110 transition-transform cursor-pointer"
-              style={{
-                top: `calc(50% - 24px + 190px * ${Math.sin(stack.angle * (Math.PI / 180))})`,
-                left: `calc(50% - 24px + 190px * ${Math.cos(stack.angle * (Math.PI / 180))})`,
-              }}
-            >
-              <span className={cn("animate-[spin_40s_linear_infinite]", stack.color)}>
-                {stack.icon}
-              </span>
+          <OrbitingCircles duration={30} delay={20} radius={140} path={false}>
+            <div className="relative group/icon flex items-center justify-center w-12 h-12 bg-black border border-white/20 rounded-xl hover:scale-125 hover:border-white/50 shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] backdrop-blur-md transition-all cursor-pointer">
+              <SiNextdotjs size={24} className="text-white" />
+              <div className="absolute -bottom-8 opacity-0 group-hover/icon:opacity-100 transition-opacity bg-black/90 border border-white/10 text-white text-[10px] px-2 py-1 rounded-md whitespace-nowrap backdrop-blur-md drop-shadow-xl font-medium tracking-wide pointer-events-none">Next.js</div>
             </div>
-          ))}
+          </OrbitingCircles>
+
+          {/* Outer Orbit (Python, AWS, Docker) */}
+          <OrbitingCircles reverse duration={40} delay={0} radius={190}>
+            <div className="relative group/icon flex items-center justify-center w-12 h-12 bg-white/5 border border-white/10 rounded-full hover:scale-125 hover:border-blue-400/50 hover:shadow-[0_0_20px_rgba(96,165,250,0.4)] backdrop-blur-sm transition-all cursor-pointer">
+              <FaPython size={24} className="text-blue-400" />
+              <div className="absolute -bottom-8 opacity-0 group-hover/icon:opacity-100 transition-opacity bg-black/90 border border-white/10 text-white text-[10px] px-2 py-1 rounded-md whitespace-nowrap backdrop-blur-md drop-shadow-xl font-medium tracking-wide pointer-events-none">Python</div>
+            </div>
+          </OrbitingCircles>
+
+          <OrbitingCircles reverse duration={40} delay={13.33} radius={190} path={false}>
+            <div className="relative group/icon flex items-center justify-center w-12 h-12 bg-white/5 border border-white/10 rounded-full hover:scale-125 hover:border-orange-400/50 hover:shadow-[0_0_20px_rgba(251,146,60,0.4)] backdrop-blur-sm transition-all cursor-pointer">
+              <FaAws size={24} className="text-orange-400" />
+              <div className="absolute -bottom-8 opacity-0 group-hover/icon:opacity-100 transition-opacity bg-black/90 border border-white/10 text-white text-[10px] px-2 py-1 rounded-md whitespace-nowrap backdrop-blur-md drop-shadow-xl font-medium tracking-wide pointer-events-none">AWS</div>
+            </div>
+          </OrbitingCircles>
+
+          <OrbitingCircles reverse duration={40} delay={26.66} radius={190} path={false}>
+            <div className="relative group/icon flex items-center justify-center w-12 h-12 bg-white/5 border border-white/10 rounded-full hover:scale-125 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] backdrop-blur-sm transition-all cursor-pointer">
+              <FaDocker size={24} className="text-blue-500" />
+              <div className="absolute -bottom-8 opacity-0 group-hover/icon:opacity-100 transition-opacity bg-black/90 border border-white/10 text-white text-[10px] px-2 py-1 rounded-md whitespace-nowrap backdrop-blur-md drop-shadow-xl font-medium tracking-wide pointer-events-none">Docker</div>
+            </div>
+          </OrbitingCircles>
         </div>
       </motion.div>
     </section>

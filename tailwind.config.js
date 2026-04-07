@@ -58,10 +58,19 @@ export default {
             sweep: {
                 '0%': { transform: 'translateX(-150%) skewX(-20deg)' },
                 '100%': { transform: 'translateX(200%) skewX(-20deg)' },
-            }
+            },
+            orbit: {
+                "0%": {
+                    transform: "rotate(0deg) translateY(calc(var(--radius) * 1px)) rotate(0deg)",
+                },
+                "100%": {
+                    transform: "rotate(360deg) translateY(calc(var(--radius) * 1px)) rotate(-360deg)",
+                },
+            },
         },
         animation: {
             sweep: 'sweep 1.5s ease-in-out infinite',
+            orbit: "orbit calc(var(--duration)*1s) linear infinite",
         }
   	}
   },
