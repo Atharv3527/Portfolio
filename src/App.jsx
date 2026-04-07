@@ -41,14 +41,14 @@ function App() {
       {/* Main Content Sections */}
       <div className="relative z-10 w-full">
         {/* About section sits on top of the grid background */}
-        <div className="pt-32 pb-4 sm:pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+        <div className="pt-32 pb-4 sm:pb-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
           <About />
         </div>
 
         {/* Transition into dark background overlapping the About section & grid */}
         <div 
           className="w-full relative z-20"
-          style={{ marginTop: "clamp(-250px, -20vw, -150px)" }}
+          style={{ marginTop: "clamp(-240px, -19vw, -145px)" }}
         >
           {/* Smooth gradient overlap effect */}
           <div className="w-full h-32 sm:h-40 bg-gradient-to-b from-transparent via-[#020202]/80 to-[#020202] pointer-events-none" />
