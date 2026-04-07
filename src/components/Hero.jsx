@@ -186,8 +186,8 @@ export const ScrollIndicator = () => {
   const fillHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <div className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 hidden sm:flex items-center justify-center cursor-pointer group" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth'})}>
-      <div className="relative w-[96px] h-[96px] flex items-center justify-center hover:scale-105 transition-transform duration-300">
+    <div className="fixed bottom-4 right-3 sm:right-4 md:bottom-8 md:right-8 z-50 flex items-center justify-center cursor-pointer group" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth'})}>
+      <div className="relative w-[78px] h-[78px] sm:w-[86px] sm:h-[86px] md:w-[96px] md:h-[96px] flex items-center justify-center hover:scale-105 transition-transform duration-300">
         {/* Outer rotating text */}
         <motion.div 
           animate={{ rotate: 360 }}
@@ -210,7 +210,7 @@ export const ScrollIndicator = () => {
         </motion.div>
 
         {/* Center filled circle and arrow */}
-        <div className="absolute w-[48px] h-[48px] rounded-full border border-white/30 flex flex-col items-center justify-center overflow-hidden transition-colors group-hover:border-white/50 backdrop-blur-md bg-black/40 z-10">
+        <div className="absolute w-[40px] h-[40px] sm:w-[44px] sm:h-[44px] md:w-[48px] md:h-[48px] rounded-full border border-white/30 flex flex-col items-center justify-center overflow-hidden transition-colors group-hover:border-white/50 backdrop-blur-md bg-black/40 z-10">
           <motion.svg 
             xmlns="http://www.w3.org/2000/svg" 
             viewBox="0 0 24 24" 
@@ -219,7 +219,7 @@ export const ScrollIndicator = () => {
             strokeWidth="2.5" 
             strokeLinecap="round" 
             strokeLinejoin="round" 
-            className="w-5 h-5 relative z-20 -mt-2 drop-shadow-md mix-blend-difference"
+            className="w-4 h-4 sm:w-5 sm:h-5 relative z-20 -mt-1.5 sm:-mt-2 drop-shadow-md mix-blend-difference"
             animate={{ y: [0, 5, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           >
@@ -256,7 +256,7 @@ export const Hero = () => {
   return (
     <section 
       id="home" 
-      className="relative flex flex-col lg:flex-row items-center justify-between w-full min-h-[75vh] pt-1 pb-16 px-[clamp(1.5rem,5vw,6rem)] 2xl:px-32 overflow-visible group"
+      className="relative flex flex-col lg:flex-row items-center lg:items-start justify-between w-full min-h-[70vh] lg:min-h-[75vh] pt-2 sm:pt-4 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-12 2xl:px-32 overflow-visible group"
       onMouseMove={handleGlobalMouseMove}
     >
       {/* Edge Fade Gradients for Ultra-wide Support */}
@@ -277,7 +277,7 @@ export const Hero = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <div className="relative inline-flex items-center gap-3 px-6 py-2.5 rounded-full border border-purple-500/40 bg-purple-500/10 backdrop-blur-md text-sm md:text-base font-bold text-purple-300 tracking-[0.2em] uppercase mb-4 shadow-[0_0_25px_rgba(168,85,247,0.4)] hover:shadow-[0_0_40px_rgba(168,85,247,0.7)] hover:border-purple-400/60 transition-all duration-500 hover:scale-[1.03] cursor-default group overflow-hidden">
+        <div className="relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border border-purple-500/40 bg-purple-500/10 backdrop-blur-md text-xs sm:text-sm md:text-base font-bold text-purple-300 tracking-[0.14em] sm:tracking-[0.2em] uppercase mb-4 shadow-[0_0_25px_rgba(168,85,247,0.4)] hover:shadow-[0_0_40px_rgba(168,85,247,0.7)] hover:border-purple-400/60 transition-all duration-500 hover:scale-[1.03] cursor-default group overflow-hidden">
           {/* Shimmer sweep effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-300/20 to-transparent animate-sweep pointer-events-none" />
           
@@ -305,28 +305,28 @@ export const Hero = () => {
         </div>
 
 
-        <p className="text-base md:text-lg text-white/60 max-w-xl leading-relaxed mt-3 pl-1">
+        <p className="text-sm sm:text-base md:text-lg text-white/60 max-w-xl leading-relaxed mt-3 pl-1">
           I’m a Self-Driven Full Stack Developer focused on building scalable, high-performance applications and solving real-world problems through intelligent systems.
         </p>
 
         {/* Buttons tightened up */}
-        <div className="flex flex-wrap items-center gap-4 pt-3 w-full pl-1">
+        <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-3 w-full pl-1">
           <MagneticWrapper strength={0.2}>
-            <a href="#projects" className="group relative flex items-center justify-center gap-2 bg-white text-black px-7 py-3.5 rounded-full font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:shadow-[0_0_25px_rgba(255,255,255,0.6)] z-10 overflow-hidden">
+            <a href="#projects" className="group relative flex items-center justify-center gap-2 bg-white text-black px-5 sm:px-7 py-3 sm:py-3.5 rounded-full font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:shadow-[0_0_25px_rgba(255,255,255,0.6)] z-10 overflow-hidden">
               <span className="relative z-10">View Projects</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform relative z-10" />
             </a>
           </MagneticWrapper>
 
           <MagneticWrapper strength={0.2}>
-            <a href="#contact" className="relative flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/20 bg-transparent text-white font-medium text-sm hover:scale-105 hover:bg-white/5 hover:border-white/40 shadow-none hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all overflow-hidden group">
+            <a href="#contact" className="relative flex items-center justify-center gap-2 px-5 sm:px-7 py-3 sm:py-3.5 rounded-full border border-white/20 bg-transparent text-white font-medium text-sm hover:scale-105 hover:bg-white/5 hover:border-white/40 shadow-none hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all overflow-hidden group">
               Contact Me
             </a>
           </MagneticWrapper>
         </div>
 
         {/* Socials */}
-        <div className="flex items-center gap-5 pt-3 pl-1">
+        <div className="flex items-center gap-3 sm:gap-5 pt-3 pl-1 flex-wrap">
           {[
             { id: 'github', icon: GithubIcon, href: "https://github.com/Atharv3527", label: "🚀 GitHub", glow: "hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]", bg: "bg-[#1e2330] hover:bg-[#252b3b]", borderGlow: "border-white/10 hover:border-white/50", color: "text-white" },
             { id: 'linkedin', icon: LinkedinIcon, href: "https://www.linkedin.com/in/atharv-waykar/", label: "👋 Let's Connect", glow: "hover:shadow-[0_0_20px_rgba(37,99,235,0.6)]", bg: "bg-[#2563eb] hover:bg-[#1d4ed8]", borderGlow: "border-blue-400/20 hover:border-blue-400", color: "text-white" },
@@ -344,7 +344,7 @@ export const Hero = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(
-                    "relative w-[3.25rem] h-[3.25rem] flex items-center justify-center rounded-[1rem] border transition-all duration-300 group z-10",
+                    "relative w-12 h-12 sm:w-[3.25rem] sm:h-[3.25rem] flex items-center justify-center rounded-[1rem] border transition-all duration-300 group z-10",
                     "hover:scale-110",
                     social.bg,
                     social.borderGlow,
@@ -352,7 +352,7 @@ export const Hero = () => {
                     social.color
                   )}
                 >
-                  <social.icon className="w-7 h-7 drop-shadow-md transition-transform" />
+                  <social.icon className="w-6 h-6 sm:w-7 sm:h-7 drop-shadow-md transition-transform" />
                   
                   {/* Inner Ripple on Hover */}
                   <div className="absolute inset-0 rounded-2xl bg-white/5 opacity-0 group-hover:opacity-100 group-hover:animate-ping" style={{ animationDuration: '2s' }} />

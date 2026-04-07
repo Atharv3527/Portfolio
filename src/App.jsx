@@ -31,7 +31,7 @@ function App() {
 
       <Navbar />
 
-      <main className="relative z-10 pt-32 pb-16 w-full">
+      <main className="relative z-10 pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 w-full">
         <Hero />
       </main>
 
@@ -41,29 +41,26 @@ function App() {
       {/* Main Content Sections */}
       <div className="relative z-10 w-full">
         {/* About section sits on top of the grid background */}
-        <div className="pt-32 pb-4 sm:pb-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+        <div className="pt-20 sm:pt-24 lg:pt-32 pb-4 sm:pb-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
           <About />
         </div>
 
         {/* Transition into dark background overlapping the About section & grid */}
-        <div 
-          className="w-full relative z-20"
-          style={{ marginTop: "clamp(-240px, -19vw, -145px)" }}
-        >
+        <div className="w-full relative z-20 mt-[-72px] sm:mt-[-110px] lg:mt-[-145px] xl:mt-[clamp(-240px,-19vw,-145px)]">
           {/* Smooth gradient overlap effect */}
-          <div className="w-full h-32 sm:h-40 bg-gradient-to-b from-transparent via-[#020202]/80 to-[#020202] pointer-events-none" />
+          <div className="w-full h-20 sm:h-28 lg:h-40 bg-gradient-to-b from-transparent via-[#020202]/80 to-[#020202] pointer-events-none" />
           
           {/* Solid section content */}
           <div className="w-full bg-[#020202] relative z-20" style={{ marginTop: "-1px" }}>
-            <div className="pb-24 px-4 sm:px-8 lg:px-16 max-w-[1400px] mx-auto space-y-48">
+            <div className="pb-16 sm:pb-20 lg:pb-24 px-4 sm:px-6 lg:px-12 xl:px-16 max-w-[1400px] mx-auto space-y-20 sm:space-y-28 lg:space-y-40">
               <Education />
               
               <Projects />
   
-              <section id="contact" className="min-h-[50vh] py-20">
-                <h2 className="text-3xl font-bold mb-10 text-center">Let's build something together.</h2>
+              <section id="contact" className="min-h-[40vh] sm:min-h-[50vh] py-14 sm:py-16 lg:py-20">
+                <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-10 text-center">Let's build something together.</h2>
                 <div className="flex justify-center">
-                  <button className="bg-white text-black px-8 py-4 text-lg font-semibold rounded-full flex items-center justify-center hover:scale-105 transition-transform">
+                  <button className="bg-white text-black px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full flex items-center justify-center hover:scale-105 transition-transform">
                     Start a project
                   </button>
                 </div>

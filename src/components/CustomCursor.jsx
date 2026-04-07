@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 export const CustomCursor = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -13,6 +14,22 @@ export const CustomCursor = () => {
   const springY = useSpring(cursorY, { damping: 25, stiffness: 300, mass: 0.5 });
 
   useEffect(() => {
+    const media = window.matchMedia('(hover: none), (pointer: coarse)');
+    const updateInputMode = () => setIsTouchDevice(media.matches);
+    updateInputMode();
+
+    if (typeof media.addEventListener === 'function') {
+      media.addEventListener('change', updateInputMode);
+      return () => media.removeEventListener('change', updateInputMode);
+    }
+
+    media.addListener(updateInputMode);
+    return () => media.removeListener(updateInputMode);
+  }, []);
+
+  useEffect(() => {
+    if (isTouchDevice) return;
+
     const moveMouse = (e) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
@@ -48,7 +65,9 @@ export const CustomCursor = () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [cursorX, cursorY, isVisible]);
+  }, [cursorX, cursorY, isVisible, isTouchDevice]);
+
+  if (isTouchDevice) return null;
 
   return (
     <>

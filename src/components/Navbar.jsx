@@ -69,12 +69,12 @@ export const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-6 inset-x-0 z-50 flex justify-center px-4 pointer-events-none"
+      className="fixed top-3 sm:top-5 lg:top-6 inset-x-0 z-50 flex justify-center px-3 sm:px-4 pointer-events-none"
     >
       {/* Actual Content Container - The Oval Pill */}
       <div 
         className={cn(
-          "relative w-full max-w-3xl flex items-center px-4 md:px-5 py-3 rounded-full transition-all duration-500 pointer-events-auto",
+          "relative w-full max-w-3xl flex items-center px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 rounded-full transition-all duration-500 pointer-events-auto",
           isScrolled 
             ? "bg-black/60 backdrop-blur-xl border border-white/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)]" 
             : "bg-transparent border border-transparent backdrop-blur-none"
@@ -102,13 +102,13 @@ export const Navbar = () => {
           <img
             src="/AW logo.svg"
             alt="AW logo"
-            className="w-10 h-10 object-contain"
+            className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
           />
           <span className="flex flex-col leading-[0.95] select-none">
-            <span className="text-[1.02rem] font-semibold tracking-[0.08em] uppercase text-white/95 transition-colors group-hover:text-white">
+            <span className="text-[0.86rem] sm:text-[1.02rem] font-semibold tracking-[0.08em] uppercase text-white/95 transition-colors group-hover:text-white">
               Atharv
             </span>
-            <span className="text-[1.02rem] font-semibold tracking-[0.08em] uppercase text-white/95 transition-colors group-hover:text-white">
+            <span className="text-[0.86rem] sm:text-[1.02rem] font-semibold tracking-[0.08em] uppercase text-white/95 transition-colors group-hover:text-white">
               WAYKAR
             </span>
           </span>
@@ -173,7 +173,7 @@ export const Navbar = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="absolute top-20 left-4 right-4 pointer-events-auto bg-black/80 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden md:hidden z-40"
+            className="absolute top-16 sm:top-20 left-3 sm:left-4 right-3 sm:right-4 pointer-events-auto bg-black/80 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden md:hidden z-40"
           >
             <div className="flex flex-col py-4 px-2">
               {NAV_LINKS.map((link, i) => {

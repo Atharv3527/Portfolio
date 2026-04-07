@@ -336,7 +336,10 @@
 
 @media (max-width: 1024px) {
   .about-section {
-    padding: 60px 28px;
+    width: 100%;
+    border-radius: 36px;
+    min-height: auto;
+    padding: 48px 24px 76px;
   }
 
   .about-layout {
@@ -360,5 +363,87 @@
   .about-scroll-indicator {
     right: 24px;
     bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    border-radius: 24px;
+    padding: 38px 18px;
+  }
+
+  .about-layout {
+    gap: 28px;
+  }
+
+  .about-left {
+    justify-content: center;
+  }
+
+  .about-photo-card {
+    width: min(100%, 290px);
+  }
+
+  .about-photo-frame-outline {
+    inset: -16px 16px 16px -16px;
+  }
+
+  .about-heading-solid {
+    font-size: 36px;
+    line-height: 1;
+  }
+
+  .about-copy {
+    font-size: 14px;
+    line-height: 1.72;
+  }
+
+  .about-sub-label {
+    width: 100%;
+    margin-top: 28px;
+    letter-spacing: 2px;
+  }
+
+  .about-pills {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .about-pill {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+
+  .about-scroll-indicator {
+    display: flex;
+    right: 18px;
+    bottom: 16px;
+  }
+}
+
+@media (max-width: 520px) {
+  .about-section {
+    padding-bottom: 86px;
+  }
+
+  .about-pills {
+    gap: 8px;
+  }
+
+  .about-pill {
+    font-size: 11px;
+    padding: 6px 10px;
+    letter-spacing: 0.2px;
+  }
+
+  .about-scroll-indicator {
+    right: 14px;
+    bottom: 12px;
+    gap: 8px;
+  }
+
+  .about-scroll-text {
+    font-size: 9px;
+    letter-spacing: 1.6px;
   }
 }

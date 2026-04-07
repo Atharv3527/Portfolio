@@ -86,7 +86,7 @@ const TiltCard = ({ project }) => {
         rotateY,
         transformStyle: "preserve-3d",
       }}
-      className="relative w-full h-[400px] rounded-3xl cursor-pointer group perspective-[1000px]"
+      className="relative w-full h-[340px] sm:h-[380px] lg:h-[400px] rounded-3xl cursor-pointer group perspective-[1000px]"
     >
       {/* 3D Inner Card Container */}
       <div 
@@ -100,11 +100,11 @@ const TiltCard = ({ project }) => {
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: `inset 0 0 40px ${project.borderGlow}` }} />
 
         {/* Content Box */}
-        <div className="absolute inset-0 p-8 flex flex-col justify-between" style={{ transform: "translateZ(50px)" }}>
+        <div className="absolute inset-0 p-5 sm:p-7 lg:p-8 flex flex-col justify-between" style={{ transform: "translateZ(50px)" }}>
           
           {/* Top Bar */}
           <div className="flex justify-between items-start">
-            <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-xl">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-xl">
               <span className="font-bold text-xl">{project.id > 9 ? project.id : `0${project.id}`}</span>
             </div>
             
@@ -120,10 +120,10 @@ const TiltCard = ({ project }) => {
 
           {/* Bottom Info */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors duration-300 drop-shadow-md">
+            <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors duration-300 drop-shadow-md">
               {project.title}
             </h3>
-            <p className="text-zinc-400 text-sm leading-relaxed max-w-[90%] group-hover:text-zinc-300 transition-colors">
+            <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed max-w-[95%] sm:max-w-[90%] group-hover:text-zinc-300 transition-colors">
               {project.description}
             </p>
             
@@ -144,7 +144,7 @@ const TiltCard = ({ project }) => {
 
 export const Projects = () => {
   return (
-    <section id="projects" className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 min-h-screen">
+    <section id="projects" className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24 min-h-[70vh]">
       
       {/* Section Header */}
       <div className="mb-16 md:mb-24 flex flex-col items-center text-center space-y-4">
@@ -152,10 +152,10 @@ export const Projects = () => {
           <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
           Featured Work
         </div>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight">
           Selected <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400">Projects</span>
         </h2>
-        <p className="text-lg text-zinc-400 max-w-2xl mt-4">
+        <p className="text-sm sm:text-base lg:text-lg text-zinc-400 max-w-2xl mt-4 px-2 sm:px-0">
           A showcase of scalable applications, intelligent systems, and complex problem solving. Hover over a project to explore the architecture.
         </p>
       </div>

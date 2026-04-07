@@ -33,7 +33,8 @@ export const Education = () => {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const sidePanelRef = useRef(null);
-  const timelineSpineRef = useRef(null);
+  const desktopTimelineSpineRef = useRef(null);
+  const mobileTimelineSpineRef = useRef(null);
   const cardsRef = useRef([]);
   // Re-initialize cards ref array
   cardsRef.current = [];
@@ -124,20 +125,23 @@ export const Education = () => {
       }
 
       // 2. Timeline Spine
-      gsap.fromTo(timelineSpineRef.current,
-        { scaleY: 0 },
-        { 
-          scaleY: 1, 
-          transformOrigin: "top", 
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".edu-layout-container",
-            start: "top center",
-            end: "bottom center",
-            scrub: 1
+      [desktopTimelineSpineRef.current, mobileTimelineSpineRef.current].forEach((spineEl) => {
+        if (!spineEl) return;
+        gsap.fromTo(spineEl,
+          { scaleY: 0 },
+          {
+            scaleY: 1,
+            transformOrigin: "top",
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".edu-layout-container",
+              start: "top center",
+              end: "bottom center",
+              scrub: 1
+            }
           }
-        }
-      );
+        );
+      });
 
       // 3. Cards Animation
       cardsRef.current.forEach((card, index) => {
@@ -280,20 +284,20 @@ export const Education = () => {
   }, [timelineData]);
 
   return (
-    <section id="education" className="w-full mx-auto bg-[#000000] py-24 relative overflow-hidden" ref={sectionRef}>
+    <section id="education" className="w-full mx-auto bg-[#000000] py-14 sm:py-20 lg:py-24 relative overflow-hidden" ref={sectionRef}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;600&family=DM+Mono&family=Orbitron:wght@500&display=swap');
 
         .edu-mask { overflow: hidden; display: inline-block; vertical-align: top; }
         
-        .edu-title { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 400; letter-spacing: 0.1em; color: rgba(255,255,255,0.7); line-height: 1; }
-        .edu-institution { font-family: 'Bebas Neue', cursive; font-size: 24px; font-weight: 600; color: rgba(255,255,255,0.9); line-height: 1.1; margin-bottom: 8px; letter-spacing: 0.02em; }
-        .edu-degree { font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 600; color: rgba(255,255,255,0.85); line-height: 1.35; display: flex; align-items: center; justify-content: space-between; }
+        .edu-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.9rem, 4.5vw, 2.25rem); font-weight: 400; letter-spacing: 0.1em; color: rgba(255,255,255,0.7); line-height: 1; }
+        .edu-institution { font-family: 'Bebas Neue', cursive; font-size: clamp(1.25rem, 3.2vw, 1.5rem); font-weight: 600; color: rgba(255,255,255,0.9); line-height: 1.1; margin-bottom: 8px; letter-spacing: 0.02em; }
+        .edu-degree { font-family: 'Space Grotesk', sans-serif; font-size: clamp(0.98rem, 2.8vw, 1.2rem); font-weight: 600; color: rgba(255,255,255,0.85); line-height: 1.35; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
         
         .edu-year-group { font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: 600; color: rgba(0,255,209,0.9); letter-spacing: 0.16em; display: flex; align-items: center; gap: 8px; margin-bottom: 1.15rem; }
         .edu-ghost-prefix { color: rgba(255,255,255,0.5); font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; }
         
-        .edu-desc { font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.55); line-height: 1.8; margin-top: 1.1rem; }
+        .edu-desc { font-family: 'DM Mono', monospace; font-size: clamp(0.8rem, 2.4vw, 0.9rem); font-weight: 500; color: rgba(255,255,255,0.55); line-height: 1.8; margin-top: 1.1rem; }
 
         .edu-side-panel {
           position: sticky;
@@ -457,14 +461,12 @@ export const Education = () => {
         }
 
         @media screen and (max-width: 768px) {
-           .edu-title { font-size: 60px; }
-           .edu-institution { font-size: 26px; }
-           .edu-card { padding: 1.5rem; }
+           .edu-card { padding: 1.2rem; }
            .edu-side-panel { position: relative; top: 0; margin-bottom: 1.5rem; }
         }
       `}</style>
       
-      <div className="max-w-[1240px] mx-auto px-6 lg:px-12">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-12">
 
         {/* ── Bold Animated Section Divider (no end dots) ── */}
         <div className="edu-section-divider" ref={dividerRef}>
@@ -473,21 +475,21 @@ export const Education = () => {
         </div>
 
         {/* Title Block */}
-        <div className="relative mb-20 inline-block">
+        <div className="relative mb-10 sm:mb-14 lg:mb-20 inline-block">
            <h2 className="edu-title m-0 tracking-widest" ref={titleRef}>EDUCATION</h2>
            <div className="edu-title-underline h-[1px] bg-[#00FFD1] w-full mt-2 origin-left absolute left-0"></div>
         </div>
 
         {/* 2-Column Layout */}
-        <div className="edu-layout-container w-full relative flex flex-col md:flex-row pb-12">
+        <div className="edu-layout-container w-full relative flex flex-col md:flex-row pb-8 sm:pb-12">
            
            {/* Left Column (28%) - Timeline Spine Desktop */}
            <div className="hidden md:block absolute left-[8%] md:left-[28%] top-0 bottom-0 w-[1px] bg-transparent z-0">
-              <div className="w-[1px] h-full bg-[#00FFD1] origin-top opacity-80" ref={timelineSpineRef}></div>
+              <div className="w-[1px] h-full bg-[#00FFD1] origin-top opacity-80" ref={desktopTimelineSpineRef}></div>
            </div>
 
            {/* Mobile Timeline Spine */}
-           <div className="md:hidden absolute left-[6px] top-4 bottom-0 w-[1px] bg-[#00FFD1] origin-top opacity-50" ref={timelineSpineRef}></div>
+           <div className="md:hidden absolute left-[6px] top-4 bottom-0 w-[1px] bg-[#00FFD1] origin-top opacity-50" ref={mobileTimelineSpineRef}></div>
            
            {/* Left Column (28%) - Professional content block */}
            <div className="hidden md:block md:w-[28%] flex-shrink-0 pr-6">
@@ -503,7 +505,7 @@ export const Education = () => {
            </div>
 
            {/* Right Column (72%) - Stacked Cards */}
-           <div className="w-full md:w-[72%] flex flex-col gap-[2.5rem] pl-8 md:pl-12 relative z-10">
+           <div className="w-full md:w-[72%] flex flex-col gap-6 sm:gap-10 pl-6 sm:pl-8 md:pl-12 relative z-10">
               {timelineData.map((item, index) => (
                   <div key={index} className="edu-card-wrapper relative" ref={addToCardsRef}>
                      
@@ -534,7 +536,7 @@ export const Education = () => {
                            {/* Degree & Score */}
                            <div className="edu-degree edu-degree-text mt-4">
                              <span>{item.title}</span>
-                             <span className="text-[#00FFD1] text-[17px] font-bold tracking-wider ml-4 whitespace-nowrap" >{item.score}</span>
+                             <span className="text-[#00FFD1] text-[15px] sm:text-[17px] font-bold tracking-wider sm:ml-4 whitespace-nowrap" >{item.score}</span>
                            </div>
                            
                            {/* Description */}
