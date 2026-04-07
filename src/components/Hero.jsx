@@ -136,10 +136,6 @@ const TypewriterText = () => {
     };
   }, [displayedCount, phase, totalLength]);
 
-  const getColorClasses = () => {
-    return "dotted-text";
-  };
-
   return (
     <div className="relative inline-flex items-center">
       {/* Background radial glow */}
@@ -151,9 +147,19 @@ const TypewriterText = () => {
         animate={{ y: [-3, 3, -3] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       >
-        <h1 className="relative inline-flex w-fit items-center overflow-hidden text-[clamp(1.8rem,5vw,3.5rem)] font-black tracking-tight whitespace-nowrap transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" style={{ letterSpacing: "-0.02em" }}>
+        <h1
+          className="relative inline-flex w-fit items-center overflow-hidden whitespace-nowrap transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+          style={{
+            fontFamily: "'Oxanium', monospace",
+            fontWeight: 800,
+            fontSize: "clamp(32px, 5vw, 52px)",
+            color: "#ffffff",
+            WebkitTextFillColor: "#ffffff",
+            letterSpacing: "-0.01em",
+          }}
+        >
           {textStr.split("").slice(0, displayedCount).map((char, i) => (
-            <span key={i} className={cn("inline-block transform-origin-bottom transition-all duration-100", getColorClasses())}>
+            <span key={i} className="inline-block transform-origin-bottom transition-all duration-100">
               {char === ' ' ? '\u00A0' : char}
             </span>
           ))}
