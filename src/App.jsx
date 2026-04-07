@@ -41,25 +41,34 @@ function App() {
       {/* Main Content Sections */}
       <div className="relative z-10 w-full">
         {/* About section sits on top of the grid background */}
-        <div className="pt-32 pb-48 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="pt-32 pb-4 sm:pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
           <About />
         </div>
 
-        {/* Solid dark background overlaying the global grid for the rest of the site */}
-        <div className="w-full bg-[#020202] border-t border-white/5 relative z-20">
-          <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-48">
-            <Education />
-            
-            <Projects />
-
-        <section id="contact" className="min-h-[50vh] py-20">
-          <h2 className="text-3xl font-bold mb-10 text-center">Let's build something together.</h2>
-          <div className="flex justify-center">
-            <button className="bg-white text-black px-8 py-4 text-lg font-semibold rounded-full items-center justify-center hover:scale-105 transition-transform">
-              Start a project
-            </button>
-          </div>
-        </section>
+        {/* Transition into dark background overlapping the About section & grid */}
+        <div 
+          className="w-full relative z-20"
+          style={{ marginTop: "clamp(-250px, -20vw, -150px)" }}
+        >
+          {/* Smooth gradient overlap effect */}
+          <div className="w-full h-32 sm:h-40 bg-gradient-to-b from-transparent via-[#020202]/80 to-[#020202] pointer-events-none" />
+          
+          {/* Solid section content */}
+          <div className="w-full bg-[#020202] relative z-20" style={{ marginTop: "-1px" }}>
+            <div className="pb-24 px-4 sm:px-8 lg:px-16 max-w-[1400px] mx-auto space-y-48">
+              <Education />
+              
+              <Projects />
+  
+              <section id="contact" className="min-h-[50vh] py-20">
+                <h2 className="text-3xl font-bold mb-10 text-center">Let's build something together.</h2>
+                <div className="flex justify-center">
+                  <button className="bg-white text-black px-8 py-4 text-lg font-semibold rounded-full flex items-center justify-center hover:scale-105 transition-transform">
+                    Start a project
+                  </button>
+                </div>
+              </section>
+            </div>
           </div>
         </div>
       </div>

@@ -28,13 +28,12 @@ const ParallaxRow = ({ tags, baseVelocity = 100 }) => {
     clamp: false
   });
 
-  // Jiggle / Bounce effects based on scroll velocity
-  const skewX = useTransform(smoothVelocity, [-1000, 1000], [5, -5]);
-  const bounceY = useTransform(smoothVelocity, [-1000, 1000], [-15, 15]); // Up on scroll up, down on scroll down
+  // Subtle scroll-responsive motion similar to reference behavior
+  const skewX = useTransform(smoothVelocity, [-1000, 1000], [1.5, -1.5]);
+  const bounceY = useTransform(smoothVelocity, [-1000, 1000], [-4, 4]);
 
   const directionFactor = useRef(1);
   const containerRef = useRef(null);
-  
   const isInView = useInView(containerRef, { margin: "0px", amount: 0.1 });
   
   useAnimationFrame((t, delta) => {
@@ -71,9 +70,9 @@ const ParallaxRow = ({ tags, baseVelocity = 100 }) => {
   );
 
   return (
-    <div ref={containerRef} className="overflow-hidden m-0 w-full whitespace-nowrap flex flex-nowrap leading-[0.8] hover:-translate-y-1 transition-transform duration-500 ease-out">
+    <div ref={containerRef} className="overflow-hidden m-0 w-full whitespace-nowrap flex flex-nowrap leading-[0.85]">
       <motion.div 
-        className="font-['Space_Grotesk'] font-bold uppercase text-3xl md:text-[5rem] flex whitespace-nowrap items-center flex-nowrap tracking-tighter text-gray-500 w-fit" 
+        className="font-['Space_Grotesk'] font-bold uppercase text-[2.4rem] md:text-[5.85rem] flex whitespace-nowrap items-center flex-nowrap tracking-tight text-gray-500 w-fit" 
         style={{ x, y: bounceY, skewX }}
       >
         <div className="flex items-center">
@@ -91,7 +90,7 @@ const ParallaxRow = ({ tags, baseVelocity = 100 }) => {
 
 export const Marquee = () => {
   return (
-    <section className="relative w-full py-3 md:py-5 mt-5 md:mt-10 bg-white/5 border-y border-white/10 text-gray-500 overflow-hidden backdrop-blur-sm select-none">
+    <section className="relative w-full py-4 md:py-5 mt-5 md:mt-10 bg-white/5 border-y border-white/10 text-gray-500 overflow-hidden backdrop-blur-sm select-none">
       {/* Blur overlays for premium depth effect matching the grey bg */}
       <div className="absolute inset-y-0 left-0 w-32 md:w-40 bg-gradient-to-r from-[#0e0e11] via-[#0e0e11]/80 to-transparent z-10 pointer-events-none" />
       <div className="absolute inset-y-0 right-0 w-32 md:w-40 bg-gradient-to-l from-[#0e0e11] via-[#0e0e11]/80 to-transparent z-10 pointer-events-none" />
@@ -99,12 +98,12 @@ export const Marquee = () => {
       <div className="relative mix-blend-overlay flex flex-col gap-4 md:gap-8">
         {/* Row 1: Moves Left */}
         <ParallaxRow 
-          baseVelocity={-2} 
+          baseVelocity={-1.2} 
           tags={["FULL STACK DEV", "PROBLEM SOLVER", "INNOVATIVE CODER"]} 
         />
         {/* Row 2: Moves Right */}
         <ParallaxRow 
-          baseVelocity={2} 
+          baseVelocity={1.2} 
           tags={["FRONTEND DEV", "TECH ENTHUSIAST", "BUILDING FUTURE"]} 
         />
       </div>

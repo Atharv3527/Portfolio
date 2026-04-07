@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none">
+  <defs>
+    <linearGradient id="aw-stroke" x1="16" y1="20" x2="144" y2="140" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="55%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <path d="M32 118L56 42L80 118" stroke="url(#aw-stroke)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M42 90H70" stroke="url(#aw-stroke)" stroke-width="10" stroke-linecap="round"/>
+  <path d="M90 44L104 116L122 62L140 116" stroke="url(#aw-stroke)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

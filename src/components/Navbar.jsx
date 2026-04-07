@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { Hexagon, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const NAV_LINKS = [
   { name: "Home", id: "home" },
@@ -11,49 +11,6 @@ const NAV_LINKS = [
   { name: "Projects", id: "projects" },
   { name: "Contact", id: "contact" },
 ];
-
-/** 
- * Optional: Re-use Magnetic Wrapper for the CTA button to add that premium feel.
- * Only triggers if the user hovers exact bounds.
- */
-const MagneticButton = ({ children, onClick }) => {
-  const ref = useRef(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 150, damping: 15, mass: 0.1 });
-  const springY = useSpring(y, { stiffness: 150, damping: 15, mass: 0.1 });
-
-  const handleMouse = (e) => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    x.set((e.clientX - centerX) * 0.2);
-    y.set((e.clientY - centerY) * 0.2);
-  };
-
-  const reset = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  return (
-    <motion.button
-      ref={ref}
-      onMouseMove={handleMouse}
-      onMouseLeave={reset}
-      onClick={onClick}
-      style={{ x: springX, y: springY }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      className="hidden md:flex flex-col relative overflow-hidden group bg-gradient-to-r from-white to-gray-200 text-black px-6 py-2.5 rounded-full font-bold text-sm shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(34,211,238,0.5)] transition-shadow duration-300 z-10"
-    >
-      <span className="relative z-10">Let's Talk</span>
-      {/* Light sweep effect */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent opacity-0 group-hover:opacity-100 -translate-x-[150%] skew-x-[-20deg] group-hover:animate-[sweep_1.5s_ease-in-out_infinite]" />
-    </motion.button>
-  );
-};
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -117,7 +74,7 @@ export const Navbar = () => {
       {/* Actual Content Container - The Oval Pill */}
       <div 
         className={cn(
-          "relative w-full max-w-5xl flex items-center justify-between px-6 py-3 rounded-full transition-all duration-500 pointer-events-auto",
+          "relative w-full max-w-3xl flex items-center px-4 md:px-5 py-3 rounded-full transition-all duration-500 pointer-events-auto",
           isScrolled 
             ? "bg-black/60 backdrop-blur-xl border border-white/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)]" 
             : "bg-transparent border border-transparent backdrop-blur-none"
@@ -140,19 +97,25 @@ export const Navbar = () => {
           href="#home"
           whileHover={{ scale: 1.05, rotate: -2 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-3 group cursor-pointer relative z-10"
+          className="flex items-center gap-2 group cursor-pointer relative z-10"
         >
-          <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/20 to-cyan-400/20 border border-white/10 group-hover:border-white/30 transition-colors shadow-inner">
-            <Hexagon className="w-5 h-5 text-cyan-400 group-hover:text-purple-400 transition-colors duration-500" />
-            <div className="absolute inset-0 bg-cyan-400/20 blur-md rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-          </div>
-          <span className="font-bold text-xl tracking-tight shadow-white/10 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] transition-colors group-hover:text-white">
-            Atharv
+          <img
+            src="/AW logo.svg"
+            alt="AW logo"
+            className="w-10 h-10 object-contain"
+          />
+          <span className="flex flex-col leading-[0.95] select-none">
+            <span className="text-[1.02rem] font-semibold tracking-[0.08em] uppercase text-white/95 transition-colors group-hover:text-white">
+              Atharv
+            </span>
+            <span className="text-[1.02rem] font-semibold tracking-[0.08em] uppercase text-white/95 transition-colors group-hover:text-white">
+              WAYKAR
+            </span>
           </span>
         </motion.a>
 
         {/* Center: Navigation Links Desktop */}
-        <div className="hidden md:flex items-center gap-6 relative z-10">
+        <div className="hidden md:flex items-center gap-5 ml-6 relative z-10">
           {NAV_LINKS.map((link, i) => {
             const isActive = activeSection === link.id;
             return (
@@ -191,11 +154,8 @@ export const Navbar = () => {
           })}
         </div>
 
-        {/* Right: CTA Button */}
-        <MagneticButton onClick={(e) => scrollToSection(e, 'contact')} />
-
         {/* Mobile Menu Toggle */}
-        <div className="md:hidden flex items-center relative z-10">
+        <div className="md:hidden flex items-center relative z-10 ml-auto">
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="text-white/80 hover:text-white p-2 focus:outline-none transition-colors"
@@ -242,15 +202,6 @@ export const Navbar = () => {
                   </motion.a>
                 );
               })}
-              
-              <div className="px-4 pt-4 mt-2 border-t border-white/[0.05]">
-                <button 
-                  onClick={(e) => scrollToSection(e, 'contact')}
-                  className="w-full bg-gradient-to-r from-purple-500 to-cyan-400 text-white py-3 rounded-xl font-bold shadow-[0_0_20px_rgba(168,85,247,0.3)]"
-                >
-                  Let's Talk
-                </button>
-              </div>
             </div>
           </motion.div>
         )}

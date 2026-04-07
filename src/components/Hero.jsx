@@ -231,10 +231,6 @@ export const ScrollIndicator = () => {
           />
         </div>
 
-        {/* Top-left small circle widget */}
-        <div className="absolute top-1 left-1 w-8 h-8 -translate-x-1/4 -translate-y-1/4 rounded-full border border-white/20 flex items-center justify-center bg-[#0e0e0e] shadow-xl z-20">
-          <div className="w-2.5 h-2.5 bg-white rounded-full -translate-x-[2px] -translate-y-[2px]" />
-        </div>
       </div>
     </div>
   );
@@ -290,7 +286,14 @@ export const Hero = () => {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-80"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,1)]"></span>
           </span>
-          <span className="relative z-10 font-black drop-shadow-[0_0_10px_rgba(216,180,254,0.8)]">Available for Opportunities</span>
+          <span
+            className="relative z-10 text-[11px] md:text-xs font-medium tracking-[0.16em] drop-shadow-[0_0_10px_rgba(216,180,254,0.8)]"
+            style={{ fontFamily: "'Fira Code', monospace" }}
+          >
+            <span className="text-[#a78bff]">AVAILABLE</span>
+            <span className="text-[#94a3b8]"> FOR </span>
+            <span className="text-[#38bdf8]">HIRE</span>
+          </span>
         </div>
 
         <div className="space-y-1">

@@ -1,80 +1,78 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import './About.css';
 
 export const About = () => {
   const tools = [
-    'React', 'Node.js', 'Python', 'MongoDB', 'TypeScript', 
-    'Tailwind', 'Three.js', 'AWS', 'Figma', 'Git'
+    { name: 'React', variant: 'violet' },
+    { name: 'Node.js', variant: 'mint' },
+    { name: 'Express.js', variant: 'pink' },
+    { name: 'Javascript', variant: 'violet' },
+    { name: 'Typescript', variant: 'mint' },
+    { name: 'MongoDB', variant: 'neutral' },
+    { name: 'Supabase', variant: 'pink' },
+    { name: 'Tailwind', variant: 'mint' },
+    { name: 'Bootstrap', variant: 'violet' },
+    { name: 'Git', variant: 'mint' },
   ];
 
   return (
-    <section id="about" className="w-full relative">
-      {/* Ambient dark background overlay to darken the section against the global grid */}
-      <div className="absolute inset-0 bg-[#000000] opacity-60 -z-10 pointer-events-none rounded-[100px] blur-[100px]" />
+    <section id="about" className="about-section">
+      <div className="about-dot-grid" />
+      <div className="about-blob about-blob-top" />
+      <div className="about-blob about-blob-bottom" />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        {/* Left: Image Card */}
-        <motion.div 
-          className="relative w-full max-w-md mx-auto lg:mx-0 pl-6 pt-6"
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          {/* Offset Background Frame */}
-          <div className="absolute top-0 left-0 w-[calc(100%-1.5rem)] h-[calc(100%-1.5rem)] rounded-2xl border border-[#27272a] bg-[#050505] z-0" />
-          
-          {/* Main Image */}
-          <div className="relative aspect-[4/5] rounded-2xl overflow-hidden z-10 shadow-2xl">
-            <img 
-              src="/profile.png.jpeg" 
-              alt="Atharv Waykar"
-              className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-            />
-          </div>
-        </motion.div>
-
-        {/* Right: Content */}
-        <motion.div 
-          className="flex flex-col items-start"
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <h2 className="text-[2.5rem] font-bold tracking-tight text-white mb-6">
-            Who I Am
-          </h2>
-          
-          <div className="space-y-6 text-base text-[#a1a1aa] leading-[1.8] font-normal">
-            <p>
-              I'm a passionate full-stack developer with expertise in modern web technologies. I love building scalable applications that solve real-world problems and create exceptional user experiences.
-            </p>
-            <p>
-              With a strong foundation in both frontend and backend technologies, I enjoy the entire development process from concept to deployment. I'm always eager to learn new technologies and improve my craft.
-            </p>
-          </div>
-
-          <div className="mt-12 w-full">
-            <h3 className="text-[11px] font-bold tracking-[0.05em] uppercase text-white mb-5">
-              TECH STACK & TOOLS
-            </h3>
-            <div className="flex flex-wrap gap-2.5">
-              {tools.map((tool, idx) => (
-                <motion.div 
-                  key={tool}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.05 }}
-                  className="px-4 py-2 rounded-lg border border-[#27272a] bg-[#121212]/80 text-[#a1a1aa] text-sm hover:text-white hover:border-[#3f3f46] transition-colors cursor-default"
-                >
-                  {tool}
-                </motion.div>
-              ))}
+      <div className="about-layout">
+        <div className="about-left">
+          <div className="about-photo-card">
+            <div className="about-photo-frame-outline" />
+            <div className="about-photo-frame">
+              <img src="/profile.png.jpeg" alt="Atharv Waykar" className="about-photo" />
             </div>
           </div>
-        </motion.div>
+        </div>
+
+        <div className="about-right">
+          <div className="about-tag fade-up delay-0">
+            <span className="about-tag-line" />
+            <span>// about.me</span>
+          </div>
+
+          <div className="about-heading-wrap fade-up delay-1">
+            <h2 className="about-heading-solid">About Me</h2>
+          </div>
+
+          <div className="about-divider fade-up delay-2" />
+
+          <div className="fade-up delay-3">
+            <p className="about-copy">
+              I am currently pursuing my <span className="hl">B.E. in Computer Engineering</span> while
+              sharpening my edge in <span className="hl">full-stack development</span>. I build digital
+              products that are not only <span className="hl">functional but also intuitive</span>, with
+              strong focus on architecture, performance, and experience.
+            </p>
+            <p className="about-copy">
+              I enjoy solving practical problems with clean systems and thoughtful interfaces, and I
+              approach every project with a maker mindset:
+              <strong> stay curious, stay consistent, and never stop building</strong>.
+            </p>
+          </div>
+
+          <div className="about-sub-label fade-up delay-4">// tech stack &amp; tools</div>
+          <div className="about-pills fade-up delay-4">
+            {tools.map((tool) => (
+              <span key={tool.name} className={`about-pill about-pill-${tool.variant}`}>
+                {tool.name}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="about-scroll-indicator">
+        <span className="about-scroll-circle">
+          <span className="about-scroll-arrow" />
+        </span>
+        <span className="about-scroll-text">SCROLL</span>
       </div>
     </section>
   );
