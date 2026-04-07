@@ -1,15 +1,20 @@
 import { BGPattern } from "@/components/ui/bg-pattern";
 import { Navbar } from "@/components/Navbar";
-import { Hero } from "@/components/Hero";
+import { Hero, ScrollIndicator } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
+import { About } from "@/components/About";
+import { Education } from "@/components/Education";
 import { Projects } from "@/components/Projects";
 import { CustomCursor } from "@/components/CustomCursor";
 
 function App() {
   return (
-    <div className="relative min-h-screen text-white font-sans selection:bg-white/20">
+    <div className="relative min-h-screen text-white font-sans selection:bg-white/20 overflow-x-hidden">
       {/* Global Magnetic Custom Cursor */}
       <CustomCursor />
+      
+      {/* Global Scroll Indicator */}
+      <ScrollIndicator />
 
       {/* 
         Full-page static ShapeGrid equivalent using BGPattern 
@@ -33,13 +38,19 @@ function App() {
       {/* Marquee extends full width, so it lives outside the max-w-7xl container */}
       <Marquee />
 
-      <main className="relative z-10 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-48">
-        <Projects />
-        
-        <section id="about" className="min-h-screen py-20">
-          <h2 className="text-3xl font-bold mb-10">About Me</h2>
-          <div className="bg-white/5 border border-white/10 rounded-2xl h-96 w-full animate-pulse" />
-        </section>
+      {/* Main Content Sections */}
+      <div className="relative z-10 w-full">
+        {/* About section sits on top of the grid background */}
+        <div className="pt-32 pb-48 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          <About />
+        </div>
+
+        {/* Solid dark background overlaying the global grid for the rest of the site */}
+        <div className="w-full bg-[#020202] border-t border-white/5 relative z-20">
+          <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-48">
+            <Education />
+            
+            <Projects />
 
         <section id="contact" className="min-h-[50vh] py-20">
           <h2 className="text-3xl font-bold mb-10 text-center">Let's build something together.</h2>
@@ -49,7 +60,9 @@ function App() {
             </button>
           </div>
         </section>
-      </main>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

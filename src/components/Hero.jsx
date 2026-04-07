@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useSpring, useTransform, useMotionValue, AnimatePresence } from 'framer-motion';
+import { motion, useSpring, useTransform, useMotionValue, AnimatePresence, useScroll } from 'framer-motion';
 import { FileText, Mail, ArrowRight } from 'lucide-react';
 import { cn } from "@/lib/utils";
+import { FaReact, FaNodeJs, FaAws, FaDocker, FaPython } from 'react-icons/fa';
+import { SiNextdotjs } from 'react-icons/si';
 
 // Social Icons SVGs - Designed accurately
 const GithubIcon = ({ className }) => (
@@ -21,6 +23,39 @@ const MailIcon = ({ className }) => (
     <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
   </svg>
 );
+
+const Particles = () => {
+  const particles = Array.from({ length: 30 }).map((_, i) => ({
+    id: i,
+    size: Math.random() * 3 + 1,
+    left: `${Math.random() * 100}%`,
+    top: `${Math.random() * 100}%`,
+    duration: Math.random() * 20 + 10,
+    delay: Math.random() * 10,
+  }));
+
+  return (
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      {particles.map((p) => (
+        <motion.div
+          key={p.id}
+          className="absolute rounded-full bg-white/20 blur-[1px]"
+          style={{ width: p.size, height: p.size, left: p.left, top: p.top }}
+          animate={{
+            y: [0, -100, 0],
+            opacity: [0, 1, 0],
+          }}
+          transition={{
+            duration: p.duration,
+            repeat: Infinity,
+            delay: p.delay,
+            ease: "linear",
+          }}
+        />
+      ))}
+    </div>
+  );
+};
 
 const MagneticWrapper = ({ children, strength = 0.5 }) => {
   const x = useMotionValue(0);
@@ -100,14 +135,8 @@ const TypewriterText = () => {
     };
   }, [displayedCount, phase, totalLength]);
 
-  const getColorClasses = (i) => {
-    // <
-    if (i === 0) return "million-gradient-text drop-shadow-[0_0_12px_rgba(34,211,238,0.4)]";
-    // Atharv (1-6) and Waykar (8-13)
-    if ((i >= 1 && i <= 6) || (i >= 8 && i <= 13)) return "dotted-text drop-shadow-[0_0_10px_rgba(192,132,252,0.4)]";
-    // /> (15-16)
-    if (i >= 15) return "million-gradient-text drop-shadow-[0_0_12px_rgba(236,72,153,0.4)]";
-    return "million-gradient-text";
+  const getColorClasses = () => {
+    return "dotted-text";
   };
 
   return (
@@ -123,7 +152,7 @@ const TypewriterText = () => {
       >
         <h1 className="flex items-center text-[clamp(1.8rem,5vw,3.5rem)] font-black tracking-tight whitespace-nowrap transition-all duration-300 group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" style={{ letterSpacing: "-0.02em" }}>
           {textStr.split("").slice(0, displayedCount).map((char, i) => (
-            <span key={i} className={cn("inline-block transform-origin-bottom transition-all duration-100", getColorClasses(i))}>
+            <span key={i} className={cn("inline-block transform-origin-bottom transition-all duration-100", getColorClasses())}>
               {char === ' ' ? '\u00A0' : char}
             </span>
           ))}
@@ -151,6 +180,65 @@ const TypewriterText = () => {
   );
 };
 
+export const ScrollIndicator = () => {
+  const { scrollYProgress } = useScroll();
+  const fillHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  return (
+    <div className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 hidden sm:flex items-center justify-center cursor-pointer group" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth'})}>
+      <div className="relative w-[96px] h-[96px] flex items-center justify-center hover:scale-105 transition-transform duration-300">
+        {/* Outer rotating text */}
+        <motion.div 
+          animate={{ rotate: 360 }}
+          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-0 z-0"
+        >
+          <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
+            <path
+              id="scrollTextPath"
+              d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
+              fill="none"
+              stroke="none"
+            />
+            <text className="text-[7px] font-black uppercase fill-white stroke-white stroke-[0.3px]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              <textPath href="#scrollTextPath" startOffset="0" textLength="220" lengthAdjust="spacing">
+                SCROLL TO EXPLORE • SCROLL TO EXPLORE • 
+              </textPath>
+            </text>
+          </svg>
+        </motion.div>
+
+        {/* Center filled circle and arrow */}
+        <div className="absolute w-[48px] h-[48px] rounded-full border border-white/30 flex flex-col items-center justify-center overflow-hidden transition-colors group-hover:border-white/50 backdrop-blur-md bg-black/40 z-10">
+          <motion.svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="white" 
+            strokeWidth="2.5" 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            className="w-5 h-5 relative z-20 -mt-2 drop-shadow-md mix-blend-difference"
+            animate={{ y: [0, 5, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <path d="M12 5v14M19 12l-7 7-7-7" />
+          </motion.svg>
+          <motion.div 
+            className="absolute bottom-0 left-0 w-full bg-white opacity-90 z-0" 
+            style={{ height: fillHeight }}
+          />
+        </div>
+
+        {/* Top-left small circle widget */}
+        <div className="absolute top-1 left-1 w-8 h-8 -translate-x-1/4 -translate-y-1/4 rounded-full border border-white/20 flex items-center justify-center bg-[#0e0e0e] shadow-xl z-20">
+          <div className="w-2.5 h-2.5 bg-white rounded-full -translate-x-[2px] -translate-y-[2px]" />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const Hero = () => {
   const [hoveredSocial, setHoveredSocial] = useState(null);
 
@@ -171,16 +259,19 @@ export const Hero = () => {
   return (
     <section 
       id="home" 
-      className="relative flex flex-col lg:flex-row items-center justify-between w-full min-h-[75vh] pt-24 pb-12 px-[clamp(1.5rem,5vw,6rem)] 2xl:px-32 overflow-visible group"
+      className="relative flex flex-col lg:flex-row items-center justify-between w-full min-h-[75vh] pt-1 pb-16 px-[clamp(1.5rem,5vw,6rem)] 2xl:px-32 overflow-visible group"
       onMouseMove={handleGlobalMouseMove}
     >
       {/* Edge Fade Gradients for Ultra-wide Support */}
       <div className="absolute inset-y-0 left-0 w-[5vw] bg-gradient-to-r from-[#0a0a0a] to-transparent z-0 pointer-events-none" />
       <div className="absolute inset-y-0 right-0 w-[5vw] bg-gradient-to-l from-[#0a0a0a] to-transparent z-0 pointer-events-none" />
 
-      {/* Background ambient lighting localized to hero */}
+      {/* Layer 1: Ambient Lighting */}
       <div className="absolute top-1/4 left-1/4 w-[30vw] h-[30vw] bg-purple-500/10 rounded-full blur-[100px] pointer-events-none mix-blend-screen" />
       <div className="absolute bottom-1/3 right-1/4 w-[30vw] h-[30vw] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none mix-blend-screen" />
+
+      {/* Layer 2: Particle Field */}
+      <Particles />
 
       {/* --- LEFT COLUMN: CONTENT (55%) --- */}
       <motion.div 
@@ -202,21 +293,22 @@ export const Hero = () => {
           <TypewriterText />
         </div>
 
-        <p className="text-base md:text-lg text-white/60 max-w-xl leading-relaxed mt-2 pl-1">
-          A self-driven <span className="text-white font-medium drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">Full-Stack Developer</span> passionate about solving real-world problems with clean, scalable, and modern web applications.
+
+        <p className="text-base md:text-lg text-white/60 max-w-xl leading-relaxed mt-3 pl-1">
+          I’m an AI-driven Full Stack Developer focused on building scalable, high-performance applications and solving real-world problems through intelligent systems.
         </p>
 
         {/* Buttons tightened up */}
         <div className="flex flex-wrap items-center gap-4 pt-3 w-full pl-1">
           <MagneticWrapper strength={0.2}>
-            <a href="#projects" className="group relative flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:shadow-[0_0_25px_rgba(255,255,255,0.6)] z-10 overflow-hidden">
+            <a href="#projects" className="group relative flex items-center justify-center gap-2 bg-white text-black px-7 py-3.5 rounded-full font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:shadow-[0_0_25px_rgba(255,255,255,0.6)] z-10 overflow-hidden">
               <span className="relative z-10">View Projects</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform relative z-10" />
             </a>
           </MagneticWrapper>
 
           <MagneticWrapper strength={0.2}>
-            <a href="#contact" className="relative flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-transparent text-white font-medium text-sm hover:bg-white/5 hover:border-white/40 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all overflow-hidden group">
+            <a href="#contact" className="relative flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/20 bg-transparent text-white font-medium text-sm hover:scale-105 hover:bg-white/5 hover:border-white/40 shadow-none hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all overflow-hidden group">
               Contact Me
             </a>
           </MagneticWrapper>
@@ -297,19 +389,19 @@ export const Hero = () => {
         {/* Nodes for Orbit 1 */}
         <div className="absolute w-[280px] h-[280px] animate-[spin_30s_linear_infinite]">
           {[
-            { angle: 0, icon: 'React', color: 'text-cyan-400' },
-            { angle: 120, icon: 'Node.js', color: 'text-green-400' },
-            { angle: 240, icon: 'Next.js', color: 'text-white' },
+            { angle: 0, icon: <FaReact size={24} />, color: 'text-cyan-400' },
+            { angle: 120, icon: <FaNodeJs size={24} />, color: 'text-green-500' },
+            { angle: 240, icon: <SiNextdotjs size={24} />, color: 'text-white' },
           ].map((stack, idx) => (
             <div 
               key={idx}
-              className="absolute w-10 h-10 bg-black border border-white/20 rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.1)] backdrop-blur-md hover:scale-110 transition-transform cursor-pointer"
+              className="absolute w-12 h-12 bg-black border border-white/20 rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.1)] backdrop-blur-md hover:scale-[1.2] transition-transform cursor-pointer"
               style={{
-                top: `calc(50% - 20px + 140px * ${Math.sin(stack.angle * (Math.PI / 180))})`,
-                left: `calc(50% - 20px + 140px * ${Math.cos(stack.angle * (Math.PI / 180))})`,
+                top: `calc(50% - 24px + 140px * ${Math.sin(stack.angle * (Math.PI / 180))})`,
+                left: `calc(50% - 24px + 140px * ${Math.cos(stack.angle * (Math.PI / 180))})`,
               }}
             >
-              <span className={cn("font-bold text-[9px] animate-[spin_30s_linear_infinite_reverse]", stack.color)}>
+              <span className={cn("animate-[spin_30s_linear_infinite_reverse]", stack.color)}>
                 {stack.icon}
               </span>
             </div>
@@ -322,9 +414,9 @@ export const Hero = () => {
         {/* Nodes for Orbit 2 */}
         <div className="absolute w-[380px] h-[380px] animate-[spin_40s_linear_infinite_reverse]">
           {[
-            { angle: 45, icon: 'Python', color: 'text-blue-400' },
-            { angle: 165, icon: 'AWS', color: 'text-orange-400' },
-            { angle: 285, icon: 'Docker', color: 'text-blue-500' },
+            { angle: 45, icon: <FaPython size={24} />, color: 'text-blue-400' },
+            { angle: 165, icon: <FaAws size={24} />, color: 'text-orange-400' },
+            { angle: 285, icon: <FaDocker size={24} />, color: 'text-blue-500' },
           ].map((stack, idx) => (
             <div 
               key={idx}
@@ -334,7 +426,7 @@ export const Hero = () => {
                 left: `calc(50% - 24px + 190px * ${Math.cos(stack.angle * (Math.PI / 180))})`,
               }}
             >
-              <span className={cn("font-bold text-[10px] animate-[spin_40s_linear_infinite]", stack.color)}>
+              <span className={cn("animate-[spin_40s_linear_infinite]", stack.color)}>
                 {stack.icon}
               </span>
             </div>

@@ -56,29 +56,31 @@ const ParallaxRow = ({ tags, baseVelocity = 100 }) => {
   const TagList = () => (
     <>
       {tags.map((tag, idx) => (
-        <React.Fragment key={idx}>
-          <span className="text-[#8e8e99] transition-colors duration-300 hover:text-white uppercase drop-shadow-[0_0_10px_rgba(255,255,255,0.05)] hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
+        <span key={idx} className="flex items-center mr-6 md:mr-32">
+          <span className="transition-colors duration-300 hover:text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.05)] hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
             {tag}
           </span>
-          <svg viewBox="0 0 24 24" fill="currentColor" className="w-10 h-10 md:w-16 md:h-16 text-yellow-500 drop-shadow-[0_0_15px_rgba(234,179,8,0.3)]">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" strokeWidth="1" strokeLinejoin="round" />
-          </svg>
-        </React.Fragment>
+          <span className="text-yellow-400 mx-6 md:mx-20 drop-shadow-[0_0_15px_rgba(234,179,8,0.3)]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="0.8em" height="0.8em" viewBox="0 0 24 24" fill="#a39f44ff" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-zap" aria-hidden="true">
+              <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
+            </svg>
+          </span>
+        </span>
       ))}
     </>
   );
 
   return (
-    <div ref={containerRef} className="overflow-hidden flex whitespace-nowrap m-0 w-full hover:-translate-y-1 transition-transform duration-500 ease-out">
+    <div ref={containerRef} className="overflow-hidden m-0 w-full whitespace-nowrap flex flex-nowrap leading-[0.8] hover:-translate-y-1 transition-transform duration-500 ease-out">
       <motion.div 
-        className="flex whitespace-nowrap gap-12 text-[clamp(2.5rem,8vw,6rem)] font-black tracking-tighter w-fit leading-none" 
+        className="font-['Space_Grotesk'] font-bold uppercase text-5xl md:text-[10rem] flex whitespace-nowrap items-center flex-nowrap tracking-tighter text-gray-500 w-fit" 
         style={{ x, y: bounceY, skewX }}
       >
-        <div className="flex gap-12 items-center pr-12">
+        <div className="flex items-center">
           <TagList />
           <TagList />
         </div>
-        <div className="flex gap-12 items-center pr-12">
+        <div className="flex items-center">
           <TagList />
           <TagList />
         </div>
@@ -89,21 +91,23 @@ const ParallaxRow = ({ tags, baseVelocity = 100 }) => {
 
 export const Marquee = () => {
   return (
-    <div className="relative w-full overflow-hidden flex flex-col gap-4 py-8 mt-4 md:mt-8 mb-10 bg-[#0e0e11] border-y border-white/5 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:30px_30px] select-none">
+    <section className="relative w-full py-6 md:py-10 mt-10 md:mt-20 bg-white/5 border-y border-white/10 text-gray-500 overflow-hidden backdrop-blur-sm select-none">
       {/* Blur overlays for premium depth effect matching the grey bg */}
       <div className="absolute inset-y-0 left-0 w-32 md:w-40 bg-gradient-to-r from-[#0e0e11] via-[#0e0e11]/80 to-transparent z-10 pointer-events-none" />
       <div className="absolute inset-y-0 right-0 w-32 md:w-40 bg-gradient-to-l from-[#0e0e11] via-[#0e0e11]/80 to-transparent z-10 pointer-events-none" />
       
-      {/* Row 1: Moves Left */}
-      <ParallaxRow 
-        baseVelocity={-2} 
-        tags={["MERN Stack", "Scalable Apps", "Innovative Coder"]} 
-      />
-      {/* Row 2: Moves Right */}
-      <ParallaxRow 
-        baseVelocity={2} 
-        tags={["Tech Enthusiast", "Fullstack Dev", "Problem Solver"]} 
-      />
-    </div>
+      <div className="relative mix-blend-overlay flex flex-col gap-4 md:gap-8">
+        {/* Row 1: Moves Left */}
+        <ParallaxRow 
+          baseVelocity={-2} 
+          tags={["FULL STACK DEV", "PROBLEM SOLVER", "INNOVATIVE CODER"]} 
+        />
+        {/* Row 2: Moves Right */}
+        <ParallaxRow 
+          baseVelocity={2} 
+          tags={["DSA EXPERT", "TECH ENTHUSIAST", "BUILDING FUTURE"]} 
+        />
+      </div>
+    </section>
   );
 };
