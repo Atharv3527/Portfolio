@@ -20,18 +20,18 @@ const ParallaxRow = ({ tags, baseVelocity = 100 }) => {
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
   const smoothVelocity = useSpring(scrollVelocity, {
-    damping: 50,
-    stiffness: 400
+    damping: 80,
+    stiffness: 300
   });
   
   const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 2], {
     clamp: false
   });
 
-  // Smooth butterfly-like scroll-responsive motion
-  const skewX = useTransform(smoothVelocity, [-1000, 1000], [2, -2]);
-  const bounceY = useTransform(smoothVelocity, [-1000, 1000], [-6, 6]);
-  const scale = useTransform(smoothVelocity, [-1000, 0, 1000], [0.98, 1, 0.98]);
+  // Reduced scroll-responsive motion for smoother effect
+  const skewX = useTransform(smoothVelocity, [-1000, 1000], [0.5, -0.5]);
+  const bounceY = useTransform(smoothVelocity, [-1000, 1000], [-2, 2]);
+  const scale = useTransform(smoothVelocity, [-1000, 0, 1000], [0.995, 1, 0.995]);
 
   const directionFactor = useRef(1);
   const containerRef = useRef(null);
