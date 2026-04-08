@@ -26,35 +26,32 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 2. Scroll-spy: pick the section whose top is closest above the middle of the viewport
+  // 2. Intersection Observer for precise Scroll Spy
   useEffect(() => {
-    const handleScrollSpy = () => {
-      const scrollY = window.scrollY;
-      const viewportMid = scrollY + window.innerHeight * 0.35; // 35% down from top
-
-      let closestId = 'home';
-      let closestDist = Infinity;
-
-      NAV_LINKS.forEach(({ id }) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        const top = el.getBoundingClientRect().top + scrollY;
-        // We want the section whose top is closest to (but not below) the viewport mid
-        const dist = Math.abs(viewportMid - top);
-        if (top <= viewportMid && dist < closestDist) {
-          closestDist = dist;
-          closestId = id;
-        }
-      });
-
-      setActiveSection(closestId);
+    const observerOptions = {
+      root: null,
+      rootMargin: '-30% 0px -70% 0px', // triggers when section crosses upper-middle threshold
+      threshold: 0,
     };
 
-    // Run once on mount so the initial active state is correct
-    handleScrollSpy();
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
 
-    window.addEventListener('scroll', handleScrollSpy, { passive: true });
-    return () => window.removeEventListener('scroll', handleScrollSpy);
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    NAV_LINKS.forEach((link) => {
+      const element = document.getElementById(link.id);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   // Smooth scroll to section

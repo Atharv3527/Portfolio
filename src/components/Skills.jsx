@@ -25,7 +25,7 @@ const IC = {
 };
 
 const cats=[
-  {label:'Programming Languages',items:[['javascript','JavaScript'],['typescript','TypeScript'],['python','Python'],['c','C'],['cplusplus','C++']]},
+  {label:'Programming\nLanguages',items:[['javascript','JavaScript'],['typescript','TypeScript'],['python','Python'],['c','C'],['cplusplus','C++']]},
   {label:'Frontend',items:[['react','React'],['nextdotjs','Next.js'],['tailwindcss','Tailwind CSS'],['bootstrap','Bootstrap'],['html5','HTML5'],['css','CSS']]},
   {label:'Backend',items:[['nodedotjs','Node.js'],['express','Express']]},
   {label:'Databases',items:[['mongodb','MongoDB'],['mysql','MySQL'],['supabase','Supabase']]},

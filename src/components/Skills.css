@@ -13,10 +13,10 @@
 
 /* Category rows */
 .cat-list{display:flex;flex-direction:column;gap:0}
-.cat-row{display:flex;align-items:flex-start;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.cat-row{display:flex;align-items:flex-start;padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
 .cat-row:first-child{border-top:1px solid rgba(255,255,255,0.04)}
-.cat-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.22);font-weight:700;min-width:150px;padding-top:14px;flex-shrink:0}
-.chip-group{display:flex;flex-wrap:wrap;gap:6px 14px}
+.cat-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.85);font-weight:800;min-width:150px;padding-top:14px;flex-shrink:0;white-space:pre-line;line-height:1.6}
+.chip-group{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
 .chip{display:flex;align-items:center;gap:10px;padding:8px 4px;background:transparent;border:none;transition:all .22s;cursor:default}
 .chip:hover{opacity:1}
 .chip svg{width:22px;height:22px;flex-shrink:0;opacity:.85}
@@ -25,19 +25,19 @@
 .chip:hover span{color:rgba(255,255,255,0.75)}
 
 /* ── RIGHT HALF ── */
-.right{display:flex;flex-direction:column;justify-content:center;padding:80px 0;gap:0;overflow:hidden}
+.right{display:flex;flex-direction:column;justify-content:center;padding:120px 0 80px;gap:0;overflow:hidden}
 .right-head{padding:0 64px 36px}
 .right-title{font-size:11px;letter-spacing:.28em;color:rgba(255,255,255,0.2);text-transform:uppercase;font-weight:500}
 .marquee-block{margin-bottom:0}
-.marquee-cat{font-size:9px;letter-spacing:.22em;color:rgba(255,255,255,0.15);text-transform:uppercase;font-weight:600;padding:0 64px;margin-bottom:12px}
+.marquee-cat{font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,0.75);text-transform:uppercase;font-weight:800;padding:0 64px;margin-bottom:12px}
 .marquee-outer{overflow:hidden;width:100%;padding:8px 0;position:relative}
 .marquee-outer::before,.marquee-outer::after{content:'';position:absolute;top:0;width:60px;height:100%;z-index:2;pointer-events:none}
 .marquee-outer::before{left:0;background:linear-gradient(90deg,#020202,transparent)}
 .marquee-outer::after{right:0;background:linear-gradient(-90deg,#020202,transparent)}
-.marquee-track{display:flex;gap:10px;width:max-content}
+.marquee-track{display:flex;gap:16px;width:max-content;align-items:center}
 .marquee-track.go-left{animation:toLeft 30s linear infinite}
 .marquee-track.go-right{animation:toRight 30s linear infinite}
-.marquee-sep{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.05) 30%,rgba(255,255,255,0.05) 70%,transparent);margin:20px 64px}
+.marquee-sep{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.05) 30%,rgba(255,255,255,0.05) 70%,transparent);margin:24px 64px}
 
 /* Badge (marquee items) */
 .m-badge{display:flex;align-items:center;gap:12px;padding:12px 20px;background:transparent;border:none;border-radius:8px;cursor:default;flex-shrink:0;transition:all .22s}

@@ -37,7 +37,7 @@ function App() {
       </main>
 
       {/* Marquee extends full width, so it lives outside the max-w-7xl container */}
-      {/* <Marquee /> */}
+      <Marquee />
 
       {/* Main Content Sections */}
       <div className="relative z-10 w-full">
