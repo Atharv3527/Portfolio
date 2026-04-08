@@ -334,12 +334,28 @@
   50% { transform: rotate(45deg) translateY(6px); }
 }
 
+/* Large tablets and small laptops */
+@media (max-width: 1200px) {
+  .about-section {
+    padding: 50px 60px;
+  }
+
+  .about-layout {
+    gap: 50px;
+  }
+
+  .about-heading-solid {
+    font-size: 52px;
+  }
+}
+
+/* Tablets */
 @media (max-width: 1024px) {
   .about-section {
     width: 100%;
     border-radius: 36px;
     min-height: auto;
-    padding: 48px 24px 76px;
+    padding: 48px 32px 76px;
   }
 
   .about-layout {
@@ -348,16 +364,15 @@
   }
 
   .about-left {
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .about-right {
     margin-top: 0;
   }
 
-  .about-heading-solid,
-  .about-accent-word {
-    font-size: 45px;
+  .about-heading-solid {
+    font-size: 48px;
   }
 
   .about-scroll-indicator {
@@ -366,14 +381,15 @@
   }
 }
 
+/* Mobile landscape and small tablets */
 @media (max-width: 768px) {
   .about-section {
     border-radius: 24px;
-    padding: 38px 18px;
+    padding: 40px 24px 70px;
   }
 
   .about-layout {
-    gap: 28px;
+    gap: 32px;
   }
 
   .about-left {
@@ -381,21 +397,21 @@
   }
 
   .about-photo-card {
-    width: min(100%, 290px);
+    width: min(100%, 320px);
   }
 
   .about-photo-frame-outline {
-    inset: -16px 16px 16px -16px;
+    inset: -18px 18px 18px -18px;
   }
 
   .about-heading-solid {
-    font-size: 36px;
-    line-height: 1;
+    font-size: 40px;
+    line-height: 1.1;
   }
 
   .about-copy {
     font-size: 14px;
-    line-height: 1.72;
+    line-height: 1.75;
   }
 
   .about-sub-label {
@@ -411,19 +427,38 @@
 
   .about-pill {
     font-size: 12px;
-    padding: 7px 12px;
+    padding: 7px 14px;
   }
 
   .about-scroll-indicator {
     display: flex;
-    right: 18px;
-    bottom: 16px;
+    right: 20px;
+    bottom: 18px;
   }
 }
 
+/* Mobile portrait */
 @media (max-width: 520px) {
   .about-section {
-    padding-bottom: 86px;
+    border-radius: 20px;
+    padding: 32px 20px 80px;
+  }
+
+  .about-layout {
+    gap: 28px;
+  }
+
+  .about-photo-card {
+    width: min(100%, 280px);
+  }
+
+  .about-heading-solid {
+    font-size: 32px;
+  }
+
+  .about-copy {
+    font-size: 13px;
+    line-height: 1.7;
   }
 
   .about-pills {
@@ -432,18 +467,42 @@
 
   .about-pill {
     font-size: 11px;
-    padding: 6px 10px;
-    letter-spacing: 0.2px;
+    padding: 6px 12px;
+    letter-spacing: 0.3px;
   }
 
   .about-scroll-indicator {
-    right: 14px;
-    bottom: 12px;
+    right: 16px;
+    bottom: 14px;
     gap: 8px;
   }
 
   .about-scroll-text {
     font-size: 9px;
     letter-spacing: 1.6px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 380px) {
+  .about-section {
+    padding: 28px 16px 70px;
+  }
+
+  .about-photo-card {
+    width: min(100%, 240px);
+  }
+
+  .about-heading-solid {
+    font-size: 28px;
+  }
+
+  .about-copy {
+    font-size: 12px;
+  }
+
+  .about-pill {
+    font-size: 10px;
+    padding: 5px 10px;
   }
 }

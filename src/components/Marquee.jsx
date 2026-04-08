@@ -93,6 +93,21 @@ const ParallaxRow = ({ tags, baseVelocity = 100 }) => {
 export const Marquee = () => {
   return (
     <section className="relative w-full py-4 md:py-5 mt-5 md:mt-10 bg-white/5 border-y border-white/10 text-gray-500 overflow-hidden backdrop-blur-sm select-none">
+      <style>{`
+        /* Responsive adjustments for Marquee */
+        @media (max-width: 768px) {
+          .font-\\[\\'Space_Grotesk\\'\\] {
+            font-size: clamp(1.8rem, 6vw, 2.4rem) !important;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .font-\\[\\'Space_Grotesk\\'\\] {
+            font-size: clamp(1.4rem, 7vw, 1.8rem) !important;
+          }
+        }
+      `}</style>
+      
       {/* Blur overlays for premium depth effect matching the grey bg */}
       <div className="absolute inset-y-0 left-0 w-32 md:w-40 bg-gradient-to-r from-[#0e0e11] via-[#0e0e11]/80 to-transparent z-10 pointer-events-none" />
       <div className="absolute inset-y-0 right-0 w-32 md:w-40 bg-gradient-to-l from-[#0e0e11] via-[#0e0e11]/80 to-transparent z-10 pointer-events-none" />
