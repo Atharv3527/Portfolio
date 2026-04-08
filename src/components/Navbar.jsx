@@ -7,7 +7,6 @@ const NAV_LINKS = [
   { name: "Home", id: "home" },
   { name: "About", id: "about" },
   { name: "Skills", id: "skills" },
-  { name: "Experience", id: "experience" },
   { name: "Projects", id: "projects" },
   { name: "Contact", id: "contact" },
 ];
@@ -110,7 +109,7 @@ export const Navbar = () => {
         </motion.a>
 
         {/* Center: Navigation Links Desktop */}
-        <div className="hidden md:flex items-center gap-5 ml-6 relative z-10">
+        <div className="hidden md:flex items-center gap-8 ml-auto relative z-10">
           {NAV_LINKS.map((link, i) => {
             const isActive = activeSection === link.id;
             return (
