@@ -28,9 +28,10 @@ const ParallaxRow = ({ tags, baseVelocity = 100 }) => {
     clamp: false
   });
 
-  // Subtle scroll-responsive motion similar to reference behavior
-  const skewX = useTransform(smoothVelocity, [-1000, 1000], [1.5, -1.5]);
-  const bounceY = useTransform(smoothVelocity, [-1000, 1000], [-4, 4]);
+  // Smooth butterfly-like scroll-responsive motion
+  const skewX = useTransform(smoothVelocity, [-1000, 1000], [2, -2]);
+  const bounceY = useTransform(smoothVelocity, [-1000, 1000], [-6, 6]);
+  const scale = useTransform(smoothVelocity, [-1000, 0, 1000], [0.98, 1, 0.98]);
 
   const directionFactor = useRef(1);
   const containerRef = useRef(null);
@@ -73,7 +74,8 @@ const ParallaxRow = ({ tags, baseVelocity = 100 }) => {
     <div ref={containerRef} className="overflow-hidden m-0 w-full whitespace-nowrap flex flex-nowrap leading-[0.85]">
       <motion.div 
         className="font-['Space_Grotesk'] font-bold uppercase text-[2.4rem] md:text-[5.85rem] flex whitespace-nowrap items-center flex-nowrap tracking-tight text-gray-500 w-fit" 
-        style={{ x, y: bounceY, skewX }}
+        style={{ x, y: bounceY, skewX, scale }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
       >
         <div className="flex items-center">
           <TagList />
