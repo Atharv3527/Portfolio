@@ -92,13 +92,13 @@ export const CustomCursor = () => {
           viewBox="0 0 24 24" 
           fill="none" 
           xmlns="http://www.w3.org/2000/svg"
-          className="drop-shadow-[0_0_8px_rgba(56,189,248,0.5)]"
+          className="drop-shadow-[0_0_8px_rgba(0,245,212,0.55)]"
         >
           <path d="M0 0L16 6.5L9 9.5L6 16.5Z" fill="url(#cursor-gradient)" stroke="rgba(255,255,255,0.4)" strokeWidth="0.5"/>
           <defs>
             <linearGradient id="cursor-gradient" x1="0" y1="0" x2="16" y2="16" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#38bdf8" />
-              <stop offset="1" stopColor="#6366f1" />
+              <stop stopColor="var(--brand-cyan)" />
+              <stop offset="1" stopColor="var(--brand-blue)" />
             </linearGradient>
           </defs>
         </svg>
@@ -106,7 +106,7 @@ export const CustomCursor = () => {
 
       {/* Outer Ring / Glow */}
       <motion.div
-        className="fixed top-0 left-0 rounded-full pointer-events-none z-[99] border-2 border-blue-500/80 shadow-[0_0_15px_rgba(59,130,246,0.3)]"
+        className="fixed top-0 left-0 rounded-full pointer-events-none z-[99] border-2"
         style={{
           x: springX,
           y: springY,
@@ -115,11 +115,15 @@ export const CustomCursor = () => {
           width: isHovering ? 56 : 32,
           height: isHovering ? 56 : 32,
           opacity: isVisible ? 1 : 0,
+          borderColor: 'color-mix(in srgb, var(--brand-cyan) 75%, var(--brand-blue) 25%)',
+          boxShadow: '0 0 16px color-mix(in srgb, var(--brand-cyan) 38%, transparent)',
         }}
         animate={{
           width: isHovering ? 56 : 32,
           height: isHovering ? 56 : 32,
-          backgroundColor: isHovering ? 'rgba(59,130,246,0.1)' : 'rgba(59,130,246,0)',
+          backgroundColor: isHovering
+            ? 'color-mix(in srgb, var(--brand-cyan) 16%, transparent)'
+            : 'transparent',
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 25 }}
       />

@@ -1,4 +1,19 @@
-# Logs
+# ── Dependencies ──────────────────────────────────────────────
+node_modules
+
+# ── Build Output ──────────────────────────────────────────────
+dist
+dist-ssr
+
+# ── Vite Cache ────────────────────────────────────────────────
+.vite
+
+# ── Environment & Secrets ─────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Logs ──────────────────────────────────────────────────────
 logs
 *.log
 npm-debug.log*
@@ -7,18 +22,27 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# ── OS Files ──────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
 
-# Editor directories and files
+# ── Editor Directories ────────────────────────────────────────
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# ── Temp / Scratch Files (generated during dev, not source) ───
+*.local
+build_output.txt
+fix_score.cjs
+fix_score.js
+update.py
+create_skills_jsx.py
+
+# ── Asset Source Folder (SVGs embedded in JSX, originals not needed) ──
+icons-logo-svg/

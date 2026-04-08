@@ -6,6 +6,7 @@ import { About } from "@/components/About";
 import { Education } from "@/components/Education";
 import { Projects } from "@/components/Projects";
 import { CustomCursor } from "@/components/CustomCursor";
+import { Skills } from "@/components/Skills";
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
       </main>
 
       {/* Marquee extends full width, so it lives outside the max-w-7xl container */}
-      <Marquee />
+      {/* <Marquee /> */}
 
       {/* Main Content Sections */}
       <div className="relative z-10 w-full">
@@ -52,9 +53,14 @@ function App() {
           
           {/* Solid section content */}
           <div className="w-full bg-[#020202] relative z-20" style={{ marginTop: "-1px" }}>
-            <div className="pb-16 sm:pb-20 lg:pb-24 px-4 sm:px-6 lg:px-12 xl:px-16 max-w-[1400px] mx-auto space-y-20 sm:space-y-28 lg:space-y-40">
+            <div className="pb-0 px-4 sm:px-6 lg:px-12 xl:px-16 max-w-[1400px] mx-auto">
               <Education />
-              
+            </div>
+
+            {/* Skills - Full width, edge to edge */}
+            <Skills />
+
+            <div className="pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-24 px-4 sm:px-6 lg:px-12 xl:px-16 max-w-[1400px] mx-auto">
               <Projects />
   
               <section id="contact" className="min-h-[40vh] sm:min-h-[50vh] py-14 sm:py-16 lg:py-20">

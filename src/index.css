@@ -8,6 +8,10 @@
     --font-sans: 'Geist Variable', sans-serif
   }
   :root {
+    --brand-cyan: #00f5d4;
+    --brand-blue: #3b82f6;
+    --brand-indigo: #6366f1;
+    --brand-glow: rgba(0, 245, 212, 0.45);
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
@@ -86,6 +90,20 @@
 }
 
 @layer utilities {
+  .brand-gradient-animated {
+    background: linear-gradient(
+      120deg,
+      var(--brand-cyan) 0%,
+      var(--brand-blue) 45%,
+      var(--brand-cyan) 100%
+    );
+    background-size: 220% 220%;
+    animation: brandGradientShift 5s ease-in-out infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
   .million-gradient-text {
     background: linear-gradient(135deg, #ffffff 0%, #c084fc 40%, #22d3ee 100%);
     background-size: 200% 200%;
@@ -105,6 +123,12 @@
 }
 
 @keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes brandGradientShift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }

@@ -144,6 +144,14 @@ export const Education = () => {
       });
 
       // 3. Cards Animation
+      const setActiveTimelineDot = (activeDot) => {
+        cardsRef.current.forEach((itemCard) => {
+          const dot = itemCard?.querySelector('.edu-timeline-dot');
+          if (dot) dot.classList.remove('edu-timeline-dot-active');
+        });
+        if (activeDot) activeDot.classList.add('edu-timeline-dot-active');
+      };
+
       cardsRef.current.forEach((card, index) => {
         if (!card) return;
         const scanLine = card.querySelector('.edu-scan-line');
@@ -164,6 +172,14 @@ export const Education = () => {
           }
         });
 
+        ScrollTrigger.create({
+          trigger: card,
+          start: "top 55%",
+          end: "bottom 55%",
+          onEnter: () => setActiveTimelineDot(timelineDot),
+          onEnterBack: () => setActiveTimelineDot(timelineDot),
+        });
+
         // Separator Line
         if (sepLine) {
           tl.fromTo(sepLine,
@@ -180,7 +196,7 @@ export const Education = () => {
              scale: 1, opacity: 1, duration: 0.8, ease: "back.out(2)", 
              onComplete: () => {
                  gsap.to(timelineDot, {
-                    boxShadow: "0 0 16px #00FFD1",
+                    boxShadow: "0 0 16px var(--brand-cyan), 0 0 24px color-mix(in srgb, var(--brand-blue) 35%, transparent)",
                     duration: 3, repeat: -1, yoyo: true, ease: "sine.inOut"
                  })
              }
@@ -203,7 +219,11 @@ export const Education = () => {
         );
 
         // Left Border animated glow on entry
-        const scoreColors = ["rgba(0,255,209,0.5)", "rgba(0,255,209,0.5)", "rgba(0,255,209,0.5)"];
+        const scoreColors = [
+          "color-mix(in srgb, var(--brand-cyan) 50%, transparent)",
+          "color-mix(in srgb, var(--brand-blue) 45%, transparent)",
+          "color-mix(in srgb, var(--brand-cyan) 52%, transparent)"
+        ];
         const borderColor = scoreColors[index % scoreColors.length];
         tl.fromTo(card.querySelector('.edu-card'), {
             boxShadow: `inset 3px 0 0px transparent`
@@ -265,7 +285,7 @@ export const Education = () => {
            gsap.quickTo(innerCard, "rotateY", {duration: 0.4, ease: "power2.out"})(offsetX * 6);
 
            gsap.to(internalGlow, {
-               background: `radial-gradient(200px circle at ${e.clientX - rect.left}px ${e.clientY - rect.top}px, rgba(0,255,209,0.07), transparent)`,
+               background: `radial-gradient(220px circle at ${e.clientX - rect.left}px ${e.clientY - rect.top}px, color-mix(in srgb, var(--brand-cyan) 11%, transparent), transparent)`,
                duration: 0
            });
         };
@@ -277,6 +297,10 @@ export const Education = () => {
         innerCard.addEventListener('mousemove', onMouseMove);
         innerCard.addEventListener('mouseleave', onMouseLeave);
       });
+
+      // Ensure first item is highlighted before any scroll interaction.
+      const firstDot = cardsRef.current[0]?.querySelector('.edu-timeline-dot');
+      setActiveTimelineDot(firstDot);
 
     }, sectionRef);
 
@@ -290,11 +314,11 @@ export const Education = () => {
 
         .edu-mask { overflow: hidden; display: inline-block; vertical-align: top; }
         
-        .edu-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.9rem, 4.5vw, 2.25rem); font-weight: 400; letter-spacing: 0.1em; color: rgba(255,255,255,0.7); line-height: 1; }
+        .edu-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.9rem, 4.5vw, 2.25rem); font-weight: 500; letter-spacing: 0.1em; color: rgba(255,255,255,0.82); line-height: 1; text-shadow: 0 0 14px color-mix(in srgb, var(--brand-cyan) 26%, transparent); }
         .edu-institution { font-family: 'Bebas Neue', cursive; font-size: clamp(1.25rem, 3.2vw, 1.5rem); font-weight: 600; color: rgba(255,255,255,0.9); line-height: 1.1; margin-bottom: 8px; letter-spacing: 0.02em; }
         .edu-degree { font-family: 'Space Grotesk', sans-serif; font-size: clamp(0.98rem, 2.8vw, 1.2rem); font-weight: 600; color: rgba(255,255,255,0.85); line-height: 1.35; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
         
-        .edu-year-group { font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: 600; color: rgba(0,255,209,0.9); letter-spacing: 0.16em; display: flex; align-items: center; gap: 8px; margin-bottom: 1.15rem; }
+        .edu-year-group { font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: 600; color: var(--brand-cyan); letter-spacing: 0.16em; display: flex; align-items: center; gap: 8px; margin-bottom: 1.15rem; text-shadow: 0 0 10px color-mix(in srgb, var(--brand-cyan) 40%, transparent); }
         .edu-ghost-prefix { color: rgba(255,255,255,0.5); font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; }
         
         .edu-desc { font-family: 'DM Mono', monospace; font-size: clamp(0.8rem, 2.4vw, 0.9rem); font-weight: 500; color: rgba(255,255,255,0.55); line-height: 1.8; margin-top: 1.1rem; }
@@ -302,14 +326,14 @@ export const Education = () => {
         .edu-side-panel {
           position: sticky;
           top: 138px;
-          border: 1px solid rgba(255,255,255,0.12);
-          background: linear-gradient(160deg, rgba(0,255,209,0.06), rgba(123,97,255,0.05) 45%, rgba(0,0,0,0.28));
-          backdrop-filter: blur(8px);
-          border-radius: 10px;
+          border: 1px solid color-mix(in srgb, var(--brand-cyan) 24%, rgba(255,255,255,0.08));
+          background: linear-gradient(160deg, color-mix(in srgb, var(--brand-cyan) 8%, transparent), color-mix(in srgb, var(--brand-blue) 9%, transparent) 45%, rgba(0,0,0,0.34));
+          backdrop-filter: blur(14px);
+          border-radius: 14px;
           padding: 1.7rem 1.45rem;
           min-height: 350px;
           margin-top: 14px;
-          box-shadow: 0 0 28px rgba(0,255,209,0.08);
+          box-shadow: 0 16px 50px color-mix(in srgb, var(--brand-cyan) 13%, transparent), inset 0 0 25px color-mix(in srgb, var(--brand-blue) 8%, transparent);
           overflow: hidden;
         }
 
@@ -318,7 +342,7 @@ export const Education = () => {
           position: absolute;
           inset: 0;
           pointer-events: none;
-          background: radial-gradient(circle at 20% 15%, rgba(0,255,209,0.12), transparent 45%);
+          background: radial-gradient(circle at 20% 15%, color-mix(in srgb, var(--brand-cyan) 20%, transparent), transparent 45%);
         }
 
         .edu-side-tag {
@@ -326,7 +350,7 @@ export const Education = () => {
           font-size: 12px;
           font-weight: 600;
           letter-spacing: 0.14em;
-          color: rgba(0,255,209,0.8);
+          color: color-mix(in srgb, var(--brand-cyan) 90%, #ffffff 10%);
           text-transform: uppercase;
           margin-bottom: 1rem;
           display: inline-flex;
@@ -338,7 +362,7 @@ export const Education = () => {
           content: "";
           width: 20px;
           height: 1px;
-          background: rgba(0,255,209,0.8);
+          background: var(--brand-cyan);
         }
 
         .edu-side-title {
@@ -375,11 +399,11 @@ export const Education = () => {
           border-radius: 4px;
           background: linear-gradient(90deg,
             transparent 0%,
-            rgba(0,255,209,0.6) 10%,
-            #00FFD1 30%,
-            #7B61FF 50%,
-            #00FFD1 70%,
-            rgba(0,255,209,0.6) 90%,
+            color-mix(in srgb, var(--brand-cyan) 55%, transparent) 10%,
+            var(--brand-cyan) 30%,
+            var(--brand-blue) 50%,
+            var(--brand-cyan) 70%,
+            color-mix(in srgb, var(--brand-cyan) 55%, transparent) 90%,
             transparent 100%
           );
           transform-origin: center;
@@ -393,9 +417,9 @@ export const Education = () => {
           filter: blur(6px);
           background: linear-gradient(90deg,
             transparent 0%,
-            rgba(0,255,209,0.5) 20%,
-            rgba(123,97,255,0.7) 50%,
-            rgba(0,255,209,0.5) 80%,
+            color-mix(in srgb, var(--brand-cyan) 46%, transparent) 20%,
+            color-mix(in srgb, var(--brand-blue) 62%, transparent) 50%,
+            color-mix(in srgb, var(--brand-cyan) 46%, transparent) 80%,
             transparent 100%
           );
           transform-origin: center;
@@ -420,21 +444,21 @@ export const Education = () => {
         }
 
         .edu-card {
-           background: rgba(0,255,209,0.03);
-           border: 0.5px solid rgba(0,255,209,0.14);
-           border-left: 2px solid #00FFD1;
-           border-radius: 2px;
+           background: linear-gradient(145deg, color-mix(in srgb, var(--brand-cyan) 6%, transparent), color-mix(in srgb, var(--brand-blue) 5%, transparent) 60%, rgba(3,8,16,0.7));
+           border: 0.5px solid color-mix(in srgb, var(--brand-cyan) 24%, transparent);
+           border-left: 2px solid var(--brand-cyan);
+           border-radius: 8px;
            padding: 2rem 2.5rem;
            position: relative;
            overflow: hidden;
-           transition: border-color 0.3s ease;
+           transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
            transform-style: preserve-3d;
            will-change: transform;
         }
 
         .edu-card:hover {
-           border-color: rgba(0,255,209,0.45);
-           box-shadow: 0 0 40px rgba(0,255,209,0.06), inset 3px 0 20px rgba(0,255,209,0.08);
+           border-color: color-mix(in srgb, var(--brand-cyan) 62%, transparent);
+           box-shadow: 0 0 55px color-mix(in srgb, var(--brand-cyan) 16%, transparent), 0 0 30px color-mix(in srgb, var(--brand-blue) 14%, transparent), inset 3px 0 22px color-mix(in srgb, var(--brand-cyan) 16%, transparent);
         }
         
         /* Specific hover inner gradient */
@@ -444,15 +468,46 @@ export const Education = () => {
 
         .edu-violet-gradient {
            position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.3s ease;
-           background: linear-gradient(135deg, rgba(123,97,255,0.08) 0%, transparent 60%);
+           background: linear-gradient(135deg, color-mix(in srgb, var(--brand-blue) 16%, transparent) 0%, transparent 60%);
         }
         
         .edu-card-glow {
            position: absolute; inset: 0; pointer-events: none; z-index: 10;
         }
 
+        .edu-timeline-dot {
+          border: 1px solid var(--brand-cyan);
+          background: rgba(2, 6, 12, 0.95);
+          box-shadow: 0 0 8px color-mix(in srgb, var(--brand-cyan) 45%, transparent);
+          transition: all 0.3s ease;
+        }
+
+        .edu-timeline-dot::after {
+          content: "";
+          position: absolute;
+          inset: -7px;
+          border-radius: 9999px;
+          border: 1px solid color-mix(in srgb, var(--brand-cyan) 70%, var(--brand-blue) 30%);
+          opacity: 0;
+          transform: scale(0.72);
+          transition: all 0.3s ease;
+        }
+
+        .edu-timeline-dot-active {
+          background: linear-gradient(135deg, var(--brand-cyan), var(--brand-blue));
+          box-shadow:
+            0 0 10px color-mix(in srgb, var(--brand-cyan) 85%, transparent),
+            0 0 24px color-mix(in srgb, var(--brand-blue) 50%, transparent);
+          transform: scale(1.15);
+        }
+
+        .edu-timeline-dot-active::after {
+          opacity: 1;
+          transform: scale(1);
+        }
+
         .edu-scan-line {
-           position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: #00FFD1; z-index: 20;
+           position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--brand-cyan), var(--brand-blue)); z-index: 20;
         }
         
         .edu-card-body {
@@ -477,7 +532,10 @@ export const Education = () => {
         {/* Title Block */}
         <div className="relative mb-10 sm:mb-14 lg:mb-20 inline-block">
            <h2 className="edu-title m-0 tracking-widest" ref={titleRef}>EDUCATION</h2>
-           <div className="edu-title-underline h-[1px] bg-[#00FFD1] w-full mt-2 origin-left absolute left-0"></div>
+           <div
+             className="edu-title-underline h-[1px] w-full mt-2 origin-left absolute left-0"
+             style={{ background: "linear-gradient(90deg, var(--brand-cyan), var(--brand-blue))" }}
+           ></div>
         </div>
 
         {/* 2-Column Layout */}
@@ -485,11 +543,11 @@ export const Education = () => {
            
            {/* Left Column (28%) - Timeline Spine Desktop */}
            <div className="hidden md:block absolute left-[8%] md:left-[28%] top-0 bottom-0 w-[1px] bg-transparent z-0">
-              <div className="w-[1px] h-full bg-[#00FFD1] origin-top opacity-80" ref={desktopTimelineSpineRef}></div>
+              <div className="w-[1px] h-full origin-top opacity-80" style={{ background: "linear-gradient(180deg, var(--brand-cyan), var(--brand-blue))" }} ref={desktopTimelineSpineRef}></div>
            </div>
 
            {/* Mobile Timeline Spine */}
-           <div className="md:hidden absolute left-[6px] top-4 bottom-0 w-[1px] bg-[#00FFD1] origin-top opacity-50" ref={mobileTimelineSpineRef}></div>
+           <div className="md:hidden absolute left-0 top-4 bottom-0 w-[1px] origin-top opacity-50" style={{ background: "linear-gradient(180deg, var(--brand-cyan), var(--brand-blue))" }} ref={mobileTimelineSpineRef}></div>
            
            {/* Left Column (28%) - Professional content block */}
            <div className="hidden md:block md:w-[28%] flex-shrink-0 pr-6">
@@ -510,11 +568,11 @@ export const Education = () => {
                   <div key={index} className="edu-card-wrapper relative" ref={addToCardsRef}>
                      
                      {/* Timeline Dot located directly over the 1px spine */}
-                     <div className="edu-timeline-dot absolute w-2 h-2 bg-black border border-[#00FFD1] rounded-full top-[2.5rem] -left-[24px] md:-left-[44px] xl:-left-[44px] -translate-x-[50%] z-20"></div>
+                     <div className="edu-timeline-dot absolute w-2 h-2 bg-black rounded-full top-[2.5rem] -left-[24px] md:-left-[48px] xl:-left-[48px] -translate-x-[50%] z-20" style={{ borderColor: "var(--brand-cyan)" }}></div>
 
                      {/* Inter-card Sep Line */}
                      {index > 0 && (
-                        <div className="edu-sep-line absolute -top-[1.25rem] left-0 md:-left-[1.5rem] w-[80%] max-w-[200px] h-[1px]" style={{ background: 'linear-gradient(90deg, #00FFD1, transparent)' }}></div>
+                        <div className="edu-sep-line absolute -top-[1.25rem] left-0 md:-left-[1.5rem] w-[80%] max-w-[200px] h-[1px]" style={{ background: 'linear-gradient(90deg, var(--brand-cyan), var(--brand-blue), transparent)' }}></div>
                      )}
 
                      {/* The Card */}
@@ -536,7 +594,7 @@ export const Education = () => {
                            {/* Degree & Score */}
                            <div className="edu-degree edu-degree-text mt-4">
                              <span>{item.title}</span>
-                             <span className="text-[#00FFD1] text-[15px] sm:text-[17px] font-bold tracking-wider sm:ml-4 whitespace-nowrap" >{item.score}</span>
+                             <span className="text-[15px] sm:text-[17px] font-bold tracking-wider sm:ml-4 whitespace-nowrap" style={{ color: "var(--brand-cyan)", textShadow: "0 0 10px color-mix(in srgb, var(--brand-cyan) 38%, transparent)" }}>{item.score}</span>
                            </div>
                            
                            {/* Description */}

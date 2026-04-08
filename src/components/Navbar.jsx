@@ -26,32 +26,35 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 2. Intersection Observer for precise Scroll Spy
+  // 2. Scroll-spy: pick the section whose top is closest above the middle of the viewport
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '-30% 0px -70% 0px', // triggers when section crosses upper-middle threshold
-      threshold: 0,
-    };
+    const handleScrollSpy = () => {
+      const scrollY = window.scrollY;
+      const viewportMid = scrollY + window.innerHeight * 0.35; // 35% down from top
 
-    const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
+      let closestId = 'home';
+      let closestDist = Infinity;
+
+      NAV_LINKS.forEach(({ id }) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const top = el.getBoundingClientRect().top + scrollY;
+        // We want the section whose top is closest to (but not below) the viewport mid
+        const dist = Math.abs(viewportMid - top);
+        if (top <= viewportMid && dist < closestDist) {
+          closestDist = dist;
+          closestId = id;
         }
       });
+
+      setActiveSection(closestId);
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    // Run once on mount so the initial active state is correct
+    handleScrollSpy();
 
-    NAV_LINKS.forEach((link) => {
-      const element = document.getElementById(link.id);
-      if (element) {
-        observer.observe(element);
-      }
-    });
-
-    return () => observer.disconnect();
+    window.addEventListener('scroll', handleScrollSpy, { passive: true });
+    return () => window.removeEventListener('scroll', handleScrollSpy);
   }, []);
 
   // Smooth scroll to section
@@ -99,18 +102,13 @@ export const Navbar = () => {
           whileTap={{ scale: 0.95 }}
           className="flex items-center gap-2 group cursor-pointer relative z-10"
         >
-          <img
-            src="/AW logo.svg"
-            alt="AW logo"
-            className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
-          />
-          <span className="flex flex-col leading-[0.95] select-none">
-            <span className="text-[0.86rem] sm:text-[1.02rem] font-semibold tracking-[0.08em] uppercase text-white/95 transition-colors group-hover:text-white">
-              Atharv
-            </span>
-            <span className="text-[0.86rem] sm:text-[1.02rem] font-semibold tracking-[0.08em] uppercase text-white/95 transition-colors group-hover:text-white">
-              WAYKAR
-            </span>
+          <span
+            className="brand-gradient-animated text-base sm:text-lg font-extrabold tracking-wide select-none"
+            style={{
+              fontFamily: "'Oxanium', 'Space Grotesk', sans-serif",
+            }}
+          >
+            Atharv.dev
           </span>
         </motion.a>
 
@@ -137,9 +135,10 @@ export const Navbar = () => {
                 {isActive && (
                   <motion.span
                     layoutId="desktopNavIndicator"
-                    className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"
+                    className="absolute bottom-0 left-0 w-full h-[2px] rounded-full"
                     style={{
-                      boxShadow: '0 0 12px 2px rgba(34,211,238,0.6)'
+                      background: 'linear-gradient(90deg, var(--brand-cyan), var(--brand-blue))',
+                      boxShadow: '0 0 12px 2px color-mix(in srgb, var(--brand-cyan) 65%, transparent)'
                     }}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
@@ -195,7 +194,11 @@ export const Navbar = () => {
                     {isActive && (
                       <motion.div 
                         layoutId="mobileNavIndicator"
-                        className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-cyan-400 rounded-r-full shadow-[0_0_10px_rgba(34,211,238,0.8)]"
+                        className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 rounded-r-full"
+                        style={{
+                          background: 'linear-gradient(180deg, var(--brand-cyan), var(--brand-blue))',
+                          boxShadow: '0 0 10px color-mix(in srgb, var(--brand-cyan) 80%, transparent)'
+                        }}
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       />
                     )}

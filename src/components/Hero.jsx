@@ -283,9 +283,22 @@ export const Hero = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <div className="relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border border-purple-500/40 bg-purple-500/10 backdrop-blur-md text-xs sm:text-sm md:text-base font-bold text-purple-300 tracking-[0.14em] sm:tracking-[0.2em] uppercase mb-4 shadow-[0_0_25px_rgba(168,85,247,0.4)] hover:shadow-[0_0_40px_rgba(168,85,247,0.7)] hover:border-purple-400/60 transition-all duration-500 hover:scale-[1.03] cursor-default group overflow-hidden">
+        <div
+          className="relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border backdrop-blur-md text-xs sm:text-sm md:text-base font-bold tracking-[0.14em] sm:tracking-[0.2em] uppercase mb-4 transition-all duration-500 hover:scale-[1.03] cursor-default group overflow-hidden"
+          style={{
+            borderColor: "color-mix(in srgb, var(--brand-cyan) 45%, transparent)",
+            background: "color-mix(in srgb, var(--brand-cyan) 10%, transparent)",
+            boxShadow: "0 0 24px color-mix(in srgb, var(--brand-cyan) 35%, transparent)",
+          }}
+        >
           {/* Shimmer sweep effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-300/20 to-transparent animate-sweep pointer-events-none" />
+          <div
+            className="absolute inset-0 animate-sweep pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, color-mix(in srgb, var(--brand-cyan) 20%, transparent), transparent)",
+            }}
+          />
           
           {/* Pulsing Dot */}
           <span className="relative flex h-3 w-3 items-center justify-center">
@@ -296,9 +309,9 @@ export const Hero = () => {
             className="relative z-10 text-[11px] md:text-xs font-medium tracking-[0.16em] drop-shadow-[0_0_10px_rgba(216,180,254,0.8)]"
             style={{ fontFamily: "'Fira Code', monospace" }}
           >
-            <span className="text-[#a78bff]">AVAILABLE</span>
+            <span style={{ color: "var(--brand-cyan)" }}>AVAILABLE</span>
             <span className="text-[#94a3b8]"> FOR </span>
-            <span className="text-[#38bdf8]">HIRE</span>
+            <span style={{ color: "var(--brand-blue)" }}>HIRE</span>
           </span>
         </div>
 
@@ -318,14 +331,28 @@ export const Hero = () => {
         {/* Buttons tightened up */}
         <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-3 w-full pl-1">
           <MagneticWrapper strength={0.2}>
-            <a href="#projects" className="group relative flex items-center justify-center gap-2 bg-white text-black px-5 sm:px-7 py-3 sm:py-3.5 rounded-full font-bold text-sm hover:scale-105 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:shadow-[0_0_25px_rgba(255,255,255,0.6)] z-10 overflow-hidden">
+            <a
+              href="#projects"
+              className="group relative flex items-center justify-center gap-2 px-5 sm:px-7 py-3 sm:py-3.5 rounded-full font-bold text-sm hover:scale-105 hover:shadow-[0_0_28px_rgba(0,245,212,0.5)] transition-all duration-300 z-10 overflow-hidden"
+              style={{
+                color: '#03131a',
+                background: 'linear-gradient(135deg, var(--brand-cyan), var(--brand-blue))',
+                boxShadow: '0 0 15px color-mix(in srgb, var(--brand-cyan) 45%, transparent)',
+              }}
+            >
               <span className="relative z-10">View Projects</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform relative z-10" />
             </a>
           </MagneticWrapper>
 
           <MagneticWrapper strength={0.2}>
-            <a href="#contact" className="relative flex items-center justify-center gap-2 px-5 sm:px-7 py-3 sm:py-3.5 rounded-full border border-white/20 bg-transparent text-white font-medium text-sm hover:scale-105 hover:bg-white/5 hover:border-white/40 shadow-none hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all overflow-hidden group">
+            <a
+              href="#contact"
+              className="relative flex items-center justify-center gap-2 px-5 sm:px-7 py-3 sm:py-3.5 rounded-full border bg-transparent text-white font-medium text-sm hover:scale-105 hover:bg-cyan-400/10 hover:border-cyan-300/60 hover:shadow-[0_0_18px_rgba(0,245,212,0.25)] transition-all overflow-hidden group"
+              style={{
+                borderColor: 'color-mix(in srgb, var(--brand-cyan) 30%, transparent)',
+              }}
+            >
               Contact Me
             </a>
           </MagneticWrapper>
