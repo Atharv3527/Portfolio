@@ -1,27 +1,55 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useSpring, useTransform, useMotionValue, AnimatePresence, useScroll } from 'framer-motion';
-import { FileText, Mail, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect, useRef } from "react";
+import {
+  motion,
+  useSpring,
+  useTransform,
+  useMotionValue,
+  AnimatePresence,
+  useScroll,
+} from "framer-motion";
+import { FileText, Mail, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { FaReact, FaNodeJs, FaAws, FaDocker, FaPython } from 'react-icons/fa';
-import { SiNextdotjs } from 'react-icons/si';
-import { OrbitingCircles } from './ui/orbiting-circles';
+import {
+  FaReact,
+  FaNodeJs,
+  FaPython,
+  FaBootstrap,
+  FaCss3Alt,
+  FaHtml5,
+} from "react-icons/fa";
+import {
+  SiExpress,
+  SiMysql,
+  SiMongodb,
+  SiGit,
+  SiGithub,
+  SiPostman,
+  SiC,
+  SiCplusplus,
+  SiJavascript,
+  SiTypescript,
+  SiTailwindcss,
+  SiRedux,
+  SiSupabase,
+} from "react-icons/si";
+import { OrbitingCircles } from "./ui/orbiting-circles";
 
 // Social Icons SVGs - Designed accurately
 const GithubIcon = ({ className }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/>
+    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z" />
   </svg>
 );
 
 const LinkedinIcon = ({ className }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/>
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z" />
   </svg>
 );
 
 const MailIcon = ({ className }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+    <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
   </svg>
 );
 
@@ -92,8 +120,8 @@ const MagneticWrapper = ({ children, strength = 0.5 }) => {
 // --- Custom Typewriter Component ---
 const TypewriterText = () => {
   const [displayedCount, setDisplayedCount] = useState(0);
-  const [phase, setPhase] = useState('TYPING'); // TYPING, SHIMMER, ERASING
-  
+  const [phase, setPhase] = useState("TYPING"); // TYPING, SHIMMER, ERASING
+
   const textStr = "<Atharv Waykar />";
   const totalLength = textStr.length;
 
@@ -104,26 +132,24 @@ const TypewriterText = () => {
     const runLoop = () => {
       if (!isMounted) return;
 
-      if (phase === 'TYPING') {
+      if (phase === "TYPING") {
         if (displayedCount < totalLength) {
           const char = textStr[displayedCount];
           let delay = Math.random() * 40 + 60; // 60-100ms
-          if (char === ' ') delay += 80;
-          if (['<', '>', '/'].includes(char)) delay += 120;
-          
-          timeout = setTimeout(() => setDisplayedCount(c => c + 1), delay);
+          if (char === " ") delay += 80;
+          if (["<", ">", "/"].includes(char)) delay += 120;
+
+          timeout = setTimeout(() => setDisplayedCount((c) => c + 1), delay);
         } else {
-          timeout = setTimeout(() => setPhase('SHIMMER'), 500); // Small pause before shimmer
+          timeout = setTimeout(() => setPhase("SHIMMER"), 500); // Small pause before shimmer
         }
-      } 
-      else if (phase === 'SHIMMER') {
-        timeout = setTimeout(() => setPhase('ERASING'), 1800); // Wait for shimmer + pause
-      } 
-      else if (phase === 'ERASING') {
+      } else if (phase === "SHIMMER") {
+        timeout = setTimeout(() => setPhase("ERASING"), 1800); // Wait for shimmer + pause
+      } else if (phase === "ERASING") {
         if (displayedCount > 0) {
-          timeout = setTimeout(() => setDisplayedCount(c => c - 1), 30); // Fast erase
+          timeout = setTimeout(() => setDisplayedCount((c) => c - 1), 30); // Fast erase
         } else {
-          timeout = setTimeout(() => setPhase('TYPING'), 500); // Pause before retype
+          timeout = setTimeout(() => setPhase("TYPING"), 500); // Pause before retype
         }
       }
     };
@@ -142,7 +168,7 @@ const TypewriterText = () => {
       <div className="absolute inset-0 bg-purple-500/10 blur-[40px] rounded-full scale-110 pointer-events-none" />
 
       {/* Floating container for the text */}
-      <motion.div 
+      <motion.div
         className="relative flex items-center h-16 md:h-20 max-w-full group"
         animate={{ y: [-3, 3, -3] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -158,14 +184,20 @@ const TypewriterText = () => {
             letterSpacing: "-0.01em",
           }}
         >
-          {textStr.split("").slice(0, displayedCount).map((char, i) => (
-            <span key={i} className="inline-block transform-origin-bottom transition-all duration-100">
-              {char === ' ' ? '\u00A0' : char}
-            </span>
-          ))}
+          {textStr
+            .split("")
+            .slice(0, displayedCount)
+            .map((char, i) => (
+              <span
+                key={i}
+                className="inline-block transform-origin-bottom transition-all duration-100"
+              >
+                {char === " " ? "\u00A0" : char}
+              </span>
+            ))}
           {/* Shimmer Overlay (only active during SHIMMER phase) */}
-          {phase === 'SHIMMER' && (
-            <motion.div 
+          {phase === "SHIMMER" && (
+            <motion.div
               className="absolute inset-0 z-10 bg-gradient-to-r from-transparent via-white/50 to-transparent mix-blend-overlay pointer-events-none"
               initial={{ x: "-100%", skewX: "-20deg" }}
               animate={{ x: "200%" }}
@@ -175,9 +207,9 @@ const TypewriterText = () => {
         </h1>
 
         {/* Blinking Cursor */}
-        <motion.span 
+        <motion.span
           className="text-[clamp(1.8rem,5vw,3.5rem)] font-light text-white/40 ml-1 inline-flex items-center whitespace-nowrap leading-none"
-          animate={{ opacity: [1, 0, 1] }} 
+          animate={{ opacity: [1, 0, 1] }}
           transition={{ duration: 0.8, repeat: Infinity, ease: "steps(2)" }}
         >
           |
@@ -192,10 +224,17 @@ export const ScrollIndicator = () => {
   const fillHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <div className="fixed bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-6 md:right-6 lg:bottom-8 lg:right-8 z-50 flex items-center justify-center cursor-pointer group" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth'})}>
+    <div
+      className="fixed bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-6 md:right-6 lg:bottom-8 lg:right-8 z-50 flex items-center justify-center cursor-pointer group"
+      onClick={() =>
+        document
+          .getElementById("projects")
+          ?.scrollIntoView({ behavior: "smooth" })
+      }
+    >
       <div className="relative w-[70px] h-[70px] sm:w-[78px] sm:h-[78px] md:w-[86px] md:h-[86px] lg:w-[96px] lg:h-[96px] flex items-center justify-center hover:scale-105 transition-transform duration-300">
         {/* Outer rotating text */}
-        <motion.div 
+        <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
           className="absolute inset-0 z-0"
@@ -207,9 +246,17 @@ export const ScrollIndicator = () => {
               fill="none"
               stroke="none"
             />
-            <text className="text-[7px] font-black uppercase fill-white stroke-white stroke-[0.3px]" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-              <textPath href="#scrollTextPath" startOffset="0" textLength="220" lengthAdjust="spacing">
-                SCROLL TO EXPLORE • SCROLL TO EXPLORE • 
+            <text
+              className="text-[7px] font-black uppercase fill-white stroke-white stroke-[0.3px]"
+              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            >
+              <textPath
+                href="#scrollTextPath"
+                startOffset="0"
+                textLength="220"
+                lengthAdjust="spacing"
+              >
+                SCROLL TO EXPLORE • SCROLL TO EXPLORE •
               </textPath>
             </text>
           </svg>
@@ -217,26 +264,25 @@ export const ScrollIndicator = () => {
 
         {/* Center filled circle and arrow */}
         <div className="absolute w-[40px] h-[40px] sm:w-[44px] sm:h-[44px] md:w-[48px] md:h-[48px] rounded-full border border-white/30 flex flex-col items-center justify-center overflow-hidden transition-colors group-hover:border-white/50 backdrop-blur-md bg-black/40 z-10">
-          <motion.svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="white" 
-            strokeWidth="2.5" 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
+          <motion.svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className="w-4 h-4 sm:w-5 sm:h-5 relative z-20 -mt-1.5 sm:-mt-2 drop-shadow-md mix-blend-difference"
             animate={{ y: [0, 5, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           >
             <path d="M12 5v14M19 12l-7 7-7-7" />
           </motion.svg>
-          <motion.div 
-            className="absolute bottom-0 left-0 w-full bg-white opacity-90 z-0" 
+          <motion.div
+            className="absolute bottom-0 left-0 w-full bg-white opacity-90 z-0"
             style={{ height: fillHeight }}
           />
         </div>
-
       </div>
     </div>
   );
@@ -260,8 +306,8 @@ export const Hero = () => {
   };
 
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       className="relative flex flex-col lg:flex-row items-center lg:items-start justify-between w-full min-h-[70vh] md:min-h-[75vh] lg:min-h-[80vh] xl:min-h-[75vh] pt-2 sm:pt-4 md:pt-6 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-32 overflow-visible group"
       onMouseMove={handleGlobalMouseMove}
     >
@@ -277,7 +323,7 @@ export const Hero = () => {
       <Particles />
 
       {/* --- LEFT COLUMN: CONTENT (55%) --- */}
-      <motion.div 
+      <motion.div
         className="w-full lg:w-[55%] xl:w-[52%] flex flex-col items-start gap-3 sm:gap-4 md:gap-5 z-10 max-w-3xl"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
@@ -286,9 +332,12 @@ export const Hero = () => {
         <div
           className="relative inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border backdrop-blur-md text-xs sm:text-sm md:text-base font-bold tracking-[0.14em] sm:tracking-[0.2em] uppercase mb-4 transition-all duration-500 hover:scale-[1.03] cursor-default group overflow-hidden"
           style={{
-            borderColor: "color-mix(in srgb, var(--brand-cyan) 45%, transparent)",
-            background: "color-mix(in srgb, var(--brand-cyan) 10%, transparent)",
-            boxShadow: "0 0 24px color-mix(in srgb, var(--brand-cyan) 35%, transparent)",
+            borderColor:
+              "color-mix(in srgb, var(--brand-cyan) 45%, transparent)",
+            background:
+              "color-mix(in srgb, var(--brand-cyan) 10%, transparent)",
+            boxShadow:
+              "0 0 24px color-mix(in srgb, var(--brand-cyan) 35%, transparent)",
           }}
         >
           {/* Shimmer sweep effect */}
@@ -299,7 +348,7 @@ export const Hero = () => {
                 "linear-gradient(90deg, transparent, color-mix(in srgb, var(--brand-cyan) 20%, transparent), transparent)",
             }}
           />
-          
+
           {/* Pulsing Dot */}
           <span className="relative flex h-3 w-3 items-center justify-center">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-80"></span>
@@ -319,13 +368,14 @@ export const Hero = () => {
           <h2 className="text-xl md:text-2xl font-medium text-white/70 tracking-tight pl-1">
             Hello, I'm
           </h2>
-          
+
           <TypewriterText />
         </div>
 
-
         <p className="text-sm sm:text-base md:text-lg text-white/60 max-w-xl leading-relaxed mt-3 pl-1">
-          I’m a Self-Driven Full Stack Developer focused on building scalable, high-performance applications and solving real-world problems through intelligent systems.
+          I’m a Self-Driven Full Stack Developer focused on building scalable,
+          high-performance applications and solving real-world problems through
+          intelligent systems.
         </p>
 
         {/* Buttons tightened up */}
@@ -335,9 +385,11 @@ export const Hero = () => {
               href="#projects"
               className="group relative flex items-center justify-center gap-2 px-5 sm:px-7 py-3 sm:py-3.5 rounded-full font-bold text-sm hover:scale-105 hover:shadow-[0_0_28px_rgba(0,245,212,0.5)] transition-all duration-300 z-10 overflow-hidden"
               style={{
-                color: '#03131a',
-                background: 'linear-gradient(135deg, var(--brand-cyan), var(--brand-blue))',
-                boxShadow: '0 0 15px color-mix(in srgb, var(--brand-cyan) 45%, transparent)',
+                color: "#03131a",
+                background:
+                  "linear-gradient(135deg, var(--brand-cyan), var(--brand-blue))",
+                boxShadow:
+                  "0 0 15px color-mix(in srgb, var(--brand-cyan) 45%, transparent)",
               }}
             >
               <span className="relative z-10">View Projects</span>
@@ -350,7 +402,8 @@ export const Hero = () => {
               href="#contact"
               className="relative flex items-center justify-center gap-2 px-5 sm:px-7 py-3 sm:py-3.5 rounded-full border bg-transparent text-white font-medium text-sm hover:scale-105 hover:bg-cyan-400/10 hover:border-cyan-300/60 hover:shadow-[0_0_18px_rgba(0,245,212,0.25)] transition-all overflow-hidden group"
               style={{
-                borderColor: 'color-mix(in srgb, var(--brand-cyan) 30%, transparent)',
+                borderColor:
+                  "color-mix(in srgb, var(--brand-cyan) 30%, transparent)",
               }}
             >
               Contact Me
@@ -361,18 +414,45 @@ export const Hero = () => {
         {/* Socials */}
         <div className="flex items-center gap-3 sm:gap-5 pt-3 pl-1 flex-wrap">
           {[
-            { id: 'github', icon: GithubIcon, href: "https://github.com/Atharv3527", label: "🚀 GitHub", glow: "hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]", bg: "bg-[#1e2330] hover:bg-[#252b3b]", borderGlow: "border-white/10 hover:border-white/50", color: "text-white" },
-            { id: 'linkedin', icon: LinkedinIcon, href: "https://www.linkedin.com/in/atharv-waykar/", label: "👋 Let's Connect", glow: "hover:shadow-[0_0_20px_rgba(37,99,235,0.6)]", bg: "bg-[#2563eb] hover:bg-[#1d4ed8]", borderGlow: "border-blue-400/20 hover:border-blue-400", color: "text-white" },
-            { id: 'gmail', icon: MailIcon, href: "mailto:atharvwaykar3@gmail.com", label: "📧 Send me an email", glow: "hover:shadow-[0_0_20px_rgba(220,38,38,0.6)]", bg: "bg-[#dc2626] hover:bg-[#b91c1c]", borderGlow: "border-red-400/20 hover:border-red-400", color: "text-white" }
+            {
+              id: "github",
+              icon: GithubIcon,
+              href: "https://github.com/Atharv3527",
+              label: "🚀 GitHub",
+              glow: "hover:shadow-[0_0_20px_rgba(255,255,255,0.4)]",
+              bg: "bg-[#1e2330] hover:bg-[#252b3b]",
+              borderGlow: "border-white/10 hover:border-white/50",
+              color: "text-white",
+            },
+            {
+              id: "linkedin",
+              icon: LinkedinIcon,
+              href: "https://www.linkedin.com/in/atharv-waykar/",
+              label: "👋 Let's Connect",
+              glow: "hover:shadow-[0_0_20px_rgba(37,99,235,0.6)]",
+              bg: "bg-[#2563eb] hover:bg-[#1d4ed8]",
+              borderGlow: "border-blue-400/20 hover:border-blue-400",
+              color: "text-white",
+            },
+            {
+              id: "gmail",
+              icon: MailIcon,
+              href: "mailto:atharvwaykar3@gmail.com",
+              label: "📧 Send me an email",
+              glow: "hover:shadow-[0_0_20px_rgba(220,38,38,0.6)]",
+              bg: "bg-[#dc2626] hover:bg-[#b91c1c]",
+              borderGlow: "border-red-400/20 hover:border-red-400",
+              color: "text-white",
+            },
           ].map((social) => (
-            <div 
-              key={social.id} 
-              className="relative flex items-center justify-center p-1" 
-              onMouseEnter={() => setHoveredSocial(social.id)} 
+            <div
+              key={social.id}
+              className="relative flex items-center justify-center p-1"
+              onMouseEnter={() => setHoveredSocial(social.id)}
               onMouseLeave={() => setHoveredSocial(null)}
             >
               <MagneticWrapper strength={0.4}>
-                <a 
+                <a
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -382,23 +462,26 @@ export const Hero = () => {
                     social.bg,
                     social.borderGlow,
                     social.glow,
-                    social.color
+                    social.color,
                   )}
                 >
                   <social.icon className="w-6 h-6 sm:w-7 sm:h-7 drop-shadow-md transition-transform" />
-                  
+
                   {/* Inner Ripple on Hover */}
-                  <div className="absolute inset-0 rounded-2xl bg-white/5 opacity-0 group-hover:opacity-100 group-hover:animate-ping" style={{ animationDuration: '2s' }} />
+                  <div
+                    className="absolute inset-0 rounded-2xl bg-white/5 opacity-0 group-hover:opacity-100 group-hover:animate-ping"
+                    style={{ animationDuration: "2s" }}
+                  />
                 </a>
               </MagneticWrapper>
 
               <AnimatePresence>
                 {hoveredSocial === social.id && (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: 5, scale: 0.9 }}
                     animate={{ opacity: 1, y: -45, scale: 1 }}
                     exit={{ opacity: 0, y: -0, scale: 0.9 }}
-                    transition={{ duration: 0.2, delay: 0.1, ease: 'easeOut' }}
+                    transition={{ duration: 0.2, delay: 0.1, ease: "easeOut" }}
                     className="absolute top-0 pointer-events-none whitespace-nowrap px-3 py-1.5 rounded-full bg-black/90 border border-white/10 text-white text-[0.7rem] font-semibold tracking-wide shadow-xl z-50 backdrop-blur-md"
                   >
                     {social.label}
@@ -411,73 +494,206 @@ export const Hero = () => {
       </motion.div>
 
       {/* --- RIGHT COLUMN: VISUAL (45%) --- */}
-      <motion.div 
-        className="w-full lg:w-[45%] xl:w-[48%] relative hidden lg:flex items-center justify-center lg:justify-end xl:translate-x-4 2xl:translate-x-6 lg:scale-100 xl:scale-105 2xl:scale-110 origin-right transition-transform duration-700 ease-out z-10"
+      <motion.div
+        className="w-full lg:w-[45%] xl:w-[48%] relative flex items-center justify-center lg:justify-end mt-10 md:mt-12 lg:mt-0 xl:translate-x-12 2xl:translate-x-16 origin-right z-10"
         initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1, y: [-15, 15, -15] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <div className="relative w-[400px] h-[400px] lg:w-[450px] lg:h-[450px] xl:w-[500px] xl:h-[500px] flex items-center justify-center">
-          {/* Core Profile Frame */}
-          <div className="relative w-48 h-48 rounded-full border border-white/20 p-2 z-20 shadow-[0_0_50px_rgba(168,85,247,0.2)] bg-black/40 backdrop-blur-sm group hover:scale-[1.02] transition-transform duration-500">
-            <motion.div 
-              className="absolute inset-0 rounded-full bg-gradient-to-tr from-purple-500 to-cyan-400 blur-xl" 
-              animate={{ opacity: [0.2, 0.4, 0.2], scale: [1, 1.1, 1] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        <div className="relative w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] lg:w-[540px] lg:h-[540px] xl:w-[600px] xl:h-[600px] flex items-center justify-center">
+          {/* Ambient Glow Background */}
+          <motion.div
+            className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500/12 via-teal-400/6 to-transparent blur-2xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.12, 0.22, 0.12],
+            }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          />
+
+          {/* Profile Image Container - LARGER */}
+          <motion.div className="relative z-20">
+            {/* Outer Glow Ring */}
+            <div
+              className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#00f0ff] via-[#00ffa3] to-[#00f0ff] blur-lg opacity-25"
+              style={{ padding: "1px" }}
             />
-            <img 
-              src="https://api.dicebear.com/7.x/notionists/svg?seed=Atharv&backgroundColor=transparent" 
-              alt="Atharv Waykar"
-              className="w-full h-full rounded-full object-cover border border-white/10 relative z-10"
+
+            {/* Profile Image - INCREASED SIZE */}
+            <div className="relative w-72 h-72 lg:w-80 lg:h-80 xl:w-[22rem] xl:h-[22rem] rounded-full p-px bg-gradient-to-tr from-[#00f0ff] via-[#00ffa3] to-[#00f0ff] shadow-[0_0_20px_rgba(0,240,255,0.25)]">
+              <div className="w-full h-full rounded-full overflow-hidden bg-[#0a0a0a] p-px">
+                <img
+                  src="/atharv-profile.png"
+                  alt="Atharv Waykar"
+                  className="w-full h-full rounded-full object-cover"
+                />
+              </div>
+            </div>
+
+            {/* Inner Glow Effect */}
+            <motion.div
+              className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-400/15 to-teal-400/15 blur-xl"
+              animate={{
+                scale: [0.95, 1.05, 0.95],
+                opacity: [0.18, 0.28, 0.18],
+              }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             />
-          </div>
+          </motion.div>
 
-          {/* Inner Orbit (React, Node, Next.js) */}
-          <OrbitingCircles duration={30} delay={0} radius={140}>
-            <div className="relative group/icon flex items-center justify-center w-12 h-12 bg-black border border-white/20 rounded-xl hover:scale-125 hover:border-cyan-400/50 shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] backdrop-blur-md transition-all cursor-pointer">
-              <FaReact size={24} className="text-cyan-400" />
-              <div className="absolute -bottom-8 opacity-0 group-hover/icon:opacity-100 transition-opacity bg-black/90 border border-white/10 text-white text-[10px] px-2 py-1 rounded-md whitespace-nowrap backdrop-blur-md drop-shadow-xl font-medium tracking-wide pointer-events-none">React</div>
-            </div>
-          </OrbitingCircles>
-          
-          <OrbitingCircles duration={30} delay={10} radius={140} path={false}>
-            <div className="relative group/icon flex items-center justify-center w-12 h-12 bg-black border border-white/20 rounded-xl hover:scale-125 hover:border-green-500/50 shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(34,197,94,0.4)] backdrop-blur-md transition-all cursor-pointer">
-              <FaNodeJs size={24} className="text-green-500" />
-              <div className="absolute -bottom-8 opacity-0 group-hover/icon:opacity-100 transition-opacity bg-black/90 border border-white/10 text-white text-[10px] px-2 py-1 rounded-md whitespace-nowrap backdrop-blur-md drop-shadow-xl font-medium tracking-wide pointer-events-none">Node.js</div>
-            </div>
-          </OrbitingCircles>
-
-          <OrbitingCircles duration={30} delay={20} radius={140} path={false}>
-            <div className="relative group/icon flex items-center justify-center w-12 h-12 bg-black border border-white/20 rounded-xl hover:scale-125 hover:border-white/50 shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] backdrop-blur-md transition-all cursor-pointer">
-              <SiNextdotjs size={24} className="text-white" />
-              <div className="absolute -bottom-8 opacity-0 group-hover/icon:opacity-100 transition-opacity bg-black/90 border border-white/10 text-white text-[10px] px-2 py-1 rounded-md whitespace-nowrap backdrop-blur-md drop-shadow-xl font-medium tracking-wide pointer-events-none">Next.js</div>
-            </div>
-          </OrbitingCircles>
-
-          {/* Outer Orbit (Python, AWS, Docker) */}
-          <OrbitingCircles reverse duration={40} delay={0} radius={190}>
-            <div className="relative group/icon flex items-center justify-center w-12 h-12 bg-white/5 border border-white/10 rounded-full hover:scale-125 hover:border-blue-400/50 hover:shadow-[0_0_20px_rgba(96,165,250,0.4)] backdrop-blur-sm transition-all cursor-pointer">
-              <FaPython size={24} className="text-blue-400" />
-              <div className="absolute -bottom-8 opacity-0 group-hover/icon:opacity-100 transition-opacity bg-black/90 border border-white/10 text-white text-[10px] px-2 py-1 rounded-md whitespace-nowrap backdrop-blur-md drop-shadow-xl font-medium tracking-wide pointer-events-none">Python</div>
-            </div>
-          </OrbitingCircles>
-
-          <OrbitingCircles reverse duration={40} delay={13.33} radius={190} path={false}>
-            <div className="relative group/icon flex items-center justify-center w-12 h-12 bg-white/5 border border-white/10 rounded-full hover:scale-125 hover:border-orange-400/50 hover:shadow-[0_0_20px_rgba(251,146,60,0.4)] backdrop-blur-sm transition-all cursor-pointer">
-              <FaAws size={24} className="text-orange-400" />
-              <div className="absolute -bottom-8 opacity-0 group-hover/icon:opacity-100 transition-opacity bg-black/90 border border-white/10 text-white text-[10px] px-2 py-1 rounded-md whitespace-nowrap backdrop-blur-md drop-shadow-xl font-medium tracking-wide pointer-events-none">AWS</div>
-            </div>
-          </OrbitingCircles>
-
-          <OrbitingCircles reverse duration={40} delay={26.66} radius={190} path={false}>
-            <div className="relative group/icon flex items-center justify-center w-12 h-12 bg-white/5 border border-white/10 rounded-full hover:scale-125 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] backdrop-blur-sm transition-all cursor-pointer">
-              <FaDocker size={24} className="text-blue-500" />
-              <div className="absolute -bottom-8 opacity-0 group-hover/icon:opacity-100 transition-opacity bg-black/90 border border-white/10 text-white text-[10px] px-2 py-1 rounded-md whitespace-nowrap backdrop-blur-md drop-shadow-xl font-medium tracking-wide pointer-events-none">Docker</div>
-            </div>
-          </OrbitingCircles>
+          {/* Single Orbiting Ring - All Tech Icons - Rounded Square Style */}
+          <motion.div
+            className="absolute inset-0 flex items-center justify-center z-10"
+            style={{ "--orbit-radius": "clamp(182px, 39vw, 226px)" }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          >
+            {[
+              {
+                Icon: SiExpress,
+                color: "text-slate-200",
+                name: "Express",
+                glow: "rgba(226,232,240,0.45)",
+              },
+              {
+                Icon: SiMysql,
+                color: "text-sky-500",
+                name: "MySQL",
+                glow: "rgba(14,165,233,0.5)",
+              },
+              {
+                Icon: SiMongodb,
+                color: "text-emerald-400",
+                name: "MongoDB",
+                glow: "rgba(52,211,153,0.5)",
+              },
+              {
+                Icon: SiGit,
+                color: "text-red-500",
+                name: "Git",
+                glow: "rgba(239,68,68,0.5)",
+              },
+              {
+                Icon: SiGithub,
+                color: "text-white",
+                name: "GitHub",
+                glow: "rgba(255,255,255,0.5)",
+              },
+              {
+                Icon: SiPostman,
+                color: "text-orange-500",
+                name: "Postman",
+                glow: "rgba(249,115,22,0.5)",
+              },
+              {
+                Icon: SiC,
+                color: "text-slate-300",
+                name: "C",
+                glow: "rgba(203,213,225,0.5)",
+              },
+              {
+                Icon: SiCplusplus,
+                color: "text-blue-500",
+                name: "C++",
+                glow: "rgba(59,130,246,0.5)",
+              },
+              {
+                Icon: FaPython,
+                color: "text-green-400",
+                name: "Python",
+                glow: "rgba(74,222,128,0.5)",
+              },
+              {
+                Icon: SiJavascript,
+                color: "text-yellow-300",
+                name: "JavaScript",
+                glow: "rgba(253,224,71,0.5)",
+              },
+              {
+                Icon: SiTypescript,
+                color: "text-blue-400",
+                name: "TypeScript",
+                glow: "rgba(96,165,250,0.5)",
+              },
+              {
+                Icon: FaHtml5,
+                color: "text-orange-500",
+                name: "HTML5",
+                glow: "rgba(249,115,22,0.5)",
+              },
+              {
+                Icon: FaCss3Alt,
+                color: "text-blue-500",
+                name: "CSS3",
+                glow: "rgba(59,130,246,0.5)",
+              },
+              {
+                Icon: FaReact,
+                color: "text-cyan-400",
+                name: "React",
+                glow: "rgba(34,211,238,0.5)",
+              },
+              {
+                Icon: SiTailwindcss,
+                color: "text-cyan-400",
+                name: "Tailwind",
+                glow: "rgba(34,211,238,0.5)",
+              },
+              {
+                Icon: FaBootstrap,
+                color: "text-purple-400",
+                name: "Bootstrap",
+                glow: "rgba(192,132,252,0.5)",
+              },
+              {
+                Icon: SiRedux,
+                color: "text-violet-400",
+                name: "Redux",
+                glow: "rgba(167,139,250,0.5)",
+              },
+              {
+                Icon: FaNodeJs,
+                color: "text-green-500",
+                name: "Node.js",
+                glow: "rgba(34,197,94,0.5)",
+              },
+              {
+                Icon: SiSupabase,
+                color: "text-emerald-400",
+                name: "Supabase",
+                glow: "rgba(52,211,153,0.5)",
+              },
+            ].map(({ Icon, color, name, glow }, i, arr) => {
+              const angle = (360 / arr.length) * i;
+              return (
+                <motion.div
+                  key={i}
+                  className="absolute"
+                  style={{
+                    transform: `rotate(${angle}deg) translateX(var(--orbit-radius)) rotate(-${angle}deg)`,
+                  }}
+                >
+                  <motion.div
+                    className="relative group/icon flex items-center justify-center w-12 h-12 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-[#060b16]/85 border border-cyan-400/35 rounded-xl lg:rounded-2xl backdrop-blur-md transition-all cursor-pointer shadow-[0_0_15px_rgba(0,255,255,0.25)]"
+                    whileHover={{
+                      scale: 1.08,
+                      boxShadow: `0 0 25px ${glow}`,
+                      borderColor: glow,
+                    }}
+                  >
+                    <Icon
+                      className={`w-5 h-5 sm:w-5 sm:h-5 lg:w-6 lg:h-6 ${color}`}
+                    />
+                    <div className="absolute -bottom-10 opacity-0 group-hover/icon:opacity-100 transition-opacity bg-black/95 border border-white/20 text-white text-[11px] px-3 py-1.5 rounded-lg whitespace-nowrap backdrop-blur-md shadow-xl font-semibold tracking-wide pointer-events-none z-50">
+                      {name}
+                    </div>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
         </div>
       </motion.div>
     </section>
   );
 };
-
