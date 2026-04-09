@@ -192,8 +192,8 @@ export const ScrollIndicator = () => {
   const fillHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <div className="fixed bottom-4 right-3 sm:right-4 md:bottom-8 md:right-8 z-50 flex items-center justify-center cursor-pointer group" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth'})}>
-      <div className="relative w-[78px] h-[78px] sm:w-[86px] sm:h-[86px] md:w-[96px] md:h-[96px] flex items-center justify-center hover:scale-105 transition-transform duration-300">
+    <div className="fixed bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-6 md:right-6 lg:bottom-8 lg:right-8 z-50 flex items-center justify-center cursor-pointer group" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth'})}>
+      <div className="relative w-[70px] h-[70px] sm:w-[78px] sm:h-[78px] md:w-[86px] md:h-[86px] lg:w-[96px] lg:h-[96px] flex items-center justify-center hover:scale-105 transition-transform duration-300">
         {/* Outer rotating text */}
         <motion.div 
           animate={{ rotate: 360 }}
@@ -262,7 +262,7 @@ export const Hero = () => {
   return (
     <section 
       id="home" 
-      className="relative flex flex-col lg:flex-row items-center lg:items-start justify-between w-full min-h-[70vh] lg:min-h-[75vh] pt-2 sm:pt-4 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-12 2xl:px-32 overflow-visible group"
+      className="relative flex flex-col lg:flex-row items-center lg:items-start justify-between w-full min-h-[70vh] md:min-h-[75vh] lg:min-h-[80vh] xl:min-h-[75vh] pt-2 sm:pt-4 md:pt-6 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-32 overflow-visible group"
       onMouseMove={handleGlobalMouseMove}
     >
       {/* Edge Fade Gradients for Ultra-wide Support */}
@@ -278,7 +278,7 @@ export const Hero = () => {
 
       {/* --- LEFT COLUMN: CONTENT (55%) --- */}
       <motion.div 
-        className="w-full lg:w-[55%] flex flex-col items-start gap-4 z-10 max-w-3xl"
+        className="w-full lg:w-[55%] xl:w-[52%] flex flex-col items-start gap-3 sm:gap-4 md:gap-5 z-10 max-w-3xl"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
@@ -412,12 +412,12 @@ export const Hero = () => {
 
       {/* --- RIGHT COLUMN: VISUAL (45%) --- */}
       <motion.div 
-        className="w-full lg:w-[45%] relative hidden lg:flex items-center justify-center lg:justify-end xl:translate-x-6 lg:scale-105 xl:scale-110 origin-right transition-transform duration-700 ease-out z-10"
+        className="w-full lg:w-[45%] xl:w-[48%] relative hidden lg:flex items-center justify-center lg:justify-end xl:translate-x-4 2xl:translate-x-6 lg:scale-100 xl:scale-105 2xl:scale-110 origin-right transition-transform duration-700 ease-out z-10"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1, y: [-15, 15, -15] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       >
-        <div className="relative w-[500px] h-[500px] flex items-center justify-center">
+        <div className="relative w-[400px] h-[400px] lg:w-[450px] lg:h-[450px] xl:w-[500px] xl:h-[500px] flex items-center justify-center">
           {/* Core Profile Frame */}
           <div className="relative w-48 h-48 rounded-full border border-white/20 p-2 z-20 shadow-[0_0_50px_rgba(168,85,247,0.2)] bg-black/40 backdrop-blur-sm group hover:scale-[1.02] transition-transform duration-500">
             <motion.div 

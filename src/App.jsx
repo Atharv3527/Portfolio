@@ -34,7 +34,7 @@ function App() {
 
       <Navbar />
 
-      <main className="relative z-10 pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 w-full">
+      <main className="relative z-10 pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-10 sm:pb-12 md:pb-14 lg:pb-16 w-full">
         <Hero />
       </main>
 
@@ -44,18 +44,18 @@ function App() {
       {/* Main Content Sections */}
       <div className="relative z-10 w-full">
         {/* About section sits on top of the grid background */}
-        <div className="pt-20 sm:pt-24 lg:pt-32 pb-4 sm:pb-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+        <div className="pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 pb-4 sm:pb-6 px-4 sm:px-6 lg:px-8 xl:px-10 max-w-7xl mx-auto relative z-10">
           <About />
         </div>
 
         {/* Transition into dark background overlapping the About section & grid */}
-        <div className="w-full relative z-20 mt-[-72px] sm:mt-[-110px] lg:mt-[-145px] xl:mt-[clamp(-240px,-19vw,-145px)]">
+        <div className="w-full relative z-20 mt-[-60px] sm:mt-[-80px] md:mt-[-100px] lg:mt-[-120px] xl:mt-[-145px] 2xl:mt-[clamp(-240px,-19vw,-145px)]">
           {/* Smooth gradient overlap effect */}
-          <div className="w-full h-20 sm:h-28 lg:h-40 bg-gradient-to-b from-transparent via-[#020202]/80 to-[#020202] pointer-events-none" />
+          <div className="w-full h-16 sm:h-20 md:h-24 lg:h-32 xl:h-40 bg-gradient-to-b from-transparent via-[#020202]/80 to-[#020202] pointer-events-none" />
           
           {/* Solid section content */}
           <div className="w-full bg-[#020202] relative z-20" style={{ marginTop: "-1px" }}>
-            <div className="pb-0 px-4 sm:px-6 lg:px-12 xl:px-16 max-w-[1400px] mx-auto">
+            <div className="pb-0 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-[1400px] mx-auto">
               <Education />
             </div>
 
@@ -80,7 +80,7 @@ function App() {
 
             {/* Content on top of grid */}
             <div className="relative z-10">
-              <div className="pt-16 sm:pt-20 lg:pt-24 px-4 sm:px-6 lg:px-12 xl:px-16 max-w-[1400px] mx-auto">
+              <div className="pt-12 sm:pt-16 md:pt-20 lg:pt-24 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-[1400px] mx-auto">
                 <Projects />
               </div>
 

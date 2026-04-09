@@ -86,7 +86,7 @@ const TiltCard = ({ project }) => {
         rotateY,
         transformStyle: "preserve-3d",
       }}
-      className="relative w-full h-[340px] sm:h-[380px] lg:h-[400px] rounded-3xl cursor-pointer group perspective-[1000px]"
+      className="relative w-full h-[340px] sm:h-[360px] md:h-[380px] lg:h-[400px] xl:h-[420px] rounded-3xl cursor-pointer group perspective-[1000px]"
     >
       {/* 3D Inner Card Container */}
       <div 
@@ -144,7 +144,7 @@ const TiltCard = ({ project }) => {
 
 export const Projects = () => {
   return (
-    <section id="projects" className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24 min-h-[70vh]">
+    <section id="projects" className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-14 sm:py-20 md:py-24 lg:py-28 min-h-[70vh]">
       
       {/* Section Header */}
       <div className="mb-16 md:mb-24 flex flex-col items-center text-center space-y-4">
@@ -161,7 +161,7 @@ export const Projects = () => {
       </div>
 
       {/* Grid of Projects */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 perspective-[2000px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-14 perspective-[2000px]">
         {PROJECTS.map((project, i) => (
           <motion.div
             key={project.id}
