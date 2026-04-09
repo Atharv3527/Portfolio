@@ -9,155 +9,31 @@
   margin: 60px 0;
 }
 
-.divider-line {
-  position: relative;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(0, 245, 212, 0.4) 20%,
-    rgba(59, 130, 246, 0.5) 50%,
-    rgba(0, 245, 212, 0.4) 80%,
-    transparent 100%
-  );
-  box-shadow: 
-    0 0 20px rgba(0, 245, 212, 0.4),
-    0 0 40px rgba(59, 130, 246, 0.3),
-    0 0 60px rgba(0, 245, 212, 0.2);
-  z-index: 1;
-}
-
-/* Traveling pulse effect */
-.divider-pulse {
+.particle-canvas {
   position: absolute;
-  top: 50%;
-  left: -10%;
-  width: 100px;
-  height: 100px;
-  background: radial-gradient(
-    circle,
-    rgba(0, 245, 212, 0.8) 0%,
-    rgba(59, 130, 246, 0.6) 30%,
-    transparent 70%
-  );
-  transform: translate(-50%, -50%);
-  animation: travelPulse 3s ease-in-out infinite;
-  filter: blur(15px);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 2;
 }
 
-/* Left glow */
-.divider-glow-left {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 150px;
-  height: 150px;
-  background: radial-gradient(
-    circle,
-    rgba(0, 245, 212, 0.3) 0%,
-    transparent 70%
-  );
-  transform: translateY(-50%);
-  animation: pulseGlow 2s ease-in-out infinite;
-  filter: blur(20px);
-}
-
-/* Right glow */
-.divider-glow-right {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  width: 150px;
-  height: 150px;
-  background: radial-gradient(
-    circle,
-    rgba(59, 130, 246, 0.3) 0%,
-    transparent 70%
-  );
-  transform: translateY(-50%);
-  animation: pulseGlow 2s ease-in-out infinite 1s;
-  filter: blur(20px);
-}
-
-/* Floating orbs */
-.divider-orbs {
+.divider-line {
   position: absolute;
   width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.orb {
-  position: absolute;
-  top: 50%;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  transform: translateY(-50%);
-  opacity: 0;
-}
-
-.orb-1 {
-  left: 25%;
-  background: radial-gradient(circle, #00F5D4, transparent);
-  box-shadow: 0 0 20px rgba(0, 245, 212, 0.8);
-  animation: orbPulse 3s ease-in-out infinite;
-}
-
-.orb-2 {
-  left: 50%;
-  background: radial-gradient(circle, #3B82F6, transparent);
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
-  animation: orbPulse 3s ease-in-out infinite 1s;
-}
-
-.orb-3 {
-  left: 75%;
-  background: radial-gradient(circle, #00F5D4, transparent);
-  box-shadow: 0 0 20px rgba(0, 245, 212, 0.8);
-  animation: orbPulse 3s ease-in-out infinite 2s;
-}
-
-/* Animations */
-@keyframes travelPulse {
-  0% {
-    left: -10%;
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    left: 110%;
-    opacity: 0;
-  }
-}
-
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.3;
-    transform: translateY(-50%) scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: translateY(-50%) scale(1.2);
-  }
-}
-
-@keyframes orbPulse {
-  0%, 100% {
-    opacity: 0;
-    transform: translateY(-50%) scale(0.5);
-  }
-  50% {
-    opacity: 1;
-    transform: translateY(-50%) scale(1.5);
-  }
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 245, 212, 0.3) 20%,
+    rgba(59, 130, 246, 0.4) 50%,
+    rgba(0, 245, 212, 0.3) 80%,
+    transparent 100%
+  );
+  box-shadow: 
+    0 0 20px rgba(0, 245, 212, 0.3),
+    0 0 40px rgba(59, 130, 246, 0.2);
+  z-index: 1;
 }
 
 /* Responsive adjustments */
@@ -166,43 +42,11 @@
     height: 80px;
     margin: 40px 0;
   }
-
-  .divider-pulse {
-    width: 60px;
-    height: 60px;
-  }
-
-  .divider-glow-left,
-  .divider-glow-right {
-    width: 100px;
-    height: 100px;
-  }
-
-  .orb {
-    width: 6px;
-    height: 6px;
-  }
 }
 
 @media (max-width: 480px) {
   .particle-divider-container {
     height: 60px;
     margin: 30px 0;
-  }
-
-  .divider-pulse {
-    width: 40px;
-    height: 40px;
-  }
-
-  .divider-glow-left,
-  .divider-glow-right {
-    width: 80px;
-    height: 80px;
-  }
-
-  .orb {
-    width: 4px;
-    height: 4px;
   }
 }
