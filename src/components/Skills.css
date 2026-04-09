@@ -8,7 +8,7 @@
 .eyebrow{font-size:11px;letter-spacing:.28em;color:#00F5D4;text-transform:uppercase;font-weight:500;margin-bottom:20px;opacity:.85}
 .h-main{font-size:clamp(38px,4vw,64px);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1;margin-bottom:8px}
 .h-accent{color:#00F5D4}
-.rule{width:56px;height:2px;background:linear-gradient(90deg,#00F5D4,#3B82F6 60%,transparent);border-radius:2px;margin:20px 0 14px}
+.rule{width:100%;max-width:420px;height:2px;background:linear-gradient(90deg,#00F5D4 0%,#3B82F6 35%,rgba(59,130,246,0.4) 70%,transparent 100%);border-radius:2px;margin:20px 0 14px;box-shadow:0 0 12px rgba(0,245,212,0.3),0 0 24px rgba(59,130,246,0.15)}
 .subtitle{font-size:15px;color:rgba(255,255,255,0.32);line-height:1.75;max-width:400px;font-weight:400;margin-bottom:48px;letter-spacing:.01em}
 
 /* Category rows */
