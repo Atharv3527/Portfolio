@@ -308,7 +308,7 @@ export const Education = () => {
   }, [timelineData]);
 
   return (
-    <section id="education" className="w-full mx-auto bg-[#000000] py-14 sm:py-20 lg:py-24 relative overflow-hidden" ref={sectionRef}>
+    <section id="education" className="w-full mx-auto bg-[#000000] py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden" ref={sectionRef}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;600&family=DM+Mono&family=Orbitron:wght@500&display=swap');
 
@@ -521,7 +521,7 @@ export const Education = () => {
         }
       `}</style>
       
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-12">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
 
         {/* ── Bold Animated Section Divider (no end dots) ── */}
         <div className="edu-section-divider" ref={dividerRef}>
@@ -530,7 +530,7 @@ export const Education = () => {
         </div>
 
         {/* Title Block */}
-        <div className="relative mb-10 sm:mb-14 lg:mb-20 inline-block">
+        <div className="relative mb-8 sm:mb-10 md:mb-14 lg:mb-16 xl:mb-20 inline-block">
            <h2 className="edu-title m-0 tracking-widest" ref={titleRef}>EDUCATION</h2>
            <div
              className="edu-title-underline h-[1px] w-full mt-2 origin-left absolute left-0"
@@ -539,7 +539,7 @@ export const Education = () => {
         </div>
 
         {/* 2-Column Layout */}
-        <div className="edu-layout-container w-full relative flex flex-col md:flex-row pb-8 sm:pb-12">
+        <div className="edu-layout-container w-full relative flex flex-col md:flex-row pb-6 sm:pb-8 md:pb-10 lg:pb-12">
            
            {/* Left Column (28%) - Timeline Spine Desktop */}
            <div className="hidden md:block absolute left-[8%] md:left-[28%] top-0 bottom-0 w-[1px] bg-transparent z-0">
@@ -563,7 +563,7 @@ export const Education = () => {
            </div>
 
            {/* Right Column (72%) - Stacked Cards */}
-           <div className="w-full md:w-[72%] flex flex-col gap-6 sm:gap-10 pl-6 sm:pl-8 md:pl-12 relative z-10">
+           <div className="w-full md:w-[72%] flex flex-col gap-5 sm:gap-6 md:gap-8 lg:gap-10 pl-5 sm:pl-6 md:pl-10 lg:pl-12 relative z-10">
               {timelineData.map((item, index) => (
                   <div key={index} className="edu-card-wrapper relative" ref={addToCardsRef}>
                      

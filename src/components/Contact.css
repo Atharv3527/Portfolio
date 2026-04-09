@@ -553,6 +553,35 @@
 }
 
 /* Responsive Design */
+@media (min-width: 1440px) {
+  .contact-content-wrapper {
+    padding: 0 60px;
+  }
+
+  .contact-grid-new {
+    gap: 100px;
+  }
+
+  .contact-form-card {
+    padding: 48px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .contact-content-wrapper {
+    max-width: 1600px;
+    padding: 0 80px;
+  }
+
+  .contact-grid-new {
+    gap: 120px;
+  }
+
+  .contact-main-title {
+    font-size: clamp(48px, 5vw, 64px);
+  }
+}
+
 @media (max-width: 1024px) {
   .contact-grid-new {
     grid-template-columns: 1fr;

@@ -1,6 +1,21 @@
 # Atharv Waykar Portfolio
 
-Personal portfolio website built with React, TypeScript, Vite, Tailwind CSS, Framer Motion, and GSAP.
+> Personal portfolio website showcasing full-stack development projects and skills
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![React](https://img.shields.io/badge/React-19.2.4-blue.svg)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-8.0.4-646CFF.svg)](https://vitejs.dev/)
+
+## 👨‍💻 Author
+
+**Atharv Waykar**
+- GitHub: [@Atharv3527](https://github.com/Atharv3527)
+- LinkedIn: [Atharv Waykar](https://www.linkedin.com/in/atharv-waykar/)
+- Email: atharvwaykar3@gmail.com
+
+## 📝 Description
+
+Personal portfolio website built with React, TypeScript, Vite, Tailwind CSS, Framer Motion, and GSAP. Features a modern, responsive design with smooth animations and interactive elements.
 
 ## Tech Stack Icons
 
@@ -51,3 +66,104 @@ Personal portfolio website built with React, TypeScript, Vite, Tailwind CSS, Fra
 - GitHub: [https://github.com/Atharv3527](https://github.com/Atharv3527)
 - LinkedIn: [https://www.linkedin.com/in/atharv-waykar/](https://www.linkedin.com/in/atharv-waykar/)
 - Email: [atharvwaykar3@gmail.com](mailto:atharvwaykar3@gmail.com)
+
+
+## 🔗 Social Links
+
+- GitHub: [https://github.com/Atharv3527](https://github.com/Atharv3527)
+- LinkedIn: [https://www.linkedin.com/in/atharv-waykar/](https://www.linkedin.com/in/atharv-waykar/)
+- Email: [atharvwaykar3@gmail.com](mailto:atharvwaykar3@gmail.com)
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/Atharv3527/portfolio.git
+cd portfolio
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Start the development server
+```bash
+npm run dev
+```
+
+4. Build for production
+```bash
+npm run build
+```
+
+5. Preview production build
+```bash
+npm run preview
+```
+
+## 📦 Project Structure
+
+```
+portfolio/
+├── public/              # Static assets
+├── src/
+│   ├── components/      # React components
+│   │   ├── ui/         # Reusable UI components
+│   │   ├── About.jsx
+│   │   ├── Contact.jsx
+│   │   ├── Education.jsx
+│   │   ├── Hero.jsx
+│   │   ├── Navbar.jsx
+│   │   ├── Projects.jsx
+│   │   └── Skills.jsx
+│   ├── lib/            # Utility functions
+│   ├── App.jsx         # Main app component
+│   ├── main.jsx        # Entry point
+│   └── index.css       # Global styles
+├── package.json
+└── vite.config.js
+```
+
+## ✨ Features
+
+- 🎨 Modern, responsive design
+- ⚡ Fast performance with Vite
+- 🎭 Smooth animations with Framer Motion & GSAP
+- 📱 Mobile-first approach
+- 🎯 SEO optimized
+- ♿ Accessibility compliant
+- 🌙 Custom cursor effects
+- 🎪 Interactive UI elements
+
+## 🛠️ Built With
+
+- **React** - UI library
+- **Vite** - Build tool
+- **Tailwind CSS** - Styling
+- **Framer Motion** - Animations
+- **GSAP** - Advanced animations
+- **Lucide React** - Icons
+- **TypeScript** - Type safety
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Design inspiration from modern portfolio trends
+- Icons from Lucide and React Icons
+- Fonts from Google Fonts
+
+---
+
+**© 2026 Atharv Waykar. All rights reserved.**
+
+Made with ❤️ by [Atharv Waykar](https://github.com/Atharv3527)

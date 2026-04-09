@@ -506,3 +506,50 @@
     padding: 5px 10px;
   }
 }
+
+/* Tablets in landscape mode */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .about-section {
+    padding: 48px 40px 80px;
+  }
+
+  .about-layout {
+    gap: 48px;
+  }
+
+  .about-heading-solid {
+    font-size: 44px;
+  }
+}
+
+/* Large monitors */
+@media (min-width: 1920px) {
+  .about-section {
+    padding: 80px 100px;
+    max-width: 1600px;
+  }
+
+  .about-layout {
+    gap: 80px;
+  }
+
+  .about-heading-solid {
+    font-size: 68px;
+  }
+
+  .about-copy {
+    font-size: 16px;
+  }
+}
+
+/* Ultra-wide monitors */
+@media (min-width: 2560px) {
+  .about-section {
+    padding: 100px 120px;
+    max-width: 1800px;
+  }
+
+  .about-heading-solid {
+    font-size: 72px;
+  }
+}

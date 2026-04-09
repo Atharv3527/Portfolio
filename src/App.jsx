@@ -1,3 +1,14 @@
+/**
+ * Portfolio Application - Main Entry Point
+ * 
+ * @author Atharv Waykar
+ * @email atharvwaykar3@gmail.com
+ * @github https://github.com/Atharv3527
+ * @license MIT
+ * @version 1.0.0
+ * @description Personal portfolio website showcasing full-stack development projects
+ */
+
 import { BGPattern } from "@/components/ui/bg-pattern";
 import { Navbar } from "@/components/Navbar";
 import { Hero, ScrollIndicator } from "@/components/Hero";

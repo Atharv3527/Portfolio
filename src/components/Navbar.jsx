@@ -72,12 +72,12 @@ export const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-3 sm:top-5 lg:top-6 inset-x-0 z-50 flex justify-center px-3 sm:px-4 pointer-events-none"
+      className="fixed top-2 sm:top-3 md:top-4 lg:top-5 xl:top-6 inset-x-0 z-50 flex justify-center px-2 sm:px-3 md:px-4 pointer-events-none"
     >
       {/* Actual Content Container - The Oval Pill */}
       <div 
         className={cn(
-          "relative w-full max-w-3xl flex items-center px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 rounded-full transition-all duration-500 pointer-events-auto",
+          "relative w-full max-w-3xl flex items-center px-3 sm:px-4 md:px-5 lg:px-6 py-2 sm:py-2.5 md:py-3 rounded-full transition-all duration-500 pointer-events-auto",
           isScrolled 
             ? "bg-black/60 backdrop-blur-xl border border-white/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)]" 
             : "bg-transparent border border-transparent backdrop-blur-none"
@@ -113,7 +113,7 @@ export const Navbar = () => {
         </motion.a>
 
         {/* Center: Navigation Links Desktop */}
-        <div className="hidden md:flex items-center gap-8 ml-auto relative z-10">
+        <div className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8 ml-auto relative z-10">
           {NAV_LINKS.map((link, i) => {
             const isActive = activeSection === link.id;
             return (
@@ -124,7 +124,7 @@ export const Navbar = () => {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05, duration: 0.4, ease: 'easeOut' }}
-                className="relative group text-sm font-semibold transition-colors px-3 py-2"
+                className="relative group text-xs md:text-sm lg:text-sm font-semibold transition-colors px-2 md:px-3 py-2"
                 style={{ color: isActive ? '#fff' : 'rgba(255,255,255,0.6)' }}
               >
                 <span className="relative z-10 group-hover:text-white transition-colors duration-300 drop-shadow-md">
@@ -172,7 +172,7 @@ export const Navbar = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="absolute top-16 sm:top-20 left-3 sm:left-4 right-3 sm:right-4 pointer-events-auto bg-black/80 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden md:hidden z-40"
+            className="absolute top-14 sm:top-16 md:top-18 lg:top-20 left-2 sm:left-3 md:left-4 right-2 sm:right-3 md:right-4 pointer-events-auto bg-black/80 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden md:hidden z-40"
           >
             <div className="flex flex-col py-4 px-2">
               {NAV_LINKS.map((link, i) => {

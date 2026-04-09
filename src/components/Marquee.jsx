@@ -56,11 +56,11 @@ const ParallaxRow = ({ tags, baseVelocity = 100 }) => {
   const TagList = () => (
     <>
       {tags.map((tag, idx) => (
-        <span key={idx} className="flex items-center mr-3 md:mr-16">
+        <span key={idx} className="flex items-center mr-2 sm:mr-3 md:mr-8 lg:mr-12 xl:mr-16">
           <span className="transition-colors duration-300 hover:text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.05)] hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]">
             {tag}
           </span>
-          <span className="text-yellow-400 mx-3 md:mx-10 drop-shadow-[0_0_15px_rgba(234,179,8,0.3)]">
+          <span className="text-yellow-400 mx-2 sm:mx-3 md:mx-6 lg:mx-8 xl:mx-10 drop-shadow-[0_0_15px_rgba(234,179,8,0.3)]">
             <svg xmlns="http://www.w3.org/2000/svg" width="0.8em" height="0.8em" viewBox="0 0 24 24" fill="#a39f44ff" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-zap" aria-hidden="true">
               <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
             </svg>
@@ -73,7 +73,7 @@ const ParallaxRow = ({ tags, baseVelocity = 100 }) => {
   return (
     <div ref={containerRef} className="overflow-hidden m-0 w-full whitespace-nowrap flex flex-nowrap leading-[0.85]">
       <motion.div 
-        className="font-['Space_Grotesk'] font-bold uppercase text-[2.4rem] md:text-[5.85rem] flex whitespace-nowrap items-center flex-nowrap tracking-tight text-gray-500 w-fit" 
+        className="font-['Space_Grotesk'] font-bold uppercase text-[1.8rem] sm:text-[2.4rem] md:text-[3.5rem] lg:text-[4.5rem] xl:text-[5.85rem] flex whitespace-nowrap items-center flex-nowrap tracking-tight text-gray-500 w-fit" 
         style={{ x, y: bounceY, skewX, scale }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
       >
@@ -92,7 +92,7 @@ const ParallaxRow = ({ tags, baseVelocity = 100 }) => {
 
 export const Marquee = () => {
   return (
-    <section className="relative w-full py-4 md:py-5 mt-5 md:mt-10 bg-white/5 border-y border-white/10 text-gray-500 overflow-hidden backdrop-blur-sm select-none">
+    <section className="relative w-full py-3 sm:py-4 md:py-5 mt-4 sm:mt-6 md:mt-8 lg:mt-10 bg-white/5 border-y border-white/10 text-gray-500 overflow-hidden backdrop-blur-sm select-none">
       <style>{`
         /* Responsive adjustments for Marquee */
         @media (max-width: 768px) {
@@ -109,10 +109,10 @@ export const Marquee = () => {
       `}</style>
       
       {/* Blur overlays for premium depth effect matching the grey bg */}
-      <div className="absolute inset-y-0 left-0 w-32 md:w-40 bg-gradient-to-r from-[#0e0e11] via-[#0e0e11]/80 to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-32 md:w-40 bg-gradient-to-l from-[#0e0e11] via-[#0e0e11]/80 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 left-0 w-24 sm:w-28 md:w-32 lg:w-40 bg-gradient-to-r from-[#0e0e11] via-[#0e0e11]/80 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-24 sm:w-28 md:w-32 lg:w-40 bg-gradient-to-l from-[#0e0e11] via-[#0e0e11]/80 to-transparent z-10 pointer-events-none" />
       
-      <div className="relative mix-blend-overlay flex flex-col gap-4 md:gap-8">
+      <div className="relative mix-blend-overlay flex flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-8">
         {/* Row 1: Moves Left */}
         <ParallaxRow 
           baseVelocity={-1.2} 

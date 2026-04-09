@@ -37,6 +37,20 @@
 }
 
 /* Responsive adjustments */
+@media (min-width: 1440px) {
+  .particle-divider-container {
+    height: 140px;
+    margin: 80px 0;
+  }
+}
+
+@media (min-width: 1920px) {
+  .particle-divider-container {
+    height: 160px;
+    margin: 100px 0;
+  }
+}
+
 @media (max-width: 768px) {
   .particle-divider-container {
     height: 80px;
