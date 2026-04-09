@@ -64,13 +64,29 @@ function App() {
 
             {/* Skills - Full width, edge to edge */}
             <Skills />
+          </div>
 
-            <div className="pt-16 sm:pt-20 lg:pt-24 px-4 sm:px-6 lg:px-12 xl:px-16 max-w-[1400px] mx-auto">
-              <Projects />
+          {/* Grid Background Section - From Skills to bottom */}
+          <div className="w-full relative min-h-screen">
+            {/* Grid Background */}
+            <div className="absolute inset-0 min-h-full z-0 bg-[#0a0a0a] pointer-events-none">
+              <BGPattern 
+                variant="grid" 
+                size={30} 
+                mask="fade-bottom" 
+                fill="rgba(255,255,255,0.08)" 
+              />
             </div>
 
-            {/* Contact Section - Full width */}
-            <Contact />
+            {/* Content on top of grid */}
+            <div className="relative z-10">
+              <div className="pt-16 sm:pt-20 lg:pt-24 px-4 sm:px-6 lg:px-12 xl:px-16 max-w-[1400px] mx-auto">
+                <Projects />
+              </div>
+
+              {/* Contact Section - Full width */}
+              <Contact />
+            </div>
           </div>
         </div>
       </div>

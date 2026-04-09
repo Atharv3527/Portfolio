@@ -29,16 +29,20 @@ export const Navbar = () => {
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '-30% 0px -70% 0px', // triggers when section crosses upper-middle threshold
-      threshold: 0,
+      rootMargin: '-20% 0px -60% 0px', // triggers when section is in the upper portion of viewport
+      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5],
     };
 
     const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
+      // Find the entry with the highest intersection ratio
+      const visibleEntries = entries.filter(entry => entry.isIntersecting);
+      if (visibleEntries.length > 0) {
+        // Sort by intersection ratio and pick the most visible one
+        const mostVisible = visibleEntries.reduce((prev, current) => 
+          current.intersectionRatio > prev.intersectionRatio ? current : prev
+        );
+        setActiveSection(mostVisible.target.id);
+      }
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);

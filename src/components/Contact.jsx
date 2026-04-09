@@ -86,7 +86,7 @@ export const Contact = () => {
                   href="https://github.com/Atharv3527" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="social-link"
+                  className="social-link social-link-github"
                   aria-label="GitHub"
                 >
                   <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -97,7 +97,7 @@ export const Contact = () => {
                   href="https://linkedin.com/in/atharv-waykar" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="social-link"
+                  className="social-link social-link-linkedin"
                   aria-label="LinkedIn"
                 >
                   <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -108,7 +108,7 @@ export const Contact = () => {
                   href="https://instagram.com/atharv_ykar" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="social-link"
+                  className="social-link social-link-instagram"
                   aria-label="Instagram"
                 >
                   <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -117,7 +117,7 @@ export const Contact = () => {
                 </a>
                 <a 
                   href="mailto:atharvwaykar3@gmail.com" 
-                  className="social-link"
+                  className="social-link social-link-email"
                   aria-label="Email"
                 >
                   <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
