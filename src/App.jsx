@@ -7,6 +7,8 @@ import { Education } from "@/components/Education";
 import { Projects } from "@/components/Projects";
 import { CustomCursor } from "@/components/CustomCursor";
 import { Skills } from "@/components/Skills";
+import { ParticleDivider } from "@/components/ParticleDivider";
+import { Contact } from "@/components/Contact";
 
 function App() {
   return (
@@ -57,21 +59,18 @@ function App() {
               <Education />
             </div>
 
+            {/* Particle Divider between Education and Skills */}
+            <ParticleDivider />
+
             {/* Skills - Full width, edge to edge */}
             <Skills />
 
-            <div className="pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-24 px-4 sm:px-6 lg:px-12 xl:px-16 max-w-[1400px] mx-auto">
+            <div className="pt-16 sm:pt-20 lg:pt-24 px-4 sm:px-6 lg:px-12 xl:px-16 max-w-[1400px] mx-auto">
               <Projects />
-  
-              <section id="contact" className="min-h-[40vh] sm:min-h-[50vh] py-14 sm:py-16 lg:py-20">
-                <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-10 text-center">Let's build something together.</h2>
-                <div className="flex justify-center">
-                  <button className="bg-white text-black px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full flex items-center justify-center hover:scale-105 transition-transform">
-                    Start a project
-                  </button>
-                </div>
-              </section>
             </div>
+
+            {/* Contact Section - Full width */}
+            <Contact />
           </div>
         </div>
       </div>
