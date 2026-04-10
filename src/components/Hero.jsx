@@ -32,7 +32,7 @@ import {
   SiRedux,
   SiSupabase,
   SiFirebase,
-  SiDocker,
+  SiNextdotjs,
 } from "react-icons/si";
 import { OrbitingCircles } from "./ui/orbiting-circles";
 
@@ -673,10 +673,10 @@ export const Hero = () => {
                 glow: "rgba(251,191,36,0.5)",
               },
               {
-                Icon: SiDocker,
-                color: "text-sky-400",
-                name: "Docker",
-                glow: "rgba(56,189,248,0.5)",
+                Icon: SiNextdotjs,
+                color: "text-white",
+                name: "Next.js",
+                glow: "rgba(255,255,255,0.5)",
               },
             ].map(({ Icon, color, name, glow }, i, arr) => {
               const angle = (360 / arr.length) * i;

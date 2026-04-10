@@ -4,7 +4,7 @@
   position: relative;
   width: 95%;
   max-width: 1400px;
-  margin: 0 auto;
+  margin: 0 auto 80px auto;
   min-height: 100vh;
   background: radial-gradient(circle at top right, rgba(6, 6, 8, 0.05) 0%, rgba(6, 6, 8, 0.2) 60%),
               radial-gradient(circle at bottom left, rgba(6, 6, 8, 0.05) 0%, rgba(6, 6, 8, 0.2) 60%);
@@ -15,10 +15,22 @@
   overflow: hidden;
   isolation: isolate;
   backdrop-filter: blur(1px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .about-dot-grid {
-  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background-image: 
+    linear-gradient(rgba(0, 255, 176, 0.06) 1px, transparent 1px);
+  background-size: 100% 40px;
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.15) 30%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.15) 30%, transparent 100%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .about-blob {
@@ -26,7 +38,7 @@
   border-radius: 9999px;
   filter: blur(90px);
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
 .about-blob-top {
@@ -47,7 +59,7 @@
 
 .about-layout {
   position: relative;
-  z-index: 1;
+  z-index: 10;
   width: 100%;
   display: grid;
   grid-template-columns: 40% 60%;
@@ -269,7 +281,7 @@
   position: absolute;
   right: 40px;
   bottom: 28px;
-  z-index: 1;
+  z-index: 20;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -338,6 +350,7 @@
 @media (max-width: 1200px) {
   .about-section {
     padding: 50px 60px;
+    margin-bottom: 70px;
   }
 
   .about-layout {
@@ -356,6 +369,7 @@
     border-radius: 36px;
     min-height: auto;
     padding: 48px 32px 76px;
+    margin-bottom: 60px;
   }
 
   .about-layout {
@@ -386,6 +400,7 @@
   .about-section {
     border-radius: 24px;
     padding: 40px 24px 70px;
+    margin-bottom: 50px;
   }
 
   .about-layout {
@@ -442,6 +457,7 @@
   .about-section {
     border-radius: 20px;
     padding: 32px 20px 80px;
+    margin-bottom: 40px;
   }
 
   .about-layout {
