@@ -1,5 +1,5 @@
-import React from 'react';
-import './Skills.css';
+import React from "react";
+import "./Skills.css";
 
 const IC = {
   bootstrap: `<svg fill="#7952b3" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Bootstrap</title><path d="M11.77 11.24H9.956V8.202h2.152c1.17 0 1.834.522 1.834 1.466 0 1.008-.773 1.572-2.174 1.572zm.324 1.206H9.957v3.348h2.231c1.459 0 2.232-.585 2.232-1.685s-.795-1.663-2.326-1.663zM24 11.39v1.218c-1.128.108-1.817.944-2.226 2.268-.407 1.319-.463 2.937-.42 4.186.045 1.3-.968 2.5-2.337 2.5H4.985c-1.37 0-2.383-1.2-2.337-2.5.043-1.249-.013-2.867-.42-4.186-.41-1.324-1.1-2.16-2.228-2.268V11.39c1.128-.108 1.819-.944 2.227-2.268.408-1.319.464-2.937.42-4.186-.045-1.3.968-2.5 2.338-2.5h14.032c1.37 0 2.382 1.2 2.337 2.5-.043 1.249.013 2.867.42 4.186.409 1.324 1.098 2.16 2.226 2.268zm-7.927 2.817c0-1.354-.953-2.333-2.368-2.488v-.057c1.04-.169 1.856-1.135 1.856-2.213 0-1.537-1.213-2.538-3.062-2.538h-4.16v10.172h4.181c2.218 0 3.553-1.086 3.553-2.876z"/></svg>`,
@@ -24,24 +24,88 @@ const IC = {
   postman: `<svg fill="#ff6c37" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Postman</title><path d="M13.527.099C6.955-.744.942 3.9.099 10.473c-.843 6.572 3.8 12.584 10.373 13.428 6.573.843 12.587-3.801 13.428-10.374C24.744 6.955 20.101.943 13.527.099zm2.471 7.485a.855.855 0 0 0-.593.25l-4.453 4.453-.307-.307-.643-.643c4.389-4.376 5.18-4.418 5.996-3.753zm-4.863 4.861l4.44-4.44a.62.62 0 1 1 .847.903l-4.699 4.125-.588-.588zm.33.694l-1.1.238a.06.06 0 0 1-.067-.032.06.06 0 0 1 .01-.073l.645-.645.512.512zm-2.803-.459l1.172-1.172.879.878-1.979.426a.074.074 0 0 1-.085-.039.072.072 0 0 1 .013-.093zm-3.646 6.058a.076.076 0 0 1-.069-.083.077.077 0 0 1 .022-.046h.002l.946-.946 1.222 1.222-2.123-.147zm2.425-1.256a.228.228 0 0 0-.117.256l.203.865a.125.125 0 0 1-.211.117h-.003l-.934-.934-.294-.295 3.762-3.758 1.82-.393.874.874c-1.255 1.102-2.971 2.201-5.1 3.268zm5.279-3.428h-.002l-.839-.839 4.699-4.125a.952.952 0 0 0 .119-.127c-.148 1.345-2.029 3.245-3.977 5.091zm3.657-6.46l-.003-.002a1.822 1.822 0 0 1 2.459-2.684l-1.61 1.613a.119.119 0 0 0 0 .169l1.247 1.247a1.817 1.817 0 0 1-2.093-.343zm2.578 0a1.714 1.714 0 0 1-.271.218h-.001l-1.207-1.207 1.533-1.533c.661.72.637 1.832-.054 2.522zM18.855 6.05a.143.143 0 0 0-.053.157.416.416 0 0 1-.053.45.14.14 0 0 0 .023.197.141.141 0 0 0 .084.03.14.14 0 0 0 .106-.05.691.691 0 0 0 .087-.751.138.138 0 0 0-.194-.033z"/></svg>`,
 };
 
-const cats=[
-  {label:'Programming\nLanguages',items:[['javascript','JavaScript'],['typescript','TypeScript'],['python','Python'],['c','C'],['cplusplus','C++']]},
-  {label:'Frontend',items:[['react','React'],['nextdotjs','Next.js'],['tailwindcss','Tailwind CSS'],['bootstrap','Bootstrap'],['html5','HTML5'],['css','CSS']]},
-  {label:'Backend',items:[['nodedotjs','Node.js'],['express','Express']]},
-  {label:'Databases',items:[['mongodb','MongoDB'],['mysql','MySQL'],['supabase','Supabase']]},
-  {label:'Tools',items:[['git','Git'],['github','GitHub'],['cursor','Cursor'],['postman','Postman']]}
+const cats = [
+  {
+    label: "Programming\nLanguages",
+    items: [
+      ["javascript", "JavaScript"],
+      ["typescript", "TypeScript"],
+      ["python", "Python"],
+      ["c", "C"],
+      ["cplusplus", "C++"],
+    ],
+  },
+  {
+    label: "Frontend",
+    items: [
+      ["react", "React"],
+      ["nextdotjs", "Next.js"],
+      ["tailwindcss", "Tailwind CSS"],
+      ["bootstrap", "Bootstrap"],
+      ["html5", "HTML5"],
+      ["css", "CSS"],
+    ],
+  },
+  {
+    label: "Backend",
+    items: [
+      ["nodedotjs", "Node.js"],
+      ["express", "Express"],
+    ],
+  },
+  {
+    label: "Databases",
+    items: [
+      ["mongodb", "MongoDB"],
+      ["mysql", "MySQL"],
+      ["supabase", "Supabase"],
+    ],
+  },
+  {
+    label: "Tools",
+    items: [
+      ["git", "Git"],
+      ["github", "GitHub"],
+      ["cursor", "Cursor"],
+      ["postman", "Postman"],
+    ],
+  },
 ];
 
-const rows={
-  r1:[['bootstrap','Bootstrap'],['tailwindcss','Tailwind CSS'],['html5','HTML5'],['css','CSS'],['react','React'],['nextdotjs','Next.js']],
-  r2:[['mongodb','MongoDB'],['supabase','Supabase'],['mysql','MySQL'],['nodedotjs','Node.js'],['express','Express']],
-  r3:[['cursor','Cursor'],['postman','Postman'],['git','Git'],['github','GitHub']]
+const rows = {
+  r1: [
+    ["bootstrap", "Bootstrap"],
+    ["tailwindcss", "Tailwind CSS"],
+    ["html5", "HTML5"],
+    ["css", "CSS"],
+    ["react", "React"],
+    ["nextdotjs", "Next.js"],
+  ],
+  r2: [
+    ["mongodb", "MongoDB"],
+    ["supabase", "Supabase"],
+    ["mysql", "MySQL"],
+    ["nodedotjs", "Node.js"],
+    ["express", "Express"],
+  ],
+  r3: [
+    ["cursor", "Cursor"],
+    ["postman", "Postman"],
+    ["git", "Git"],
+    ["github", "GitHub"],
+  ],
 };
 
 const Badge = ({ k, label }) => {
   return (
     <div className="m-badge">
-      <div dangerouslySetInnerHTML={{ __html: IC[k] || `<svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" stroke="rgba(0,245,212,0.4)" stroke-width="1" fill="none"/></svg>` }} />
+      <div
+        dangerouslySetInnerHTML={{
+          __html:
+            IC[k] ||
+            `<svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" stroke="rgba(0,245,212,0.4)" stroke-width="1" fill="none"/></svg>`,
+        }}
+      />
     </div>
   );
 };
@@ -49,7 +113,7 @@ const Badge = ({ k, label }) => {
 const Chip = ({ k, label }) => {
   return (
     <div className="chip">
-      <div dangerouslySetInnerHTML={{ __html: IC[k] || '' }} />
+      <div dangerouslySetInnerHTML={{ __html: IC[k] || "" }} />
       <span>{label}</span>
     </div>
   );
@@ -58,67 +122,104 @@ const Chip = ({ k, label }) => {
 export const Skills = () => {
   return (
     <section id="skills" className="w-full relative z-20">
-      <div className="root" style={{ background: 'transparent' }}>
+      <div className="root" style={{ background: "transparent" }}>
         <div className="section">
           <div className="left">
             <div className="eyebrow">What I work with</div>
-            <div className="h-main">My <span className="h-accent">Skills</span></div>
+            <div className="h-main">
+              My <span className="h-accent">Skills</span>
+            </div>
             <div className="rule"></div>
-            <p className="subtitle">Technologies and tools I love working with.</p>
+            <p className="subtitle">
+              Technologies and tools I love working with.
+            </p>
             <div className="cat-list">
               {cats.map((c, i) => (
                 <div className="cat-row" key={i}>
                   <div className="cat-label">{c.label}</div>
                   <div className="chip-group">
-                    {c.items.map(([k, l]) => <Chip key={k} k={k} label={l} />)}
+                    {c.items.map(([k, l]) => (
+                      <Chip key={k} k={k} label={l} />
+                    ))}
                   </div>
                 </div>
               ))}
             </div>
           </div>
           <div className="right">
-            <div className="right-head"><div className="right-title">Technologies &amp; Tools</div></div>
-            
+            <div className="right-head">
+              <div className="right-title">Technologies &amp; Tools</div>
+            </div>
+
             <div className="marquee-block">
-              <div className="marquee-cat">Frontend Tech</div>
+              <div className="marquee-cat">
+                <span className="marquee-cat-text">Frontend Tech</span>
+              </div>
               <div className="marquee-outer">
                 <div className="marquee-track go-left">
-                  {rows.r1.map(([k, l], i) => <Badge key={i} k={k} label={l} />)}
-                  {rows.r1.map(([k, l], i) => <Badge key={i + 'b'} k={k} label={l} />)}
-                  {rows.r1.map(([k, l], i) => <Badge key={i + 'c'} k={k} label={l} />)}
-                  {rows.r1.map(([k, l], i) => <Badge key={i + 'd'} k={k} label={l} />)}
-                </div>
-              </div>
-            </div>
-            
-            <div className="marquee-sep"></div>
-            
-            <div className="marquee-block">
-              <div className="marquee-cat">Backend &amp; Database</div>
-              <div className="marquee-outer">
-                <div className="marquee-track go-right">
-                  {rows.r2.map(([k, l], i) => <Badge key={i} k={k} label={l} />)}
-                  {rows.r2.map(([k, l], i) => <Badge key={i + 'b'} k={k} label={l} />)}
-                  {rows.r2.map(([k, l], i) => <Badge key={i + 'c'} k={k} label={l} />)}
-                  {rows.r2.map(([k, l], i) => <Badge key={i + 'd'} k={k} label={l} />)}
-                </div>
-              </div>
-            </div>
-            
-            <div className="marquee-sep"></div>
-            
-            <div className="marquee-block">
-              <div className="marquee-cat">Tools &amp; Platform</div>
-              <div className="marquee-outer">
-                <div className="marquee-track go-left">
-                  {rows.r3.map(([k, l], i) => <Badge key={i} k={k} label={l} />)}
-                  {rows.r3.map(([k, l], i) => <Badge key={i + 'b'} k={k} label={l} />)}
-                  {rows.r3.map(([k, l], i) => <Badge key={i + 'c'} k={k} label={l} />)}
-                  {rows.r3.map(([k, l], i) => <Badge key={i + 'd'} k={k} label={l} />)}
+                  {rows.r1.map(([k, l], i) => (
+                    <Badge key={i} k={k} label={l} />
+                  ))}
+                  {rows.r1.map(([k, l], i) => (
+                    <Badge key={i + "b"} k={k} label={l} />
+                  ))}
+                  {rows.r1.map(([k, l], i) => (
+                    <Badge key={i + "c"} k={k} label={l} />
+                  ))}
+                  {rows.r1.map(([k, l], i) => (
+                    <Badge key={i + "d"} k={k} label={l} />
+                  ))}
                 </div>
               </div>
             </div>
 
+            <div className="marquee-sep"></div>
+
+            <div className="marquee-block">
+              <div className="marquee-cat">
+                <span className="marquee-cat-text">Backend &amp; Database</span>
+              </div>
+              <div className="marquee-outer">
+                <div className="marquee-track go-right">
+                  {rows.r2.map(([k, l], i) => (
+                    <Badge key={i} k={k} label={l} />
+                  ))}
+                  {rows.r2.map(([k, l], i) => (
+                    <Badge key={i + "b"} k={k} label={l} />
+                  ))}
+                  {rows.r2.map(([k, l], i) => (
+                    <Badge key={i + "c"} k={k} label={l} />
+                  ))}
+                  {rows.r2.map(([k, l], i) => (
+                    <Badge key={i + "d"} k={k} label={l} />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="marquee-sep"></div>
+
+            <div className="marquee-block">
+              <div className="marquee-cat">
+                <span className="marquee-cat-text">Tools &amp; Platform</span>
+              </div>
+              <div className="marquee-outer">
+                <div className="marquee-track go-left">
+                  {rows.r3.map(([k, l], i) => (
+                    <Badge key={i} k={k} label={l} />
+                  ))}
+                  {rows.r3.map(([k, l], i) => (
+                    <Badge key={i + "b"} k={k} label={l} />
+                  ))}
+                  {rows.r3.map(([k, l], i) => (
+                    <Badge key={i + "c"} k={k} label={l} />
+                  ))}
+                  {rows.r3.map(([k, l], i) => (
+                    <Badge key={i + "d"} k={k} label={l} />
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
