@@ -1,6 +1,6 @@
-import path from "path"
-import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react"
+import path from "path";
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
@@ -12,13 +12,15 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-icons': ['react-icons'],
+        manualChunks(id) {
+          if (id.includes("react-icons")) {
+            return "react-icons";
+          }
         },
       },
     },
   },
   optimizeDeps: {
-    include: ['react-icons/fa', 'react-icons/si'],
+    include: ["react-icons/fa", "react-icons/si"],
   },
-})
+});
