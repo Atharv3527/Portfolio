@@ -9,4 +9,16 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-icons': ['react-icons'],
+        },
+      },
+    },
+  },
+  optimizeDeps: {
+    include: ['react-icons/fa', 'react-icons/si'],
+  },
 })

@@ -15,7 +15,9 @@
 .cat-list{display:flex;flex-direction:column;gap:0}
 .cat-row{display:flex;align-items:flex-start;padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
 .cat-row:first-child{border-top:1px solid rgba(255,255,255,0.04)}
-.cat-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(237, 234, 234, 0.85);font-weight:1000;min-width:150px;padding-top:14px;flex-shrink:0;white-space:pre-line;line-height:1.6}
+.cat-label{position:relative;display:inline-block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:1000;min-width:150px;padding-top:14px;padding-left:18px;flex-shrink:0;white-space:pre-line;line-height:1.6;background:linear-gradient(90deg,#00f5d4 0%,#48e5d2 48%,#3b82f6 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:catLabelFlow 5s ease-in-out infinite,catLabelGlow 2.8s ease-in-out infinite}
+.cat-label::before{content:'';position:absolute;left:0;top:18px;width:8px;height:8px;border-radius:999px;background:#00f5d4;box-shadow:0 0 8px rgba(0,245,212,.65),0 0 16px rgba(0,245,212,.38);animation:catDotPulse 2.2s ease-in-out infinite}
+.cat-label::after{content:'';position:absolute;left:18px;bottom:-6px;width:58px;height:1px;background:linear-gradient(90deg,rgba(0,245,212,.75),rgba(59,130,246,.55),transparent);opacity:.75;animation:catLineSweep 3.2s ease-in-out infinite}
 .chip-group{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center}
 .chip{display:flex;align-items:center;gap:12px;padding:8px 4px;background:transparent;border:none;transition:all .22s;cursor:default}
 .chip:hover{opacity:1}
@@ -26,8 +28,10 @@
 
 /* ── RIGHT HALF ── */
 .right{display:flex;flex-direction:column;justify-content:center;padding:120px 0 80px;gap:0;overflow:hidden}
-.right-head{padding:0 64px 36px}
-.right-title{font-size:11px;letter-spacing:.28em;color:rgba(255,255,255,0.2);text-transform:uppercase;font-weight:500}
+.right-head{padding:0 64px 36px;position:relative}
+.right-title{position:relative;display:inline-block;isolation:isolate;font-size:clamp(13px,1.1vw,16px);letter-spacing:.3em;text-transform:uppercase;font-weight:900;line-height:1.1;padding:10px 18px 10px 20px;border-radius:999px;background:linear-gradient(90deg,#00f5d4 0%,#4be7d8 42%,#3b82f6 100%);background-size:230% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 12px rgba(0,245,212,.35)) drop-shadow(0 0 22px rgba(59,130,246,.22));animation:rightTitleFlow 4.6s ease-in-out infinite,rightTitleGlow 2.8s ease-in-out infinite}
+.right-title::before{content:'';position:absolute;inset:0;border-radius:999px;border:1px solid rgba(0,245,212,.45);background:linear-gradient(120deg,rgba(0,245,212,.12),rgba(9,13,30,.4) 42%,rgba(59,130,246,.16));box-shadow:inset 0 0 18px rgba(0,245,212,.08),0 0 16px rgba(0,245,212,.28),0 0 34px rgba(59,130,246,.2);z-index:-2;animation:rightTitleAura 3.6s ease-in-out infinite}
+.right-title::after{content:'';position:absolute;inset:0;border-radius:999px;background:linear-gradient(110deg,transparent 18%,rgba(255,255,255,.26) 47%,transparent 74%);transform:translateX(-140%);z-index:-1;mix-blend-mode:screen;animation:rightTitleSweep 3.2s cubic-bezier(.4,0,.2,1) infinite}
 .marquee-block{margin-bottom:0}
 .marquee-cat{font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,0.75);text-transform:uppercase;font-weight:800;padding:0 64px;margin-bottom:12px}
 .marquee-outer{overflow:hidden;width:100%;padding:8px 0;position:relative}
@@ -47,6 +51,14 @@
 
 @keyframes toLeft{0%{transform:translateX(0)}100%{transform:translateX(-25%)}}
 @keyframes toRight{0%{transform:translateX(-25%)}100%{transform:translateX(0)}}
+@keyframes catLabelFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes catLabelGlow{0%{filter:drop-shadow(0 0 6px rgba(0,245,212,.22))}50%{filter:drop-shadow(0 0 12px rgba(0,245,212,.45)) drop-shadow(0 0 20px rgba(59,130,246,.28))}100%{filter:drop-shadow(0 0 6px rgba(0,245,212,.22))}}
+@keyframes catDotPulse{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.18)}}
+@keyframes catLineSweep{0%,100%{opacity:.55;transform:scaleX(.86);transform-origin:left center}50%{opacity:1;transform:scaleX(1);transform-origin:left center}}
+@keyframes rightTitleFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes rightTitleGlow{0%,100%{filter:drop-shadow(0 0 8px rgba(0,245,212,.3)) drop-shadow(0 0 16px rgba(59,130,246,.15))}50%{filter:drop-shadow(0 0 14px rgba(0,245,212,.5)) drop-shadow(0 0 28px rgba(59,130,246,.35))}}
+@keyframes rightTitleAura{0%,100%{box-shadow:inset 0 0 18px rgba(0,245,212,.08),0 0 16px rgba(0,245,212,.24),0 0 30px rgba(59,130,246,.16)}50%{box-shadow:inset 0 0 24px rgba(0,245,212,.14),0 0 24px rgba(0,245,212,.38),0 0 42px rgba(59,130,246,.28)}}
+@keyframes rightTitleSweep{0%{transform:translateX(-140%)}55%,100%{transform:translateX(140%)}}
 
 @media(max-width:900px){
   .section{grid-template-columns:1fr}
@@ -96,13 +108,15 @@
   .subtitle{font-size:13px;margin-bottom:32px}
   .cat-row{padding:16px 0}
   .cat-label{min-width:100px;font-size:9px;padding-top:12px}
+  .cat-label::before{top:15px;width:7px;height:7px}
+  .cat-label::after{width:46px;bottom:-4px}
   .chip{gap:8px;padding:6px 2px}
   .chip svg{width:18px;height:18px}
   .chip span{font-size:13px}
   .chip-group{gap:8px 12px}
   .right{padding:32px 0}
   .right-head{padding:0 24px 24px}
-  .right-title{font-size:10px}
+  .right-title{font-size:11px;letter-spacing:.24em;padding:8px 14px 8px 16px}
   .marquee-cat{padding:0 24px;font-size:8px;margin-bottom:10px}
   .marquee-sep{margin:16px 24px}
   .marquee-outer{padding:6px 0}
@@ -120,7 +134,9 @@
   .rule{width:40px;height:1.5px;margin:14px 0 10px}
   .subtitle{font-size:12px;margin-bottom:28px;max-width:100%}
   .cat-row{padding:14px 0;flex-direction:column;align-items:flex-start;gap:12px}
-  .cat-label{min-width:auto;font-size:9px;padding-top:0;letter-spacing:.16em}
+  .cat-label{min-width:auto;font-size:9px;padding-top:0;letter-spacing:.16em;padding-left:14px}
+  .cat-label::before{top:5px;width:6px;height:6px}
+  .cat-label::after{left:14px;width:38px;bottom:-3px}
   .chip{gap:8px;padding:6px 0}
   .chip svg{width:16px;height:16px}
   .chip span{font-size:12px}
@@ -128,7 +144,7 @@
   .chip:hover{transform:translateX(8px) scale(1.03)}
   .right{padding:28px 0}
   .right-head{padding:0 20px 20px}
-  .right-title{font-size:9px;letter-spacing:.24em}
+  .right-title{font-size:10px;letter-spacing:.2em;padding:7px 12px 7px 14px}
   .marquee-cat{padding:0 20px;font-size:8px;margin-bottom:8px;letter-spacing:.18em}
   .marquee-sep{margin:14px 20px}
   .marquee-outer{padding:5px 0}
@@ -152,6 +168,7 @@
   .chip span{font-size:11px}
   .chip-group{gap:6px 8px}
   .right-head{padding:0 16px 16px}
+  .right-title{font-size:9px;letter-spacing:.18em;padding:6px 10px 6px 12px}
   .marquee-cat{padding:0 16px;font-size:7px}
   .marquee-sep{margin:12px 16px}
   .m-badge svg{width:18px;height:18px}
@@ -169,6 +186,7 @@
   .chip-group{gap:14px 28px}
   .right{padding:140px 0 100px}
   .right-head{padding:0 80px 40px}
+  .right-title{font-size:18px;letter-spacing:.32em;padding:12px 22px 12px 24px}
   .marquee-cat{padding:0 80px;font-size:11px}
   .marquee-sep{margin:28px 80px}
   .m-badge svg{width:36px;height:36px}
