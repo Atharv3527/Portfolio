@@ -525,7 +525,7 @@ export const Hero = () => {
                 <img
                   src="/atharv-profile.png"
                   alt="Atharv Waykar"
-                  className="w-full h-full rounded-full object-cover"
+                  className="w-full h-full rounded-full object-contain"
                 />
               </div>
             </div>
