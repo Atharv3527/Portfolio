@@ -523,9 +523,10 @@ export const Hero = () => {
             <div className="relative w-72 h-72 lg:w-80 lg:h-80 xl:w-[22rem] xl:h-[22rem] rounded-full p-px bg-gradient-to-tr from-[#00f0ff] via-[#00ffa3] to-[#00f0ff] shadow-[0_0_20px_rgba(0,240,255,0.25)]">
               <div className="w-full h-full rounded-full overflow-hidden bg-[#0a0a0a] p-px">
                 <img
-                  src="/atharv-profile.png"
+                  src="/atharv-profile.jpeg"
                   alt="Atharv Waykar"
-                  className="w-full h-full rounded-full object-contain"
+                  className="w-full h-full rounded-full object-cover"
+                  style={{ objectPosition: 'center 25%' }}
                 />
               </div>
             </div>
