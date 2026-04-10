@@ -31,6 +31,8 @@ import {
   SiTailwindcss,
   SiRedux,
   SiSupabase,
+  SiFirebase,
+  SiDocker,
 } from "react-icons/si";
 import { OrbitingCircles } from "./ui/orbiting-circles";
 
@@ -308,7 +310,7 @@ export const Hero = () => {
   return (
     <section
       id="home"
-      className="relative flex flex-col lg:flex-row items-center lg:items-start justify-between w-full min-h-[70vh] md:min-h-[75vh] lg:min-h-[80vh] xl:min-h-[75vh] pt-2 sm:pt-4 md:pt-6 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-32 overflow-visible group"
+      className="relative flex flex-col lg:flex-row items-center lg:items-center justify-center w-full min-h-[70vh] md:min-h-[75vh] lg:min-h-[80vh] xl:min-h-[75vh] gap-10 md:gap-12 lg:gap-14 xl:gap-16 pt-2 sm:pt-4 md:pt-6 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-32 overflow-visible group"
       onMouseMove={handleGlobalMouseMove}
     >
       {/* Edge Fade Gradients for Ultra-wide Support */}
@@ -324,7 +326,7 @@ export const Hero = () => {
 
       {/* --- LEFT COLUMN: CONTENT (55%) --- */}
       <motion.div
-        className="w-full lg:w-[55%] xl:w-[52%] flex flex-col items-start gap-3 sm:gap-4 md:gap-5 z-10 max-w-3xl"
+        className="w-full lg:w-[58%] xl:w-[56%] flex flex-col items-center lg:items-start text-center lg:text-left gap-3 sm:gap-4 md:gap-5 z-10 max-w-4xl"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
@@ -365,21 +367,21 @@ export const Hero = () => {
         </div>
 
         <div className="space-y-1">
-          <h2 className="text-xl md:text-2xl font-medium text-white/70 tracking-tight pl-1">
+          <h2 className="text-xl md:text-2xl font-medium text-white/70 tracking-tight lg:pl-1">
             Hello, I'm
           </h2>
 
           <TypewriterText />
         </div>
 
-        <p className="text-sm sm:text-base md:text-lg text-white/60 max-w-xl leading-relaxed mt-3 pl-1">
+        <p className="text-sm sm:text-base md:text-lg text-white/60 max-w-xl leading-relaxed mt-3 lg:pl-1">
           I’m a Self-Driven Full Stack Developer focused on building scalable,
           high-performance applications and solving real-world problems through
           intelligent systems.
         </p>
 
         {/* Buttons tightened up */}
-        <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-3 w-full pl-1">
+        <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-3 w-full lg:pl-1">
           <MagneticWrapper strength={0.2}>
             <a
               href="#projects"
@@ -412,7 +414,7 @@ export const Hero = () => {
         </div>
 
         {/* Socials */}
-        <div className="flex items-center gap-3 sm:gap-5 pt-3 pl-1 flex-wrap">
+        <div className="flex items-center justify-center lg:justify-start gap-3 sm:gap-5 pt-3 lg:pl-1 flex-wrap">
           {[
             {
               id: "github",
@@ -495,12 +497,12 @@ export const Hero = () => {
 
       {/* --- RIGHT COLUMN: VISUAL (45%) --- */}
       <motion.div
-        className="w-full lg:w-[45%] xl:w-[48%] relative flex items-center justify-center lg:justify-end mt-10 md:mt-12 lg:mt-0 xl:translate-x-12 2xl:translate-x-16 origin-right z-10"
+        className="w-full lg:w-[42%] xl:w-[44%] relative flex items-center justify-center z-10"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <div className="relative w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] lg:w-[540px] lg:h-[540px] xl:w-[600px] xl:h-[600px] flex items-center justify-center">
+        <div className="relative w-[300px] h-[300px] sm:w-[390px] sm:h-[390px] lg:w-[470px] lg:h-[470px] xl:w-[530px] xl:h-[530px] flex items-center justify-center">
           {/* Ambient Glow Background */}
           <motion.div
             className="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500/12 via-teal-400/6 to-transparent blur-2xl"
@@ -520,13 +522,13 @@ export const Hero = () => {
             />
 
             {/* Profile Image - INCREASED SIZE */}
-            <div className="relative w-72 h-72 lg:w-80 lg:h-80 xl:w-[22rem] xl:h-[22rem] rounded-full p-px bg-gradient-to-tr from-[#00f0ff] via-[#00ffa3] to-[#00f0ff] shadow-[0_0_20px_rgba(0,240,255,0.25)]">
+            <div className="relative w-64 h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 rounded-full p-px bg-gradient-to-tr from-[#00f0ff] via-[#00ffa3] to-[#00f0ff] shadow-[0_0_20px_rgba(0,240,255,0.25)]">
               <div className="w-full h-full rounded-full overflow-hidden bg-[#0a0a0a] p-px">
                 <img
                   src="/atharv-profile.jpeg"
                   alt="Atharv Waykar"
                   className="w-full h-full rounded-full object-cover"
-                  style={{ objectPosition: 'center 25%' }}
+                  style={{ objectPosition: "center 25%" }}
                 />
               </div>
             </div>
@@ -545,7 +547,7 @@ export const Hero = () => {
           {/* Single Orbiting Ring - All Tech Icons - Rounded Square Style */}
           <motion.div
             className="absolute inset-0 flex items-center justify-center z-10"
-            style={{ "--orbit-radius": "clamp(182px, 39vw, 226px)" }}
+            style={{ "--orbit-radius": "clamp(162px, 35vw, 198px)" }}
             animate={{ rotate: 360 }}
             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
           >
@@ -664,6 +666,18 @@ export const Hero = () => {
                 name: "Supabase",
                 glow: "rgba(52,211,153,0.5)",
               },
+              {
+                Icon: SiFirebase,
+                color: "text-amber-400",
+                name: "Firebase",
+                glow: "rgba(251,191,36,0.5)",
+              },
+              {
+                Icon: SiDocker,
+                color: "text-sky-400",
+                name: "Docker",
+                glow: "rgba(56,189,248,0.5)",
+              },
             ].map(({ Icon, color, name, glow }, i, arr) => {
               const angle = (360 / arr.length) * i;
               return (
@@ -675,7 +689,7 @@ export const Hero = () => {
                   }}
                 >
                   <motion.div
-                    className="relative group/icon flex items-center justify-center w-12 h-12 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-[#060b16]/85 border border-cyan-400/35 rounded-xl lg:rounded-2xl backdrop-blur-md transition-all cursor-pointer shadow-[0_0_15px_rgba(0,255,255,0.25)]"
+                    className="relative group/icon flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 bg-[#060b16]/85 border border-cyan-400/35 rounded-xl lg:rounded-2xl backdrop-blur-md transition-all cursor-pointer shadow-[0_0_15px_rgba(0,255,255,0.25)]"
                     whileHover={{
                       scale: 1.08,
                       boxShadow: `0 0 25px ${glow}`,
@@ -683,7 +697,7 @@ export const Hero = () => {
                     }}
                   >
                     <Icon
-                      className={`w-5 h-5 sm:w-5 sm:h-5 lg:w-6 lg:h-6 ${color}`}
+                      className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-5 lg:h-5 ${color}`}
                     />
                     <div className="absolute -bottom-10 opacity-0 group-hover/icon:opacity-100 transition-opacity bg-black/95 border border-white/20 text-white text-[11px] px-3 py-1.5 rounded-lg whitespace-nowrap backdrop-blur-md shadow-xl font-semibold tracking-wide pointer-events-none z-50">
                       {name}
